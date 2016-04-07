@@ -1,1 +1,3 @@
 # ohtuMyssyt
+
+Ryhmän Myssyt ohturepositorio
