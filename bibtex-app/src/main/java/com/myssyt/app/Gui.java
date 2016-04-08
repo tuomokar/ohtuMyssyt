@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
+import javax.swing.table.TableModel;
 
 public class Gui  implements Runnable{
     
@@ -61,9 +62,19 @@ public class Gui  implements Runnable{
     }
     
     private JTable createTable() {
-        JTable table = new JTable();
         
-        return table;
+        //List<Employee> listEmployees = createListEmployees();
+        TableModel tableModel = new ViiteTableModel();
+        //table = new JTable(tableModel);
+ 
+        // insert code for sorting here...
+ 
+        //add(new JScrollPane(table), BorderLayout.CENTER);
+        
+        
+        //JTable table = new JTable();
+        
+        return new JTable(tableModel);
     }
 
     
