@@ -15,10 +15,15 @@ public class ViiteManageri {
     private ArrayList<Viite> viitteet;
     
     public ViiteManageri() {
-        viitteet = new ArrayList<>();
+        try {
+            viitteet = FileHandler.ReadFile("viitteet");
+        }
+        catch (Exception e) {
+            viitteet = new ArrayList<>();
+        }
     }
     
-    public ArrayList<Viite> listaaViitteet() {
+    public ArrayList<Viite> getViitteet() {
         return viitteet;
     }
     
@@ -28,5 +33,15 @@ public class ViiteManageri {
         viitteet.add(artikkeli);
         
         return "Artikkelin lisääminen onnistui";
+    }
+    
+    public String tallennaViitteet() {
+        try {
+            FileHandler.WriteFile(viitteet, "viitteet");
+            return "Tiedoston tallennus onnistui";
+        }
+        catch (Exception e) {
+            return "Tiedoston tallennus epäonnistui";
+        }
     }
 }
