@@ -7,5 +7,4 @@ public class Artikkeli extends Viite {
         super(title, author, publisher, year);
         this.journal = journal;
     }
-
 }
