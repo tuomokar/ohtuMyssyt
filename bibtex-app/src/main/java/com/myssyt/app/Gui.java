@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
 
 public class Gui  implements Runnable{
@@ -45,6 +46,7 @@ public class Gui  implements Runnable{
     private void createComponents(Container container) {
 
        container.add(createButtons(), BorderLayout.CENTER);
+       container.add(createTable(), BorderLayout.SOUTH);
        
     }
      
@@ -56,6 +58,12 @@ public class Gui  implements Runnable{
         panel.add(adder);
         
         return panel;
+    }
+    
+    private JTable createTable() {
+        JTable table = new JTable();
+        
+        return table;
     }
 
     
