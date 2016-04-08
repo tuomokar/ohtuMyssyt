@@ -50,7 +50,7 @@ public class ViiteManageriTest {
         String viesti = manageri.lisaaArtikkeli(journal, title, author, publisher, year);
         
         assertEquals(viesti, "Artikkelin lisääminen onnistui");
-        assertEquals(manageri.listaaViitteet().get(0).getTitle(), "Novice mistakes: are the folk wisdoms correct?");
+        assertEquals(manageri.getViitteet().get(0).getTitle(), "Novice mistakes: are the folk wisdoms correct?");
     }
     
 }

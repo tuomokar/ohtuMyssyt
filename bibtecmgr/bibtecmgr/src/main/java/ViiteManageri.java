@@ -18,7 +18,7 @@ public class ViiteManageri {
         viitteet = new ArrayList<>();
     }
     
-    public ArrayList<Viite> listaaViitteet() {
+    public ArrayList<Viite> getViitteet() {
         return viitteet;
     }
     
