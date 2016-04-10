@@ -1,2 +1,2 @@
-bibtex-app/target/
-.gitignore
+bibtecmgr/bibtecmgr/target/*
+bibtex-app/target/*
