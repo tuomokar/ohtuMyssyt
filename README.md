@@ -13,3 +13,4 @@ Ryhmän jäsenet:
 Olli-Pekka Lindström
 Topi Törnroos
 Joni Ollikainen
+Kalle Hiljanen
