@@ -9,3 +9,4 @@ esim. gui https://github.com/joonasky/Sudoku/tree/master/Sudoku/src
 
 Ryhmän jäsenet:
 Olli-Pekka Lindström
+Topi Törnroos
