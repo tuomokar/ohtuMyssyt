@@ -1,4 +1,4 @@
-package com.hatut.bibtex;
+package com.myssyt.bibtex;
 
 import java.util.ArrayList;
 import java.io.*;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hatut.bibtex;
+package com.myssyt.bibtex;
 
 import org.junit.After;
 import org.junit.AfterClass;

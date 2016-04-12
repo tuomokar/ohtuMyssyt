@@ -1,4 +1,4 @@
-import com.hatut.bibtex.*
+import com.myssyt.bibtex.*
 
 
 description "As a user I want to add an article to the system so I can generate a bibtex-file"

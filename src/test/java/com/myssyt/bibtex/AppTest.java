@@ -1,4 +1,4 @@
-package com.hatut.bibtex;
+package com.myssyt.bibtex;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package com.hatut.bibtex;
+package com.myssyt.bibtex;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
