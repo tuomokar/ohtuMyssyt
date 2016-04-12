@@ -1,6 +1,8 @@
 package com.hatut.bibtex;
 
-public class Viite {
+import java.io.Serializable;
+
+public class Viite implements Serializable {
 
     private String title;
     private String author;

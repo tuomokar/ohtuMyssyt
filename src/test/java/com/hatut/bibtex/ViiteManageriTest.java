@@ -19,6 +19,13 @@ import static org.junit.Assert.*;
  */
 public class ViiteManageriTest {
     
+    private String journal;
+    private String title;
+    private String author;
+    private String publisher;
+    private int year;
+    private ViiteManageri manageri;
+    
     public ViiteManageriTest() {
     }
     
@@ -32,6 +39,12 @@ public class ViiteManageriTest {
     
     @Before
     public void setUp() {
+        journal = "Commun. ACM";
+        title = "Novice mistakes: are the folk wisdoms correct?";
+        author = "Spohrer, James C. and Soloway, Elliot";
+        publisher = "Consortium for Computing Sciences in Colleges";
+        year = 2006;
+        manageri = new ViiteManageri();
     }
     
     @After
@@ -43,34 +56,22 @@ public class ViiteManageriTest {
      */
     @org.junit.Test
     public void artikkelinLisaysOnnistuuHyvillaArvoilla() {
-        String journal = "Commun. ACM";
-        String title = "Novice mistakes: are the folk wisdoms correct?";
-        String author = "Spohrer, James C. and Soloway, Elliot";
-        String publisher = "Consortium for Computing Sciences in Colleges";
-        int year = 2006;
-        ViiteManageri manageri = new ViiteManageri();
         String viesti = manageri.lisaaArtikkeli(journal, title, author, publisher, year);
         
-        assertEquals(viesti, "Artikkelin lisääminen onnistui");
-        assertEquals(manageri.getViitteet().get(0).getTitle(), "Novice mistakes: are the folk wisdoms correct?");
+        assertEquals("Artikkelin lisääminen onnistui", viesti);
+        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
     }
     
     @org.junit.Test
     public void tiedostonTallennusJaLatausOnnistuu() {
-        String journal = "Commun. ACM";
-        String title = "Novice mistakes: are the folk wisdoms correct?";
-        String author = "Spohrer, James C. and Soloway, Elliot";
-        String publisher = "Consortium for Computing Sciences in Colleges";
-        int year = 2006;
-        ViiteManageri manageri = new ViiteManageri();
         String viesti = manageri.lisaaArtikkeli(journal, title, author, publisher, year);
         
         viesti = manageri.tallennaViitteet();
-        assertEquals(viesti, "Tiedoston tallennus onnistui");
+        assertEquals("Tiedoston tallennus onnistui", viesti);
         
         viesti = manageri.lataaViitteet();
-        assertEquals(viesti, "Tiedoston lataus onnistui");
+        assertEquals("Tiedoston lataus onnistui", viesti);
         
-        assertEquals(manageri.getViitteet().get(0).getTitle(), "Novice mistakes: are the folk wisdoms correct?");
+        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
     }
 }
