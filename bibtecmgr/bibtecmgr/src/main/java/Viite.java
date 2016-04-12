@@ -12,4 +12,20 @@ public class Viite {
         this.publisher = publisher;
         this.year = year;
     }
+    
+    public String getTitle() {
+        return this.title;
+    }
+    
+    public String getAuthor() {
+        return this.author;
+    }
+    
+    public String getPublisher() {
+        return this.publisher;
+    }
+    
+    public int getYear() {
+        return this.year;
+    }
 }

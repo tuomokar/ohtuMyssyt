@@ -7,4 +7,8 @@ public class Artikkeli extends Viite {
         super(title, author, publisher, year);
         this.journal = journal;
     }
+    
+    public String getJournal() {
+        return this.journal;
+    }
 }
