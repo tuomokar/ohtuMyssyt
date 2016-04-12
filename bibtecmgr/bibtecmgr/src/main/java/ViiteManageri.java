@@ -16,7 +16,7 @@ public class ViiteManageri {
     
     public ViiteManageri() {
         try {
-            viitteet = FileHandler.ReadFile("viitteet");
+            viitteet = FileHandler.readFile("viitteet");
         }
         catch (Exception e) {
             viitteet = new ArrayList<>();
@@ -37,7 +37,7 @@ public class ViiteManageri {
     
     public String tallennaViitteet() {
         try {
-            FileHandler.WriteFile(viitteet, "viitteet");
+            FileHandler.writeFile(viitteet, "viitteet");
             return "Tiedoston tallennus onnistui";
         }
         catch (Exception e) {
