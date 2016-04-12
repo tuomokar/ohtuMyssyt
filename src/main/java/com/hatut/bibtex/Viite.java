@@ -19,4 +19,16 @@ public class Viite implements Serializable {
     public String getTitle() {
         return this.title;
     }
+    
+    public String getAuthor() {
+        return this.author;
+    }
+    
+    public String getPublisher() {
+        return this.publisher;
+    }
+    
+    public int getYear() {
+        return this.year;
+    }
 }
