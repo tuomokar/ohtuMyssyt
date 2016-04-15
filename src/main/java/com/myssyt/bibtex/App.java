@@ -49,9 +49,9 @@ public class App extends javax.swing.JFrame {
         lMessage = new javax.swing.JLabel();
         lType = new javax.swing.JLabel();
         bSave = new javax.swing.JButton();
+        bClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(785, 485));
         setResizable(false);
 
         tblReferences.setModel(new javax.swing.table.DefaultTableModel(
@@ -101,12 +101,19 @@ public class App extends javax.swing.JFrame {
 
         lMessage.setForeground(new java.awt.Color(255, 0, 0));
 
-        lType.setText("Bibtex app v1.0");
+        lType.setText("Bibtex app");
 
-        bSave.setText("Save");
+        bSave.setText("Save file");
         bSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSaveActionPerformed(evt);
+            }
+        });
+
+        bClear.setText("Clear");
+        bClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bClearActionPerformed(evt);
             }
         });
 
@@ -141,6 +148,8 @@ public class App extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bClear)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bSave)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(contPanelLayout.createSequentialGroup()
@@ -173,11 +182,12 @@ public class App extends javax.swing.JFrame {
                     .addComponent(bAdd)
                     .addComponent(bUpdate)
                     .addComponent(bDelete)
-                    .addComponent(bSave))
+                    .addComponent(bSave)
+                    .addComponent(bClear))
                 .addGap(18, 18, 18)
-                .addGroup(contPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lMessage)
-                    .addComponent(lType))
+                .addGroup(contPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lType)
+                    .addComponent(lMessage))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -318,6 +328,13 @@ public class App extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bSaveActionPerformed
 
+    private void bClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClearActionPerformed
+        tfAuthor.setText("");
+        tfJournal.setText("");
+        tfTitle.setText("");
+        tfYear.setText("");
+    }//GEN-LAST:event_bClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -355,6 +372,7 @@ public class App extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAdd;
+    private javax.swing.JButton bClear;
     private javax.swing.JButton bDelete;
     private javax.swing.JButton bSave;
     private javax.swing.JButton bUpdate;
