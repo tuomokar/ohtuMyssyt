@@ -15,6 +15,8 @@ public class App extends javax.swing.JFrame {
         lMessage.setText(manageri.lataaViitteet());
         model = (DefaultTableModel) tblReferences.getModel();
         for(Viite viite : manageri.getViitteet()) {
+            
+            if(viite instanceof String){lMessage.setText(viite.getClass().toString());}
             model.addRow(new Object[] {
                 viite.getAuthor(), 
                 viite.getTitle(),
