@@ -37,8 +37,8 @@ public class ArtikkeliTest {
         String title = "Novice mistakes: are the folk wisdoms correct?";
         String author = "Spohrer, James C. and Soloway, Elliot";
         String publisher = "Consortium for Computing Sciences in Colleges";
-        int year = 2006;
-        artikkeli = new Artikkeli(journal, title, author, publisher, year);
+        String year = "2006";
+        artikkeli = new Artikkeli(null, author, title, journal, year, null, null, null, null, null);
     }
     
     @After
