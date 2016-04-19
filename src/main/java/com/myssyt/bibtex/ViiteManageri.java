@@ -24,12 +24,28 @@ public class ViiteManageri {
         return viitteet;
     }
     
-    public String lisaaArtikkeli(String journal, String title, String author, String publisher, int year) {
-        Artikkeli artikkeli = new Artikkeli(journal, title, author, publisher, year);
+    public String lisaaArtikkeli(String bibtexkey, String author, String title, String journal, String year, String number, String pages, String month, String note, String volume) {
+        Artikkeli artikkeli = new Artikkeli(bibtexkey, author, title, journal, year, number, pages, month, note, volume);
         
         viitteet.add(artikkeli);
         
         return "Artikkelin lisääminen onnistui";
+    }
+    
+    public String lisaaKirja(String bibtexkey, String author, String title, String publisher, String year, String volume, String series, String address, String edition, String month, String note, String isbn) {
+        Kirja kirja = new Kirja(bibtexkey, author, title, publisher, year, volume, series, address, edition, month, note, isbn);
+        
+        viitteet.add(kirja);
+        
+        return "Kirjan lisääminen onnistui";
+    }
+    
+    public String lisaaInproceedings(String bibtexkey, String author, String title, String booktitle, String year, String editor, String pages, String organization, String publisher, String address, String month, String note) {
+        Inproceedings inproceedings = new Inproceedings(bibtexkey, author, title, booktitle, year, editor, pages, organization, publisher, address, month, note);
+        
+        viitteet.add(inproceedings);
+        
+        return "Inproceedingsin lisääminen onnistui";
     }
     
     public String tallennaViitteet() {

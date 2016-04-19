@@ -36,8 +36,8 @@ public class ViiteTest {
         String title = "Novice mistakes: are the folk wisdoms correct?";
         String author = "Spohrer, James C. and Soloway, Elliot";
         String publisher = "Consortium for Computing Sciences in Colleges";
-        int year = 2006;
-        viite = new Viite(title, author, publisher, year);
+        String year = "2006";
+        viite = new Viite(null, title, author, publisher, null, null, null, year, null);
     }
     
     @After

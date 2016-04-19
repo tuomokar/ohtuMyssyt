@@ -19,11 +19,13 @@ import static org.junit.Assert.*;
  */
 public class ViiteManageriTest {
     
+    private String bibtexkey;
     private String journal;
     private String title;
     private String author;
     private String publisher;
-    private int year;
+    private String year;
+    private String booktitle;
     private ViiteManageri manageri;
     
     public ViiteManageriTest() {
@@ -39,11 +41,13 @@ public class ViiteManageriTest {
     
     @Before
     public void setUp() {
+        bibtexkey = "test";
         journal = "Commun. ACM";
         title = "Novice mistakes: are the folk wisdoms correct?";
         author = "Spohrer, James C. and Soloway, Elliot";
         publisher = "Consortium for Computing Sciences in Colleges";
-        year = 2006;
+        year = "2006";
+        booktitle = "ITiCSE-WGR '07: Working group reports on ITiCSE on Innovation and technology in computer science education";
         manageri = new ViiteManageri();
     }
     
@@ -54,17 +58,33 @@ public class ViiteManageriTest {
     /**
      * Test of lisaaArtikkeli method, of class ViiteManageri.
      */
-    @org.junit.Test
+    @Test
     public void artikkelinLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaArtikkeli(journal, title, author, publisher, year);
+        String viesti = manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
         
         assertEquals("Artikkelin lisääminen onnistui", viesti);
         assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
     }
     
+    @Test
+    public void kirjanLisaysOnnistuuHyvillaArvoilla() {
+        String viesti = manageri.lisaaKirja(bibtexkey, author, title, publisher, year, null, null, null, null, null, null, null);
+        
+        assertEquals("Kirjan lisääminen onnistui", viesti);
+        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+    }
+    
+    @Test
+    public void inproceedingsinLisaysOnnistuuHyvillaArvoilla() {
+        String viesti = manageri.lisaaInproceedings(bibtexkey, author, title, booktitle, year, null, null, null, null, null, null, null);
+        
+        assertEquals("Inproceedingsin lisääminen onnistui", viesti);
+        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+    }
+    
     @org.junit.Test
     public void tiedostonTallennusJaLatausOnnistuu() {
-        String viesti = manageri.lisaaArtikkeli(journal, title, author, publisher, year);
+        String viesti = manageri.lisaaArtikkeli(null, author, title, journal, year, null, null, null, null, null);
         
         viesti = manageri.tallennaViitteet();
         assertEquals("Tiedoston tallennus onnistui", viesti);
