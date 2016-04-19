@@ -32,9 +32,9 @@ public class ViiteManageri {
         return "Artikkelin lisääminen onnistui";
     }
     
-    public String tallennaViitteet() {
+    public String tallennaViitteet(String nimi) {
         try {
-            FileHandler.writeFile(viitteet, "viitteet");
+            FileHandler.writeFile(viitteet, nimi);
             return "Tiedoston tallennus onnistui";
         }
         catch (Exception e) {
@@ -42,14 +42,24 @@ public class ViiteManageri {
         }
     }
     
-    public String lataaViitteet() {
+    public String lataaViitteet(String nimi) {
         try {
-            viitteet = FileHandler.readFile("viitteet");
+            viitteet = FileHandler.readFile(nimi);
             return "Tiedoston lataus onnistui";
         }
         catch (Exception e) {
             viitteet = new ArrayList<>();
             return "Tiedoston lataus epäonnistui";
+        }
+    }
+    
+    public String exportViitteet(String nimi) {
+        try {
+            BibtexExporter.exportBibtex(viitteet, nimi);
+            return "Tiedoston exporttaus onnistui";
+        }
+        catch (Exception e) {
+            return "Tiedoston exporttaus epäonnistui";
         }
     }
 }
