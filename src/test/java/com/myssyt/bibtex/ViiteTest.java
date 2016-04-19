@@ -73,7 +73,7 @@ public class ViiteTest {
      */
     @Test
     public void testGetYear() {
-        assertEquals(viite.getYear(), 2006);
+        assertEquals(viite.getYear(), "2006");
     }
     
 }

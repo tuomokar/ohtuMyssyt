@@ -88,7 +88,7 @@ public class ViiteManageriTest {
     
     @org.junit.Test
     public void tiedostonTallennusJaLatausOnnistuu() {
-        manageri.lisaaArtikkeli(null, author, title, journal, year, null, null, null, null, null);
+        manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
         
         String viesti = manageri.tallennaViitteet("viitteet");
         assertEquals("Tiedoston tallennus onnistui", viesti);
@@ -103,7 +103,7 @@ public class ViiteManageriTest {
     
     @org.junit.Test
     public void tiedostonExporttausOnnistuu() throws FileNotFoundException, IOException {
-        manageri.lisaaArtikkeli(null, author, title, journal, year, null, null, null, null, null);
+        manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
         
         String viesti = manageri.exportViitteet("testi.bib");
         assertEquals("Tiedoston exporttaus onnistui", viesti);
@@ -112,6 +112,6 @@ public class ViiteManageriTest {
         assertEquals(file.isFile(), true);
         
         BufferedReader brTest = new BufferedReader(new FileReader(file));
-        assertEquals(brTest.readLine(), "@article{KEY,");
+        assertEquals(brTest.readLine(), "@article{test,");
     }
 }
