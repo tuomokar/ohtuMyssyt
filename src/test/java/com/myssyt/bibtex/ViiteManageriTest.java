@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+import java.io.*;
 /**
  *
  * @author oplindst
@@ -53,6 +53,10 @@ public class ViiteManageriTest {
     
     @After
     public void tearDown() {
+        File file = new File("viitteet");
+        file.delete();
+        file = new File("testi.bib");
+        file.delete();
     }
 
     /**
@@ -84,14 +88,30 @@ public class ViiteManageriTest {
     
     @org.junit.Test
     public void tiedostonTallennusJaLatausOnnistuu() {
-        String viesti = manageri.lisaaArtikkeli(null, author, title, journal, year, null, null, null, null, null);
+        manageri.lisaaArtikkeli(null, author, title, journal, year, null, null, null, null, null);
         
-        viesti = manageri.tallennaViitteet();
+        String viesti = manageri.tallennaViitteet("viitteet");
         assertEquals("Tiedoston tallennus onnistui", viesti);
         
-        viesti = manageri.lataaViitteet();
+        assertEquals(new File("viitteet").isFile(), true);
+        
+        viesti = manageri.lataaViitteet("viitteet");
         assertEquals("Tiedoston lataus onnistui", viesti);
         
         assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+    }
+    
+    @org.junit.Test
+    public void tiedostonExporttausOnnistuu() throws FileNotFoundException, IOException {
+        manageri.lisaaArtikkeli(null, author, title, journal, year, null, null, null, null, null);
+        
+        String viesti = manageri.exportViitteet("testi.bib");
+        assertEquals("Tiedoston exporttaus onnistui", viesti);
+        
+        File file = new File("testi.bib");
+        assertEquals(file.isFile(), true);
+        
+        BufferedReader brTest = new BufferedReader(new FileReader(file));
+        assertEquals(brTest.readLine(), "@article{KEY,");
     }
 }
