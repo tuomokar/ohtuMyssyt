@@ -12,7 +12,11 @@ public class BibtexExporter {
         
         for(Viite viite : lista) {
             if (viite.getClass().equals(Artikkeli.class))
-                exportArticle((Artikkeli)viite, builder);
+                exportArtikkeli((Artikkeli)viite, builder);
+            else if (viite.getClass().equals(Kirja.class))
+                exportKirja((Kirja)viite, builder);
+            else if (viite.getClass().equals(Inproceedings.class))
+                exportInproceedings((Inproceedings)viite, builder);
             
             builder.append("\n\n");
         }
@@ -22,7 +26,7 @@ public class BibtexExporter {
         }
     }
     
-    private static void exportArticle(Artikkeli article, StringBuilder builder) {
+    private static void exportArtikkeli(Artikkeli article, StringBuilder builder) {
         builder.append("@article{" + article.getBibtexKey() + ",\n");
         builder.append("author = {" + article.getAuthor() + "},\n");
         builder.append("title = {" + article.getTitle() + "},\n");
@@ -65,13 +69,6 @@ public class BibtexExporter {
         builder.append("month = {" + inproceedings.getMonth() + "},\n");
         builder.append("note = {" + inproceedings.getNote() + "},\n");
         builder.append("}");
-    }
-    
-    public static void main(String[] args) throws FileNotFoundException {
-        ArrayList<Viite> lista = new ArrayList<>();
-        lista.add(new Artikkeli("key", "author", "title", "journal", "year", "number", "pages", "month", "note", "volume"));
-        lista.add(new Artikkeli("key2", "author2", "title2", "journal2", "year2", "number2", "pages2", "month2", "note2", "volume2"));
-        exportBibtex(lista, "testi.txt");
     }
 }
 
