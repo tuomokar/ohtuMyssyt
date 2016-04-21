@@ -12,15 +12,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author topi
- */
-public class ViiteTest {
+public class KirjaTest {
     
-    protected Viite viite;
+    protected Kirja kirja;
     
-    public ViiteTest() {
+    public KirjaTest() {
     }
     
     @BeforeClass
@@ -31,18 +27,23 @@ public class ViiteTest {
     public static void tearDownClass() {
     }
     
+    // String bibtexkey, String author, String title, String publisher, String year, 
+    // String volume, String series, String address, String edition, String month, String note, String isbn
     @Before
     public void setUp() {
-        viite = new Viite(
+        kirja = new Kirja(
                 "bibtexKey-name",
-                "title-name",
                 "author-name", 
-                "publisher-name", 
-                "note-name", 
-                "address-name", 
+                "title-name",
+                "publisher-name",
                 "year-name", 
                 "volume-name", 
-                "month-name");
+                "series-name", 
+                "address-name", 
+                "edition-name", 
+                "month-name", 
+                "note-name",
+                "isbn-name");
     }
     
     @After
@@ -50,10 +51,10 @@ public class ViiteTest {
     }
 
     /**
-     * Test of getPublisher method, of class Viite.
+     * Test of getSeries method, of class Kirja.
      */
     @Test
-    public void testGetBibtexKey() {
-        assertEquals(viite.getBibtexKey(), "bibtexKey-name");
+    public void testGetSeries() {
+        assertEquals(kirja.getSeries(), "series-name");
     }
 }
