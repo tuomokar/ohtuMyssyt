@@ -36,6 +36,37 @@ public class BibtexExporter {
         builder.append("}");
     }
     
+    private static void exportKirja(Kirja book, StringBuilder builder) {
+        builder.append("@book{" + book.getBibtexKey() + ",\n");
+        builder.append("author = {" + book.getAuthor() + "},\n");
+        builder.append("title = {" + book.getTitle() + "},\n");
+        builder.append("publisher = {" + book.getPublisher() + "},\n");
+        builder.append("year = {" + book.getYear() + "},\n");
+        builder.append("volume = {" + book.getVolume() + "},\n");
+        builder.append("series = {" + book.getSeries() + "},\n");
+        builder.append("address = {" + book.getAddress() + "},\n");
+        builder.append("month = {" + book.getMonth() + "},\n");
+        builder.append("note = {" + book.getNote() + "},\n");
+        builder.append("ISBN = {" + book.getIsbn() + "},\n");
+        builder.append("}");
+    }
+    
+    private static void exportInproceedings(Inproceedings inproceedings, StringBuilder builder) {
+        builder.append("@inproceedings{" + inproceedings.getBibtexKey() + ",\n");
+        builder.append("author = {" + inproceedings.getAuthor() + "},\n");
+        builder.append("title = {" + inproceedings.getTitle() + "},\n");
+        builder.append("booktitle = {" + inproceedings.getBooktitle() + "},\n");
+        builder.append("year = {" + inproceedings.getYear() + "},\n");
+        builder.append("editor = {" + inproceedings.getEditor() + "},\n");
+        builder.append("pages = {" + inproceedings.getPages() + "},\n");
+        builder.append("organization = {" + inproceedings.getOrganization() + "},\n");
+        builder.append("publisher = {" + inproceedings.getPublisher() + "},\n");
+        builder.append("address = {" + inproceedings.getAddress() + "},\n");
+        builder.append("month = {" + inproceedings.getMonth() + "},\n");
+        builder.append("note = {" + inproceedings.getNote() + "},\n");
+        builder.append("}");
+    }
+    
     public static void main(String[] args) throws FileNotFoundException {
         ArrayList<Viite> lista = new ArrayList<>();
         lista.add(new Artikkeli("key", "author", "title", "journal", "year", "number", "pages", "month", "note", "volume"));

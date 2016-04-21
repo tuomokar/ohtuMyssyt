@@ -13,4 +13,28 @@ public class Kirja extends Viite {
         this.isbn = isbn;
     }
     
+    public String getSeries() {
+        return series;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+    
 }

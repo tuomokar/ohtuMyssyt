@@ -30,5 +30,21 @@ public class Inproceedings extends Viite {
     public String getOrganization() {
         return organization;
     }
+
+    public void setBooktitle(String booktitle) {
+        this.booktitle = booktitle;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public void setPages(String pages) {
+        this.pages = pages;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
     
 }

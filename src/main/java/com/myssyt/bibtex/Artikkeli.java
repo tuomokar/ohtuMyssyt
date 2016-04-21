@@ -24,5 +24,17 @@ public class Artikkeli extends Viite {
     public String getNumber() {
         return number;
     }
+
+    public void setJournal(String journal) {
+        this.journal = journal;
+    }
+
+    public void setPages(String pages) {
+        this.pages = pages;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
     
 }
