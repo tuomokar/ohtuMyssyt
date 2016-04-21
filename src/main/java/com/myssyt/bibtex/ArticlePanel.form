@@ -30,7 +30,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="optionalFieldsScrollPane" pref="520" max="32767" attributes="0"/>
+                      <Component id="optionalFieldsScrollPane" pref="786" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -89,7 +89,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="optionalFieldsScrollPane" min="-2" pref="195" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="124" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -164,7 +164,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="tfNote" max="32767" attributes="0"/>
                           <Component id="tfMonth" max="32767" attributes="0"/>
-                          <Component id="tfVolume" pref="532" max="32767" attributes="0"/>
+                          <Component id="tfVolume" pref="706" max="32767" attributes="0"/>
                           <Component id="tfNumber" alignment="0" max="32767" attributes="0"/>
                           <Component id="tfPages" alignment="0" max="32767" attributes="0"/>
                       </Group>

@@ -86,7 +86,7 @@ public class ViiteManageriTest {
         assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
     }
     
-    @org.junit.Test
+    @Test
     public void tiedostonTallennusJaLatausOnnistuu() {
         manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
         
@@ -101,7 +101,7 @@ public class ViiteManageriTest {
         assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
     }
     
-    @org.junit.Test
+    @Test
     public void tiedostonExporttausOnnistuu() throws FileNotFoundException, IOException {
         manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
         

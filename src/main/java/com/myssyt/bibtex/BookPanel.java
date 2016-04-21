@@ -17,6 +17,22 @@ public class BookPanel extends javax.swing.JPanel {
     public BookPanel() {
         initComponents();
     }
+    
+    public void clearTextFields() {
+        tfAddress.setText("");
+        tfAuthor.setText("");
+        tfBibtexkey.setText("");
+        tfEdition.setText("");
+        tfEditor.setText("");
+        tfMonth.setText("");
+        tfNote.setText("");
+        tfNumber.setText("");
+        tfPublisher.setText("");
+        tfSeries.setText("");
+        tfTitle.setText("");
+        tfVolume.setText("");
+        tfYear.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

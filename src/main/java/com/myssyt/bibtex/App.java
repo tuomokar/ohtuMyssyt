@@ -9,15 +9,20 @@ public class App extends javax.swing.JFrame {
     private CardLayout cl;
     private ViiteManageri manageri;
     private DefaultTableModel model;
+    ArticlePanel articlePanel;
+    BookPanel bookPanel;
+    InproceedingsPanel inproceedingsPanel;
 
     /**
      * Creates new form Main
      */
     public App() {
         initComponents();
-        ArticlePanel articlePanel = new ArticlePanel();
-        BookPanel bookPanel = new BookPanel();
-        InproceedingsPanel inproceedingsPanel = new InproceedingsPanel();
+        
+        articlePanel = new ArticlePanel();
+        bookPanel = new BookPanel();
+        inproceedingsPanel = new InproceedingsPanel();
+        
         contPanel.add(articlePanel, "article");
         contPanel.add(bookPanel, "book");
         contPanel.add(inproceedingsPanel, "inproceedings");
@@ -27,20 +32,41 @@ public class App extends javax.swing.JFrame {
         manageri = new ViiteManageri();
         lMessage.setText(manageri.lataaViitteet(filename)); // nimikenttä tietokannalle
         model = (DefaultTableModel) refTable.getModel();
+        
         for(Viite viite : manageri.getViitteet()) {
             if (viite.getClass().equals(Artikkeli.class)) {
                 Artikkeli artikkeli = (Artikkeli) viite;
-                // rivin kentät
-                // 
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
-                viite.getAuthor(), 
-                viite.getTitle(),
-                ((Artikkeli) viite).getJournal(), 
-                viite.getYear()});
+                    "Article",
+                    artikkeli.getAuthor(),
+                    artikkeli.getTitle(),
+                    artikkeli.getYear(),
+                    artikkeli.getJournal(),
+                    artikkeli.getBibtexKey()
+                });
             } else if (viite.getClass().equals(Kirja.class)) {
-                
+                Kirja kirja = (Kirja) viite;
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
+                model.addRow(new Object[] {
+                    "Book",
+                    kirja.getAuthor(),
+                    kirja.getTitle(),
+                    kirja.getYear(),
+                    "",
+                    kirja.getBibtexKey()
+                });
             } else if (viite.getClass().equals(Inproceedings.class)) {
-                
+                Inproceedings inproc = (Inproceedings) viite;
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
+                model.addRow(new Object[] {
+                    "Inproceedings",
+                    inproc.getAuthor(),
+                    inproc.getTitle(),
+                    inproc.getYear(),
+                    inproc.getBooktitle(),
+                    inproc.getBibtexKey()
+                });
             } else {
                 // ei tunnistettu luokka
             } 
@@ -70,8 +96,14 @@ public class App extends javax.swing.JFrame {
         refTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 600));
 
         bNew.setText("New");
+        bNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNewActionPerformed(evt);
+            }
+        });
 
         cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Book", "InProceedings" }));
         cbType.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +204,7 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(refTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addComponent(refTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -180,11 +212,25 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed
-        System.out.println(cbType.getSelectedIndex());
-        if (cbType.getSelectedItem().equals("Article")) cl.show(contPanel, "article");
-        if (cbType.getSelectedItem().equals("Book")) cl.show(contPanel, "book");
-        if (cbType.getSelectedItem().equals("InProceedings")) cl.show(contPanel, "inproceedings");
+        //System.out.println(cbType.getSelectedIndex());
+        //if (cbType.getSelectedItem().equals("Article")) cl.show(contPanel, "article");
+        //if (cbType.getSelectedItem().equals("Book")) cl.show(contPanel, "book");
+        //if (cbType.getSelectedItem().equals("InProceedings")) cl.show(contPanel, "inproceedings");
     }//GEN-LAST:event_cbTypeActionPerformed
+
+    private void bNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewActionPerformed
+        // tarkista cbType
+        if (cbType.getSelectedItem().equals("Article")) {
+            articlePanel.clearTextFields();
+            cl.show(contPanel, "article");
+        } else if (cbType.getSelectedItem().equals("Book")) {
+            bookPanel.clearTextFields();
+            cl.show(contPanel, "book");
+        } else if (cbType.getSelectedItem().equals("InProceedings")) {
+            inproceedingsPanel.clearTextFields();
+            cl.show(contPanel, "inproceedings");
+        }
+    }//GEN-LAST:event_bNewActionPerformed
 
     /**
      * @param args the command line arguments

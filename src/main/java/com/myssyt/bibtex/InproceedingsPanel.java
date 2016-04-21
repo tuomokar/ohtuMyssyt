@@ -17,6 +17,21 @@ public class InproceedingsPanel extends javax.swing.JPanel {
     public InproceedingsPanel() {
         initComponents();
     }
+    
+    public void clearTextFields() {
+        tfAddress.setText("");
+        tfAuthor.setText("");
+        tfBibtexkey.setText("");
+        tfBooktitle.setText("");
+        tfEditor.setText("");
+        tfMonth.setText("");
+        tfNumber.setText("");
+        tfPages.setText("");
+        tfSeries.setText("");
+        tfTitle.setText("");
+        tfVolume.setText("");
+        tfYear.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

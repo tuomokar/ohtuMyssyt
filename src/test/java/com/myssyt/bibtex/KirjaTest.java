@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.myssyt.bibtex;
 
 import org.junit.After;
@@ -13,8 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KirjaTest {
-    
-    protected Kirja kirja;
+    private Kirja kirja;
     
     public KirjaTest() {
     }
@@ -27,23 +21,12 @@ public class KirjaTest {
     public static void tearDownClass() {
     }
     
-    // String bibtexkey, String author, String title, String publisher, String year, 
-    // String volume, String series, String address, String edition, String month, String note, String isbn
     @Before
     public void setUp() {
-        kirja = new Kirja(
-                "bibtexKey-name",
-                "author-name", 
-                "title-name",
-                "publisher-name",
-                "year-name", 
-                "volume-name", 
-                "series-name", 
-                "address-name", 
-                "edition-name", 
-                "month-name", 
-                "note-name",
-                "isbn-name");
+        kirja = new Kirja("bibtexkey", "author", "title", "publisher", 
+                "year", "volume", "series", "address", "edition", "month", 
+                "note", "isbn");
+        
     }
     
     @After
@@ -55,6 +38,59 @@ public class KirjaTest {
      */
     @Test
     public void testGetSeries() {
-        assertEquals(kirja.getSeries(), "series-name");
+        String expResult = "series";
+        String result = kirja.getSeries();
+        assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getEdition method, of class Kirja.
+     */
+    @Test
+    public void testGetEdition() {
+        String expResult = "edition";
+        String result = kirja.getEdition();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getIsbn method, of class Kirja.
+     */
+    @Test
+    public void testGetIsbn() {
+        String expResult = "isbn";
+        String result = kirja.getIsbn();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setSeries method, of class Kirja.
+     */
+    @Test
+    public void testSetSeries() {
+        String series = "1";
+        kirja.setSeries(series);
+        assertEquals(series, kirja.getSeries());
+    }
+
+    /**
+     * Test of setEdition method, of class Kirja.
+     */
+    @Test
+    public void testSetEdition() {
+        String edition = "2";
+        kirja.setEdition(edition);
+        assertEquals(edition, kirja.getEdition());
+    }
+
+    /**
+     * Test of setIsbn method, of class Kirja.
+     */
+    @Test
+    public void testSetIsbn() {
+        String isbn = "3";
+        kirja.setIsbn(isbn);
+        assertEquals(isbn, kirja.getIsbn());
+    }
+    
 }

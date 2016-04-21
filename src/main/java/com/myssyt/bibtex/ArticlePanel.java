@@ -17,6 +17,19 @@ public class ArticlePanel extends javax.swing.JPanel {
     public ArticlePanel() {
         initComponents();
     }
+    
+    public void clearTextFields() {
+        tfAuthor.setText("");
+        tfBibtexkey.setText("");
+        tfBooktitle.setText("");
+        tfMonth.setText("");
+        tfNote.setText("");
+        tfNumber.setText("");
+        tfPages.setText("");
+        tfTitle.setText("");
+        tfVolume.setText("");
+        tfYear.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,7 +107,7 @@ public class ArticlePanel extends javax.swing.JPanel {
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfNote)
                     .addComponent(tfMonth)
-                    .addComponent(tfVolume, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                    .addComponent(tfVolume, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addComponent(tfNumber)
                     .addComponent(tfPages))
                 .addContainerGap())
@@ -134,7 +147,7 @@ public class ArticlePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                        .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,7 +192,7 @@ public class ArticlePanel extends javax.swing.JPanel {
                     .addComponent(lBibtexkey))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
