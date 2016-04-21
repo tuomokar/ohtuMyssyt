@@ -3,3 +3,6 @@ language: java
 script:
   - mvn test
   - mvn integration-test
+
+after_success:
+  - mvn clean cobertura:cobertura coveralls:report
