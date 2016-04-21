@@ -4,10 +4,10 @@ description "As a user I want to add an article to the system so I can generate 
 
 scenario "Artikkelin luonti onnistuu, kun pakolliset kentät on annettu", {
     given 'Pakolliset artikkelin kentät on annettu', {
-        title = "Novice mistakes: are the folk wisdoms correct?";
-        author = "Spohrer, James C. and Soloway, Elliot";
-        journal = "Commun. ACM";
-        year = "2006";
+        title = "Novice mistakes: are the folk wisdoms correct?"
+        author = "Spohrer, James C. and Soloway, Elliot"
+        journal = "Commun. ACM"
+        year = "2006"
     }
 
     when 'Luodaan uusi artikkeli käyttäen kenttiä', {

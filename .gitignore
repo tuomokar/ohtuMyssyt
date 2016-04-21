@@ -2,3 +2,4 @@ bibtecmgr/bibtecmgr/target/*
 target/*
 /nbproject/
 *~
+*.bib
