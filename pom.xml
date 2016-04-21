@@ -73,7 +73,19 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
-                <configuration>
+                <configuration>          
+                <instrumentation>
+                    <excludes>
+                        <exclude>com/myssyt/bibtex/**/App*</exclude>
+                        <exclude>com/myssyt/bibtex/**/ArticlePanel.class</exclude>
+                        <!-- <exclude>com/myssyt/**/ArticlePanelTest.class</exclude> -->
+                        <exclude>com/myssyt/bibtex/**/BookPanel.class</exclude>
+                        <!-- <exclude>com/myssyt/**/BookPanelTest.class</exclude> -->
+                        <exclude>com/myssyt/bibtex/**/InproceedingsPanel.class</exclude>
+                        <!-- <exclude>com/myssyt/**/InproceedingsPanelTest.class</exclude> -->
+                    </excludes>
+                </instrumentation>
+     
                     <formats>
                         <format>html</format>
                         <format>xml</format>
