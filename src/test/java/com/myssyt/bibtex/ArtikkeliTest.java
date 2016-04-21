@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.myssyt.bibtex;
 
 import org.junit.After;
@@ -36,7 +31,6 @@ public class ArtikkeliTest {
         String journal = "Commun. ACM";
         String title = "Novice mistakes: are the folk wisdoms correct?";
         String author = "Spohrer, James C. and Soloway, Elliot";
-        String publisher = "Consortium for Computing Sciences in Colleges";
         String year = "2006";
         artikkeli = new Artikkeli(null, author, title, journal, year, null, null, null, null, null);
     }

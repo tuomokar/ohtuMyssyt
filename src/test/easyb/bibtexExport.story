@@ -12,7 +12,7 @@ scenario "Bibtex-tiedoston luonti onnistuu kun artikkeli on annettu", {
 
     when 'Lisätään artikkeli managerille', {
         artikkeli = new Artikkeli("1", author, title, journal, year, "a", "b", "c", "d", "e")
-        manageri = new ViiteManageri();
+        manageri = new ViiteManageri()
         manageri.getViitteet().add(artikkeli)
     }
 

@@ -11,7 +11,7 @@ scenario "Artikkelin luonti onnistuu, kun pakolliset kentät on annettu", {
     }
 
     when 'Luodaan uusi artikkeli käyttäen kenttiä', {
-        artikkeli = new Artikkeli(null, author, title, journal, year, null, null, null, null, null);
+        artikkeli = new Artikkeli(null, author, title, journal, year, null, null, null, null, null)
     }
 
     then 'Artikkeli kentät toimivat oikein', {

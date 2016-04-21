@@ -37,7 +37,7 @@ public class BibtexExporter {
         if (isSet(article.getJournal())) builder.append("journal = {" + article.getJournal() + "},\n");
         if (isSet(article.getYear())) builder.append("year = {" + article.getYear() + "},\n");
         if (isSet(article.getNumber())) builder.append("number = {" + article.getNumber() + "},\n");
-        if (isSet(article.getNumber())) builder.append("pages = {" + article.getPages() + "},\n");
+        if (isSet(article.getPages())) builder.append("pages = {" + article.getPages() + "},\n");
         if (isSet(article.getMonth())) builder.append("month = {" + article.getMonth() + "},\n");
         if (isSet(article.getNote())) builder.append("note = {" + article.getNote() + "},\n");
         if (isSet(article.getVolume())) builder.append("volume = {" + article.getVolume() + "},\n");
