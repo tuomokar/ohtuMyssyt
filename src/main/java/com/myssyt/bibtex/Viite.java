@@ -61,4 +61,40 @@ public class Viite implements Serializable {
     public String getMonth() {
         return month;
     }
+
+    public void setBibtexKey(String bibtexKey) {
+        this.bibtexKey = bibtexKey;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
 }
