@@ -24,24 +24,40 @@ public class ViiteManageri {
         return viitteet;
     }
     
-    public String lisaaArtikkeli(String bibtexkey, String author, String title, String journal, String year, String number, String pages, String month, String note, String volume) {
-        Artikkeli artikkeli = new Artikkeli(bibtexkey, author, title, journal, year, number, pages, month, note, volume);
+    public String lisaaArtikkeli(String bibtexkey, String author, String title, 
+            String journal, String year, String volume, String number, 
+            String pages, String month, String note) {
+        
+            Artikkeli artikkeli = new Artikkeli(bibtexkey, author, title, 
+                    journal, year, volume, number, pages, month, note);
         
         viitteet.add(artikkeli);
         
         return "Artikkelin lisääminen onnistui";
     }
     
-    public String lisaaKirja(String bibtexkey, String author, String title, String publisher, String year, String volume, String series, String address, String edition, String month, String note, String isbn) {
-        Kirja kirja = new Kirja(bibtexkey, author, title, publisher, year, volume, series, address, edition, month, note, isbn);
+    public String lisaaKirja(String bibtexkey, String author, String editor, 
+            String title, String publisher, String year, String volume, 
+            String number, String series, String address, String edition, 
+            String month, String note) {
         
+        Kirja kirja = new Kirja(bibtexkey, author, editor, title, publisher, 
+                year, volume, number, series, address, edition, month, note);
+            
         viitteet.add(kirja);
         
         return "Kirjan lisääminen onnistui";
     }
     
-    public String lisaaInproceedings(String bibtexkey, String author, String title, String booktitle, String year, String editor, String pages, String organization, String publisher, String address, String month, String note) {
-        Inproceedings inproceedings = new Inproceedings(bibtexkey, author, title, booktitle, year, editor, pages, organization, publisher, address, month, note);
+    public String lisaaInproceedings(String bibtexkey, String author, String title, 
+            String booktitle, String year, String editor, String volume, 
+            String number, String series, String pages, String address, 
+            String month, String organization, String publisher,
+            String note) {
+        
+        Inproceedings inproceedings = new Inproceedings(bibtexkey, author,
+            title, booktitle, year, editor, volume, number, series, pages,
+            address, month, organization, publisher, note);
         
         viitteet.add(inproceedings);
         

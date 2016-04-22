@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.myssyt.bibtex;
 
 import org.junit.After;
@@ -9,11 +14,9 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author topi
+ * @author omena
  */
 public class ViiteTest {
-    
-    protected Viite viite;
     
     public ViiteTest() {
     }
@@ -28,16 +31,6 @@ public class ViiteTest {
     
     @Before
     public void setUp() {
-        viite = new Viite(
-                "bibtexKey-name",
-                "title-name",
-                "author-name", 
-                "publisher-name", 
-                "note-name", 
-                "address-name", 
-                "year-name", 
-                "volume-name", 
-                "month-name");
     }
     
     @After
@@ -45,10 +38,25 @@ public class ViiteTest {
     }
 
     /**
-     * Test of getPublisher method, of class Viite.
+     * Test of getBibtexKey method, of class Viite.
      */
     @Test
     public void testGetBibtexKey() {
-        assertEquals(viite.getBibtexKey(), "bibtexKey-name");
+        Viite instance = new Viite("abc");
+        String expResult = "abc";
+        String result = instance.getBibtexKey();
+        assertEquals(expResult, result);
     }
+
+    /**
+     * Test of setBibtexKey method, of class Viite.
+     */
+    @Test
+    public void testSetBibtexKey() {
+        Viite instance = new Viite("abc");
+        String bibtexKey = "123";
+        instance.setBibtexKey(bibtexKey);
+        assertEquals(bibtexKey, instance.getBibtexKey());
+    }
+    
 }

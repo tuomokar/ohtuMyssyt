@@ -13,13 +13,6 @@ import java.io.*;
  */
 public class ViiteManageriTest {
     
-    private String bibtexkey;
-    private String journal;
-    private String title;
-    private String author;
-    private String publisher;
-    private String year;
-    private String booktitle;
     private ViiteManageri manageri;
     
     public ViiteManageriTest() {
@@ -35,13 +28,6 @@ public class ViiteManageriTest {
     
     @Before
     public void setUp() {
-        bibtexkey = "test";
-        journal = "Commun. ACM";
-        title = "Novice mistakes: are the folk wisdoms correct?";
-        author = "Spohrer, James C. and Soloway, Elliot";
-        publisher = "Consortium for Computing Sciences in Colleges";
-        year = "2006";
-        booktitle = "ITiCSE-WGR '07: Working group reports on ITiCSE on Innovation and technology in computer science education";
         manageri = new ViiteManageri();
     }
     
@@ -58,31 +44,41 @@ public class ViiteManageriTest {
      */
     @Test
     public void artikkelinLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
+        String viesti = manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+              "journal", "year", "volume", "number", "pages", "month", "note");
         
         assertEquals("Artikkelin lisääminen onnistui", viesti);
-        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+        assertEquals("title", 
+                ((Artikkeli) manageri.getViitteet().get(0)).getTitle());
     }
     
     @Test
     public void kirjanLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaKirja(bibtexkey, author, title, publisher, year, null, null, null, null, null, null, null);
+        String viesti = manageri.lisaaKirja("bibtexkey", "author", "editor", "title", 
+                "publisher", "year", "volume", "number", "series", "address", 
+                "edition", "month", "note");
         
         assertEquals("Kirjan lisääminen onnistui", viesti);
-        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+        assertEquals("title", 
+                ((Kirja) manageri.getViitteet().get(0)).getTitle());
     }
     
     @Test
     public void inproceedingsinLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaInproceedings(bibtexkey, author, title, booktitle, year, null, null, null, null, null, null, null);
+        String viesti = manageri.lisaaInproceedings("bibtexkey", "author", 
+                "title", "booktitle", "year", "editor", "volume", "number", 
+                "series", "pages", "address", "month", "organization",
+                "publisher", "note");
         
         assertEquals("Inproceedingsin lisääminen onnistui", viesti);
-        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+        assertEquals("title", 
+                ((Inproceedings) manageri.getViitteet().get(0)).getTitle());
     }
     
     @Test
     public void tiedostonTallennusJaLatausOnnistuu() {
-        manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
+        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+              "journal", "year", "volume", "number", "pages", "month", "note");
         
         String viesti = manageri.tallennaViitteet("viitteet");
         assertEquals("Tiedoston tallennus onnistui", viesti);
@@ -92,12 +88,15 @@ public class ViiteManageriTest {
         viesti = manageri.lataaViitteet("viitteet");
         assertEquals("Tiedoston lataus onnistui", viesti);
         
-        assertEquals("Novice mistakes: are the folk wisdoms correct?", manageri.getViitteet().get(0).getTitle());
+        assertEquals("title",
+                ((Artikkeli) manageri.getViitteet().get(0)).getTitle());
     }
     
     @Test
-    public void tiedostonExporttausOnnistuu() throws FileNotFoundException, IOException {
-        manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null);
+    public void tiedostonExporttausOnnistuu() throws FileNotFoundException,
+            IOException {
+        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+              "journal", "year", "volume", "number", "pages", "month", "note");
         
         String viesti = manageri.exportViitteet("testi.bib");
         assertEquals("Tiedoston exporttaus onnistui", viesti);
@@ -106,6 +105,6 @@ public class ViiteManageriTest {
         assertEquals(file.isFile(), true);
         
         BufferedReader brTest = new BufferedReader(new FileReader(file));
-        assertEquals(brTest.readLine(), "@article{test,");
+        assertEquals(brTest.readLine(), "@article{bibtexkey,");
     }
 }

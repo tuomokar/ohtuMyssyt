@@ -3,9 +3,9 @@ import com.myssyt.bibtex.*
 description "As a user I want to create Bibtex files so that I can use them in Latex"
 
 scenario "Bibtex-tiedoston luonti onnistuu kun artikkeli on annettu", {
-    given 'Pakolliset artikkelin kentät on annettu', {
-        title = "Novice mistakes: are the folk wisdoms correct?"
+    given 'Artikkelin kentät on annettu', {
         author = "Spohrer, James C. and Soloway, Elliot"
+        title = "Novice mistakes: are the folk wisdoms correct?"
         journal = "Commun. ACM"
         year = "2006"
     }
