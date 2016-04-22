@@ -12,6 +12,8 @@ public class App extends javax.swing.JFrame {
     ArticlePanel articlePanel;
     BookPanel bookPanel;
     InproceedingsPanel inproceedingsPanel;
+    
+    int selectedType;
 
     /**
      * Creates new form Main
@@ -70,6 +72,7 @@ public class App extends javax.swing.JFrame {
             } else {
                 // ei tunnistettu luokka
             } 
+            selectedType = 0;
         }
     }
 
@@ -113,6 +116,11 @@ public class App extends javax.swing.JFrame {
         });
 
         bAdd.setText("Add");
+        bAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddActionPerformed(evt);
+            }
+        });
 
         bDelete.setText("Delete");
 
@@ -213,9 +221,9 @@ public class App extends javax.swing.JFrame {
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed
         //System.out.println(cbType.getSelectedIndex());
-        //if (cbType.getSelectedItem().equals("Article")) cl.show(contPanel, "article");
-        //if (cbType.getSelectedItem().equals("Book")) cl.show(contPanel, "book");
-        //if (cbType.getSelectedItem().equals("InProceedings")) cl.show(contPanel, "inproceedings");
+        if (cbType.getSelectedItem().equals("Article")) selectedType = 0;
+        if (cbType.getSelectedItem().equals("Book")) selectedType = 1;
+        if (cbType.getSelectedItem().equals("InProceedings")) selectedType = 2;
     }//GEN-LAST:event_cbTypeActionPerformed
 
     private void bNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewActionPerformed
@@ -223,14 +231,55 @@ public class App extends javax.swing.JFrame {
         if (cbType.getSelectedItem().equals("Article")) {
             articlePanel.clearTextFields();
             cl.show(contPanel, "article");
+            selectedType = 0;
         } else if (cbType.getSelectedItem().equals("Book")) {
             bookPanel.clearTextFields();
             cl.show(contPanel, "book");
+            selectedType = 1;
         } else if (cbType.getSelectedItem().equals("InProceedings")) {
             inproceedingsPanel.clearTextFields();
             cl.show(contPanel, "inproceedings");
+            selectedType = 2;
         }
     }//GEN-LAST:event_bNewActionPerformed
+
+    private void bAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActionPerformed
+        if (selectedType == 0) {
+
+                model.addRow(new Object[] {
+                    "Article",
+                    articlePanel.getTfAuthor().getText(),
+                    articlePanel.getTfTitle().getText(),
+                    articlePanel.getTfYear().getText(),
+                    "",
+                    articlePanel.getTfBibtexkey().getText(),
+                });
+            } else if (selectedType == 1) {
+
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
+                model.addRow(new Object[] {
+                    "Book",
+                    bookPanel.getTfAuthor().getText(),
+                    bookPanel.getTfTitle().getText(),
+                    bookPanel.getTfYear().getText(),
+                    "",
+                    bookPanel.getTfBibtexkey().getText(),
+                });
+            } else if (selectedType == 2) {
+
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
+                model.addRow(new Object[] {
+                    "Inproceedings",
+                    inproceedingsPanel.getTfAuthor().getText(),
+                    inproceedingsPanel.getTfTitle().getText(),
+                    inproceedingsPanel.getTfYear().getText(),
+                    "",
+                    inproceedingsPanel.getTfBibtexkey().getText(),
+                });
+            } else {
+                // ei tunnistettu luokka
+            } 
+    }//GEN-LAST:event_bAddActionPerformed
 
     /**
      * @param args the command line arguments
