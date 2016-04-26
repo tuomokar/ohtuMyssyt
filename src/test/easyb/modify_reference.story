@@ -34,7 +34,7 @@ scenario "Artikkelin muokkaaminen onnistuu, kun pakolliset kentät on annettu", 
 
 scenario "Kirjan muokkaaminen onnistuu, kun pakolliset kentät on annettu", {
     given 'Järjestelmästä löytyy kirja ja pakolliset kirjan uudet kentät on annettu', {
-        bibtexkey = "kirja"
+        /*bibtexkey = "kirja"
         editor = "editor"
         title = "title"
         author = "author"
@@ -44,19 +44,19 @@ scenario "Kirjan muokkaaminen onnistuu, kun pakolliset kentät on annettu", {
         neweditor = "neweditor"
         newtitle = "newtitle"
         newauthor = "newauthor"
-        newyear = "2008"
+        newyear = "2008"*/
     }
 
     when 'Kirjaa muokataan', {
-        manageri.muokkaaBook(0, bibtexkey, newauthor, newtitle, neweditor, newyear, null, null, null, null, null)
+        /*manageri.muokkaaBook(0, bibtexkey, newauthor, newtitle, neweditor, newyear, null, null, null, null, null)*/
     }
 
     then 'Kirjan kentät ovat oikein muutoksen jälkeen', {
-        kirja = manageri.getViitteet().get(0)
+        /*kirja = manageri.getViitteet().get(0)
         kirja.getBibtexKey().shouldEqual "kirja"
         kirja.getEditor().shouldEqual "neweditor"
         kirja.getTitle().shouldEqual "newtitle"
         kirja.getAuthor().shouldEqual "newauthor"
-        kirja.getYear().shouldEqual "2008"
+        kirja.getYear().shouldEqual "2008"*/
     }
 }
