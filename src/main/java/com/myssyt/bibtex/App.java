@@ -12,6 +12,7 @@ public class App extends javax.swing.JFrame {
     ArticlePanel articlePanel;
     BookPanel bookPanel;
     InproceedingsPanel inproceedingsPanel;
+    BookletPanel bookletPanel;
     
     int currentReferenceType = -1;
     
@@ -33,6 +34,11 @@ public class App extends javax.swing.JFrame {
             cl.show(contPanel, "inproceedings");
             currentReferenceType = 2;
             lMessage.setText("New Inproceedings");    
+        } else if (cbType.getSelectedItem().equals("Booklet")) {
+            bookletPanel.clearTextFields();
+            cl.show(contPanel, "booklet");
+            currentReferenceType = 3;
+            lMessage.setText("New Booklet");    
         }
     }
     
@@ -133,6 +139,32 @@ public class App extends javax.swing.JFrame {
             msg = manageri.lisaaInproceedings(bibtexkey, author, title,
                     booktitle, year, editor, volume, number, series, pages,
                     address, month, organization, publisher, note);
+            lMessage.setText(msg);
+        } else if (currentReferenceType == 3) {
+            String bibtexkey = bookletPanel.getTfBibtexkey().getText();
+            
+            String title = bookletPanel.getTfTitle().getText();
+
+            // vapaavalintaiset
+            String author = bookletPanel.getTfAuthor().getText();
+            String howpublished = bookletPanel.getTfHowpublished().getText();
+            String address = bookletPanel.getTfAddress().getText();
+            String month = bookletPanel.getTfMonth().getText();
+            String year = bookletPanel.getTfYear().getText();
+            String note = bookletPanel.getTfNote().getText();
+            
+            // table row: type, author/editor, title, year, journal/booktitle, key
+            model.addRow(new Object[] {
+                "Booklet",
+                author,
+                title,
+                year,
+                null,
+                bibtexkey
+            });
+
+            msg = manageri.lisaaBooklet(bibtexkey, title, author,
+                    howpublished, address, month, year, note);
             lMessage.setText(msg);
         } else {
             lMessage.setText("Create new reference first");
@@ -236,56 +268,42 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Book updated");
-            } else if (viite.getClass().equals(Inproceedings.class)) {
-                Inproceedings inproceedings = (Inproceedings) viite;
+            } else if (viite.getClass().equals(Booklet.class)) {
+                Booklet booklet = (Booklet) viite;
+                
+                String bibtexkey = bookletPanel.getTfBibtexkey().getText();
+            
+                String title = bookletPanel.getTfTitle().getText();
 
-                String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
+                // vapaavalintaiset
+                String author = bookletPanel.getTfAuthor().getText();
+                String howpublished = bookletPanel.getTfHowpublished().getText();
+                String address = bookletPanel.getTfAddress().getText();
+                String month = bookletPanel.getTfMonth().getText();
+                String year = bookletPanel.getTfYear().getText();
+                String note = bookletPanel.getTfNote().getText();
                 
-                String author = inproceedingsPanel.getTfAuthor().getText(); 
-                String title = inproceedingsPanel.getTfTitle().getText();
-                String booktitle = inproceedingsPanel.getTfBooktitle().getText();
-                String year = inproceedingsPanel.getTfYear().getText();
+                booklet.setBibtexKey(bibtexkey);
                 
-                // vapaavalintaiset + volume or number
-                String editor = inproceedingsPanel.getTfEditor().getText();
-                String volume = inproceedingsPanel.getTfVolume().getText();
-                String number = inproceedingsPanel.getTfNumber().getText();
-                String series = inproceedingsPanel.getTfSeries().getText();
-                String pages = inproceedingsPanel.getTfPages().getText();
-                String address = inproceedingsPanel.getTfAddress().getText();
-                String month = inproceedingsPanel.getTfMonth().getText();
-                String organization = inproceedingsPanel.getTfOrganization().getText();
-                String publisher = inproceedingsPanel.getTfPublisher().getText();
-                String note = inproceedingsPanel.getTfNote().getText();
+                booklet.setTitle(title);
                 
-                inproceedings.setBibtexKey(bibtexkey);
-                
-                inproceedings.setAuthor(author);
-                inproceedings.setTitle(title);
-                inproceedings.setBooktitle(booktitle);
-                inproceedings.setYear(year);
-                
-                // vapaavalintaiset + volume or number
-                inproceedings.setEditor(editor);
-                inproceedings.setVolume(volume);
-                inproceedings.setNumber(number);
-                inproceedings.setSeries(series);
-                inproceedings.setPages(pages);
-                inproceedings.setAddress(address);
-                inproceedings.setMonth(month);
-                inproceedings.setOrganization(organization);
-                inproceedings.setPublisher(publisher);
-                inproceedings.setNote(note);
+                // vapaavalintaiset
+                booklet.setAuthor(author);
+                booklet.setHowpublished(howpublished);
+                booklet.setAddress(address);
+                booklet.setMonth(month);
+                booklet.setYear(year);
+                booklet.setNote(note);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
                 model.setValueAt(author, selectedRow, 1);
                 model.setValueAt(title, selectedRow, 2);
                 model.setValueAt(year, selectedRow, 3);
-                model.setValueAt(booktitle, selectedRow, 4);
+                //model.setValueAt(booktitle, selectedRow, 4);
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
-                lMessage.setText("Inproceedings updated");
+                lMessage.setText("Booklet updated");
             }
         }
     }
@@ -447,12 +465,14 @@ public class App extends javax.swing.JFrame {
         articlePanel = new ArticlePanel();
         bookPanel = new BookPanel();
         inproceedingsPanel = new InproceedingsPanel();
+        bookletPanel = new BookletPanel();
         
         contPanel.add(articlePanel, "article");
         contPanel.add(bookPanel, "book");
         contPanel.add(inproceedingsPanel, "inproceedings");
-        cl = (CardLayout)(contPanel.getLayout());
-        cl.show(contPanel, "article");
+        contPanel.add(bookletPanel, "booklet");
+        cl = (CardLayout)contPanel.getLayout();
+        cl.show(contPanel, "article"); 
         
         manageri = new ViiteManageri();
         lMessage.setText(manageri.lataaViitteet(filename)); 
@@ -492,6 +512,17 @@ public class App extends javax.swing.JFrame {
                     inproc.getBooktitle(),
                     inproc.getBibtexKey()
                 });
+            } else if (viite.getClass().equals(Booklet.class)) {
+                Booklet booklet = (Booklet) viite;
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
+                model.addRow(new Object[] {
+                    "Inproceedings",
+                    booklet.getAuthor(),
+                    booklet.getTitle(),
+                    booklet.getYear(),
+                    booklet.getBooktitle(),
+                    booklet.getBibtexKey()
+                });
             }
         }
     }
@@ -508,7 +539,7 @@ public class App extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         controlsPanel = new javax.swing.JPanel();
         bNew = new javax.swing.JButton();
-        cbType = new javax.swing.JComboBox<String>();
+        cbType = new javax.swing.JComboBox<>();
         bAdd = new javax.swing.JButton();
         bDelete = new javax.swing.JButton();
         bExport = new javax.swing.JButton();
@@ -529,7 +560,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        cbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Article", "Book", "InProceedings" }));
+        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Book", "InProceedings", "Booklet" }));
         cbType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTypeActionPerformed(evt);
