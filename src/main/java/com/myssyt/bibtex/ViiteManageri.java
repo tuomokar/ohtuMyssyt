@@ -64,6 +64,17 @@ public class ViiteManageri {
         return "Inproceedingsin lisääminen onnistui";
     }
     
+    public String lisaaBooklet(String bibtexKey, String title, String author, String howpublished, String address, String month, 
+            String year, String note) {
+        
+        Booklet booklet = new Booklet(bibtexKey, title, author, howpublished, address, month, 
+            year, note);
+        
+        viitteet.add(booklet);
+        
+        return "Bookletin lisääminen onnistui";
+    }
+    
     public String tallennaViitteet(String nimi) {
         try {
             FileHandler.writeFile(viitteet, nimi);
