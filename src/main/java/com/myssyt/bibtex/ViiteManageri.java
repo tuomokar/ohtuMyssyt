@@ -100,6 +100,54 @@ public class ViiteManageri {
         viitteet.remove(index);
     }
     
+    public void muokkaaArtikkeli(int index, String bibtexkey,String author,
+            String title,String journal,String year,String volume,String number,
+            String pages,String month,String note) {
+        
+        Viite viite = getViitteet().get(index);
+        Artikkeli artikkeli = (Artikkeli) viite;
+        artikkeli.setBibtexKey(bibtexkey);
+                
+        artikkeli.setAuthor(author);
+        artikkeli.setTitle(title);
+        artikkeli.setJournal(journal);
+        artikkeli.setYear(year);
+
+        // vapaavalintaiset
+        artikkeli.setVolume(volume);
+        artikkeli.setNumber(number);
+        artikkeli.setPages(pages);
+        artikkeli.setMonth(month);
+        artikkeli.setNote(note);
+    }
+    
+    public void muokkaaBook(int index, String bibtexkey,String author,
+            String title,String editor,String year,String volume,String number,
+            String publisher,String month,String note,String series,
+            String address, String edition) {
+        
+        Viite viite = getViitteet().get(index);
+        Kirja kirja = (Kirja) viite;
+        
+        kirja.setBibtexKey(bibtexkey);
+                
+        // author or editor
+        kirja.setAuthor(author);
+        kirja.setEditor(editor);
+        kirja.setTitle(title);
+        kirja.setPublisher(publisher);
+        kirja.setYear(year);
+
+        // vapaavalintaiset + volume or number
+        kirja.setVolume(volume);
+        kirja.setNumber(number);
+        kirja.setSeries(series);
+        kirja.setAddress(address);
+        kirja.setEdition(edition);
+        kirja.setMonth(month);
+        kirja.setNote(note);
+    }
+    
     public String exportViitteet(String nimi) {
         try {
             BibtexExporter.exportBibtex(viitteet, nimi);
