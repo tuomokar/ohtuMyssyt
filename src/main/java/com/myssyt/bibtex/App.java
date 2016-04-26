@@ -432,7 +432,7 @@ public class App extends javax.swing.JFrame {
         if (selectedRow == -1) {
             lMessage.setText("Delete error: no selection");
         } else {
-            manageri.getViitteet().remove(selectedRow);
+            manageri.poistaViite(selectedRow);
             model.removeRow(selectedRow);
             lMessage.setText("Reference deleted");
         }
@@ -508,7 +508,7 @@ public class App extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         controlsPanel = new javax.swing.JPanel();
         bNew = new javax.swing.JButton();
-        cbType = new javax.swing.JComboBox<>();
+        cbType = new javax.swing.JComboBox<String>();
         bAdd = new javax.swing.JButton();
         bDelete = new javax.swing.JButton();
         bExport = new javax.swing.JButton();
@@ -529,7 +529,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Book", "InProceedings" }));
+        cbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Article", "Book", "InProceedings" }));
         cbType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTypeActionPerformed(evt);
