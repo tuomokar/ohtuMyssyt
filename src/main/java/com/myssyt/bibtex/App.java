@@ -416,6 +416,38 @@ public class App extends javax.swing.JFrame {
                 cl.show(contPanel, "inproceedings");
                 
                 lMessage.setText("Inproceedings selected");
+            } else if (model.getValueAt(selectedRow, 0).equals("Booklet")) {
+                Booklet booklet = (Booklet) viite;
+                
+                bookletPanel.clearTextFields();
+
+                String bibtexkey = booklet.getBibtexKey();
+                
+                String title = booklet.getTitle();
+
+                // vapaavalintaiset
+                String author = booklet.getAuthor();
+                String howpublished = booklet.getHowpublished();
+                String address = booklet.getAddress();
+                String month = booklet.getMonth();
+                String year = booklet.getYear();
+                String note = booklet.getNote();
+                
+                bookletPanel.getTfBibtexkey().setText(bibtexkey);
+                
+                bookletPanel.getTfTitle().setText(title);
+
+                // vapaavalintaiset
+                bookletPanel.getTfAuthor().setText(author);
+                bookletPanel.getTfHowpublished().setText(howpublished);
+                bookletPanel.getTfAddress().setText(address);
+                bookletPanel.getTfMonth().setText(month);
+                bookletPanel.getTfYear().setText(year);
+                bookletPanel.getTfNote().setText(note);
+                
+                cl.show(contPanel, "booklet");
+                
+                lMessage.setText("Booklet selected");
             }
         } 
     }
@@ -491,7 +523,7 @@ public class App extends javax.swing.JFrame {
                 Booklet booklet = (Booklet) viite;
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
-                    "Inproceedings",
+                    "Booklet",
                     booklet.getAuthor(),
                     booklet.getTitle(),
                     booklet.getYear(),
