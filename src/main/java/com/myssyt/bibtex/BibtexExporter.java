@@ -18,6 +18,7 @@ public class BibtexExporter {
             else if (viite.getClass().equals(Inproceedings.class))
                 exportInproceedings((Inproceedings)viite, builder);
             
+            builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
             builder.append("\n\n");
         }
         
