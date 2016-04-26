@@ -180,7 +180,7 @@ public class App extends javax.swing.JFrame {
             Viite viite = manageri.getViitteet().get(selectedRow);
             
             if (viite.getClass().equals(Artikkeli.class)) {
-                Artikkeli artikkeli = (Artikkeli) viite;
+                //Artikkeli artikkeli = (Artikkeli) viite;
 
                 String bibtexkey = articlePanel.getTfBibtexkey().getText();
                 
@@ -196,19 +196,8 @@ public class App extends javax.swing.JFrame {
                 String month = articlePanel.getTfMonth().getText();
                 String note = articlePanel.getTfNote().getText();
                 
-                artikkeli.setBibtexKey(bibtexkey);
-                
-                artikkeli.setAuthor(author);
-                artikkeli.setTitle(title);
-                artikkeli.setJournal(journal);
-                artikkeli.setYear(year);
-                
-                // vapaavalintaiset
-                artikkeli.setVolume(volume);
-                artikkeli.setNumber(number);
-                artikkeli.setPages(pages);
-                artikkeli.setMonth(month);
-                artikkeli.setNote(note);
+                manageri.muokkaaArtikkeli(selectedRow, bibtexkey, author, title,
+                        journal, year, volume, number, pages, month, note);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
@@ -220,7 +209,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Article updated");
             } else if (viite.getClass().equals(Kirja.class)) {
-                Kirja kirja = (Kirja) viite;
+                //Kirja kirja = (Kirja) viite;
 
                 String bibtexkey = bookPanel.getTfBibtexkey().getText();
                 
@@ -241,23 +230,9 @@ public class App extends javax.swing.JFrame {
                 String month = bookPanel.getTfMonth().getText();
                 String note = bookPanel.getTfNote().getText(); 
                 
-                kirja.setBibtexKey(bibtexkey);
-                
-                // author or editor
-                kirja.setAuthor(author);
-                kirja.setEditor(editor);
-                kirja.setTitle(title);
-                kirja.setPublisher(publisher);
-                kirja.setYear(year);
-                
-                // vapaavalintaiset + volume or number
-                kirja.setVolume(volume);
-                kirja.setNumber(number);
-                kirja.setSeries(series);
-                kirja.setAddress(address);
-                kirja.setEdition(edition);
-                kirja.setMonth(month);
-                kirja.setNote(note);
+                manageri.muokkaaBook(selectedRow, bibtexkey, author, title, editor, 
+                        year, volume, number, publisher, month, note, series, 
+                        address, edition);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
@@ -268,12 +243,17 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Book updated");
+<<<<<<< HEAD
             } else if (viite.getClass().equals(Booklet.class)) {
                 Booklet booklet = (Booklet) viite;
                 
                 String bibtexkey = bookletPanel.getTfBibtexkey().getText();
             
                 String title = bookletPanel.getTfTitle().getText();
+=======
+            } else if (viite.getClass().equals(Inproceedings.class)) {
+                //Inproceedings inproceedings = (Inproceedings) viite;
+>>>>>>> a6dad8b10e4c3671b7e70a480036336d1b6d9824
 
                 // vapaavalintaiset
                 String author = bookletPanel.getTfAuthor().getText();
@@ -285,6 +265,7 @@ public class App extends javax.swing.JFrame {
                 
                 booklet.setBibtexKey(bibtexkey);
                 
+<<<<<<< HEAD
                 booklet.setTitle(title);
                 
                 // vapaavalintaiset
@@ -294,6 +275,23 @@ public class App extends javax.swing.JFrame {
                 booklet.setMonth(month);
                 booklet.setYear(year);
                 booklet.setNote(note);
+=======
+                // vapaavalintaiset + volume or number
+                String editor = inproceedingsPanel.getTfEditor().getText();
+                String volume = inproceedingsPanel.getTfVolume().getText();
+                String number = inproceedingsPanel.getTfNumber().getText();
+                String series = inproceedingsPanel.getTfSeries().getText();
+                String pages = inproceedingsPanel.getTfPages().getText();
+                String address = inproceedingsPanel.getTfAddress().getText();
+                String month = inproceedingsPanel.getTfMonth().getText();
+                String organization = inproceedingsPanel.getTfOrganization().getText();
+                String publisher = inproceedingsPanel.getTfPublisher().getText();
+                String note = inproceedingsPanel.getTfNote().getText();
+                
+                manageri.muokkaaInProceedings(selectedRow, bibtexkey, author, title, 
+                        booktitle, year, editor, volume, number, series, pages,
+                        address, month, organization, publisher, note);
+>>>>>>> a6dad8b10e4c3671b7e70a480036336d1b6d9824
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
@@ -450,9 +448,9 @@ public class App extends javax.swing.JFrame {
         if (selectedRow == -1) {
             lMessage.setText("Delete error: no selection");
         } else {
-            manageri.poistaViite(selectedRow);
+            String message = manageri.poistaViite(selectedRow);
             model.removeRow(selectedRow);
-            lMessage.setText("Reference deleted");
+            lMessage.setText(message);
         }
     }
 

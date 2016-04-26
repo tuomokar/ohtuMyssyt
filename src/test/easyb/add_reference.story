@@ -74,3 +74,47 @@ scenario "Inproceedingsin lisääminen onnistuu, kun pakolliset kentät on annet
         inproceedings.getYear().shouldEqual "2007"
     }
 }
+
+scenario "Bookletin lisääminen onnistuu, kun pakolliset kentät on annettu", {
+    given 'Pakolliset bookletin kentät on annettu', {
+        bibtexkey = "booklet"
+        title = "Tämä on testi; erikoismerkkien t@rina."
+        manageri = new ViiteManageri()
+    }
+
+    when 'Luodaan booklet ja lisätään se järjestelmään', {
+        manageri.lisaaBooklet(bibtexkey, title, null, null, null, null, null, null)
+    }
+
+    then 'Booklet löytyy järjestelmästä ja sen kentät ovat oikein', {
+        booklet = manageri.getViitteet().get(0)
+        booklet.getBibtexKey().shouldEqual "booklet"
+        booklet.getTitle().shouldEqual "Tämä on testi; erikoismerkkien t@rina."
+    }
+}
+
+scenario "Incollectioning lisääminen onnistuu, kun pakolliset kentät on annettu", {
+    given 'Pakolliset incollectionin kentät on annettu', {
+        bibtexkey = "incollection"
+        author = "Beck, Kent and Andres, Cynthia"
+        title = "~EXP"
+        booktitle = "Extreme Programming Explained: Embrace Change (2nd Edition)"
+        year = "2004"
+        publisher = "Addison-Wesley Professional"
+        manageri = new ViiteManageri()
+    }
+
+    when 'Luodaan incollection ja lisätään se järjestelmään', {
+        manageri.lisaaIncollection(bibtexkey, author, title, booktitle, publisher, year, null, null, null, null, null, null, null, null, null, null, null)
+    }
+
+    then 'Incollection löytyy järjestelmästä ja sen kentät ovat oikein', {
+        incollection = manageri.getViitteet().get(0)
+        incollection.getBibtexKey().shouldEqual "incollection"
+        incollection.getTitle().shouldEqual "~EXP"
+        incollection.getBooktitle().shouldEqual "Extreme Programming Explained: Embrace Change (2nd Edition)"
+        incollection.getAuthor().shouldEqual "Beck, Kent and Andres, Cynthia"
+        incollection.getPublisher().shouldEqual "Addison-Wesley Professional"
+        incollection.getYear().shouldEqual "2004"
+    }
+}
