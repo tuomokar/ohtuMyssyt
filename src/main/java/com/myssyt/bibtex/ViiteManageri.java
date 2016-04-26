@@ -109,8 +109,9 @@ public class ViiteManageri {
         }
     }
     
-    public void poistaViite(int index) {
+    public String poistaViite(int index) {
         viitteet.remove(index);
+        return "Viitteen poistaminen onnistui";
     }
     
     public String exportViitteet(String nimi) {
