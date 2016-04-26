@@ -127,4 +127,37 @@ public class ViiteManageriTest {
         manageri.poistaViite(0);
         assertEquals(0,manageri.getViitteet().size());
     }
+    
+    @Test
+    public void ArtikkelinMuokkausOnnistuu() {
+        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+              "journal", "year", "volume", "number", "pages", "month", "note");
+        manageri.muokkaaArtikkeli(0,"muokattu", "author", "title", 
+              "journal", "year", "volume", "number", "pages", "month", "note");
+        assertEquals("muokattu",manageri.getViitteet().get(0).getBibtexKey());
+    }
+    
+    @Test
+    public void KirjanMuokkausOnnistuu() {
+        manageri.lisaaKirja("bibtexkey", "author", "editor", "title", 
+                "publisher", "year", "volume", "number", "series", "address", 
+                "edition", "month", "note");
+        manageri.muokkaaBook(0, "muokattu", "author", "editor", "title", 
+                "publisher", "year", "volume", "number", "series", "address", 
+                "edition", "month", "note");
+        assertEquals("muokattu",manageri.getViitteet().get(0).getBibtexKey());
+    }
+    
+    @Test
+    public void InProceedingsMuokkausOnnistuu() {
+        manageri.lisaaInproceedings("bibtexkey", "author", 
+                "title", "booktitle", "year", "editor", "volume", "number", 
+                "series", "pages", "address", "month", "organization",
+                "publisher", "note");
+        manageri.muokkaaInProceedings(0,"muokattu", "author", 
+                "title", "booktitle", "year", "editor", "volume", "number", 
+                "series", "pages", "address", "month", "organization",
+                "publisher", "note");
+        assertEquals("muokattu",manageri.getViitteet().get(0).getBibtexKey());
+    }
 }
