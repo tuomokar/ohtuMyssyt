@@ -107,4 +107,12 @@ public class ViiteManageriTest {
         BufferedReader brTest = new BufferedReader(new FileReader(file));
         assertEquals(brTest.readLine(), "@article{bibtexkey,");
     }
+    
+    @Test
+    public void ViitteenPoistoOnnistuu() {
+        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+              "journal", "year", "volume", "number", "pages", "month", "note");
+        manageri.poistaViite(0);
+        assertEquals(0,manageri.getViitteet().size());
+    }
 }
