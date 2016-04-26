@@ -76,6 +76,18 @@ public class ViiteManageriTest {
     }
     
     @Test
+    public void incollectioninLisaysOnnistuuHyvillaArvoilla() {
+        String viesti = manageri.lisaaIncollection("bibtexkey", "author", 
+                "title", "booktitle", "publisher", "year", "editor", "volume", "number", 
+                "series", "type", "chapter", "pages", "address",
+                "edition", "month", "note");
+        
+        assertEquals("Incollectionin lisääminen onnistui", viesti);
+        assertEquals("chapter", 
+                ((Incollection) manageri.getViitteet().get(0)).getChapter());
+    }
+    
+    @Test
     public void tiedostonTallennusJaLatausOnnistuu() {
         manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");

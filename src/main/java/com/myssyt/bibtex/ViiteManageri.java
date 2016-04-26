@@ -85,7 +85,7 @@ public class ViiteManageri {
                         
         viitteet.add(incollection);
         
-        return "Incollection lisääminen onnistui";
+        return "Incollectionin lisääminen onnistui";
     }
     
     public String tallennaViitteet(String nimi) {
