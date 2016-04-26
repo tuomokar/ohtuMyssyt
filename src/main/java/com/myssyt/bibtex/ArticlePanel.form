@@ -27,36 +27,31 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="optionalFieldsScrollPane" pref="776" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="optionalFieldsScrollPane" pref="786" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lAuthor" min="-2" max="-2" attributes="0"/>
-                          <Component id="lTitle" min="-2" max="-2" attributes="0"/>
-                          <Component id="lBooktitle" min="-2" max="-2" attributes="0"/>
-                          <Component id="lYear" min="-2" max="-2" attributes="0"/>
-                          <Component id="lBibtexkey" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfAuthor" max="32767" attributes="0"/>
-                          <Component id="tfTitle" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tfBooktitle" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tfBibtexkey" pref="300" max="32767" attributes="0"/>
-                                  <Component id="tfYear" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
+                  <Component id="lAuthor" min="-2" max="-2" attributes="0"/>
+                  <Component id="lTitle" min="-2" max="-2" attributes="0"/>
+                  <Component id="lBooktitle" min="-2" max="-2" attributes="0"/>
+                  <Component id="lYear" min="-2" max="-2" attributes="0"/>
+                  <Component id="lBibtexkey" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="tfAuthor" max="32767" attributes="0"/>
+                  <Component id="tfTitle" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tfJournal" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tfBibtexkey" pref="300" max="32767" attributes="0"/>
+                          <Component id="tfYear" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,7 +69,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfBooktitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfJournal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lBooktitle" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -88,8 +83,8 @@
                   <Component id="lBibtexkey" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="optionalFieldsScrollPane" min="-2" pref="195" max="-2" attributes="0"/>
-              <EmptySpace pref="124" max="32767" attributes="0"/>
+              <Component id="optionalFieldsScrollPane" min="-2" pref="214" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,7 +104,7 @@
         <Property name="text" type="java.lang.String" value="Title"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfBooktitle">
+    <Component class="javax.swing.JTextField" name="tfJournal">
     </Component>
     <Component class="javax.swing.JLabel" name="lBooktitle">
       <Properties>
@@ -138,6 +133,9 @@
           </Border>
         </Property>
         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[699, 190]"/>
+        </Property>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -147,26 +145,21 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lVolume" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lNumber" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="lSeries" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lNote" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lVolume" min="-2" max="-2" attributes="0"/>
+                          <Component id="lNumber" min="-2" max="-2" attributes="0"/>
+                          <Component id="lPages" min="-2" max="-2" attributes="0"/>
+                          <Component id="lMonth" min="-2" max="-2" attributes="0"/>
+                          <Component id="lNote" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfNote" max="32767" attributes="0"/>
-                          <Component id="tfMonth" max="32767" attributes="0"/>
-                          <Component id="tfVolume" pref="706" max="32767" attributes="0"/>
-                          <Component id="tfNumber" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tfPages" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfNumber" alignment="1" pref="662" max="32767" attributes="0"/>
+                          <Component id="tfVolume" max="32767" attributes="0"/>
+                          <Component id="tfNote" alignment="1" max="32767" attributes="0"/>
+                          <Component id="tfMonth" alignment="1" max="32767" attributes="0"/>
+                          <Component id="tfPages" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -175,6 +168,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tfVolume" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lVolume" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -187,12 +181,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tfPages" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lSeries" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lPages" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tfMonth" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lMonth" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -213,9 +207,15 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tfPages">
             </Component>
+            <Component class="javax.swing.JTextField" name="tfNote">
+            </Component>
             <Component class="javax.swing.JLabel" name="lVolume">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Volume"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[90, 16]"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lNumber">
@@ -223,17 +223,15 @@
                 <Property name="text" type="java.lang.String" value="Number"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lSeries">
+            <Component class="javax.swing.JLabel" name="lPages">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pages"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lAddress">
+            <Component class="javax.swing.JLabel" name="lMonth">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Month"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfNote">
             </Component>
             <Component class="javax.swing.JLabel" name="lNote">
               <Properties>

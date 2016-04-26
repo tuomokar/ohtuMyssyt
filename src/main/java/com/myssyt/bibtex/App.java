@@ -1,7 +1,7 @@
 package com.myssyt.bibtex;
 
 import java.awt.CardLayout;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class App extends javax.swing.JFrame {
@@ -13,7 +13,436 @@ public class App extends javax.swing.JFrame {
     BookPanel bookPanel;
     InproceedingsPanel inproceedingsPanel;
     
-    int selectedType;
+    int currentReferenceType;
+    
+    private void newReference() {
+        refTable.clearSelection();
+        
+        if (cbType.getSelectedItem().equals("Article")) {
+            articlePanel.clearTextFields();
+            cl.show(contPanel, "article");
+            currentReferenceType = 0;
+            lMessage.setText("New Article");
+        } else if (cbType.getSelectedItem().equals("Book")) {
+            bookPanel.clearTextFields();
+            cl.show(contPanel, "book");
+            currentReferenceType = 1;
+            lMessage.setText("New Book");
+        } else if (cbType.getSelectedItem().equals("InProceedings")) {
+            inproceedingsPanel.clearTextFields();
+            cl.show(contPanel, "inproceedings");
+            currentReferenceType = 2;
+            lMessage.setText("New Inproceedings");    
+        }
+    }
+    
+    private void addReference() {
+        String msg = "";
+
+        if (currentReferenceType == 0) {
+            String bibtexkey = articlePanel.getTfBibtexkey().getText();
+            
+            String author = articlePanel.getTfAuthor().getText();
+            String title = articlePanel.getTfTitle().getText();
+            String journal = articlePanel.getTfJournal().getText();
+            String year = articlePanel.getTfYear().getText();
+            
+            // vapaavalintaiset
+            String volume = articlePanel.getTfVolume().getText();
+            String number = articlePanel.getTfNumber().getText();
+            String pages = articlePanel.getTfPages().getText();
+            String month = articlePanel.getTfMonth().getText();
+            String note = articlePanel.getTfNote().getText();
+            
+            // table row: type, author/editor, title, year, journal/booktitle, key
+            model.addRow(new Object[] {
+                "Article",
+                author,
+                title,
+                year,
+                journal,
+                bibtexkey
+            });
+
+            msg = manageri.lisaaArtikkeli(bibtexkey, author, title, journal,
+                    year, volume, number, pages, month, note);
+            lMessage.setText(msg);
+        } else if (currentReferenceType == 1) {
+            String bibtexkey = bookPanel.getTfBibtexkey().getText();
+            
+            // author or editor
+            String author = bookPanel.getTfAuthor().getText(); 
+            String editor = bookPanel.getTfEditor().getText();
+            String authorOrEditor = (!author.isEmpty() ? author : editor); 
+            String title = bookPanel.getTfTitle().getText();
+            String publisher = bookPanel.getTfPublisher().getText();
+            String year = bookPanel.getTfYear().getText();
+            
+            // vapaavalintaiset + volume or number
+            String volume = bookPanel.getTfVolume().getText();
+            String number = bookPanel.getTfNumber().getText(); 
+            String series = bookPanel.getTfSeries().getText();
+            String address = bookPanel.getTfAddress().getText();
+            String edition = bookPanel.getTfEdition().getText();
+            String month = bookPanel.getTfMonth().getText();
+            String note = bookPanel.getTfNote().getText();  
+            
+            // table row: type, author/editor, title, year, journal/booktitle, key
+            model.addRow(new Object[] {
+                "Book",
+                authorOrEditor,
+                title,
+                year,
+                null,
+                bibtexkey
+            });
+
+            msg = manageri.lisaaKirja(bibtexkey, author, editor, title, publisher,
+                    year, volume, number, series, address, edition, month, note);
+            lMessage.setText(msg);
+        } else if (currentReferenceType == 2) {
+            String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
+            
+            String author = inproceedingsPanel.getTfAuthor().getText();
+            String title = inproceedingsPanel.getTfTitle().getText();
+            String booktitle = inproceedingsPanel.getTfBooktitle().getText();
+            String year = inproceedingsPanel.getTfYear().getText();
+            
+            // vapaavalintaiset + volume or number
+            String editor = inproceedingsPanel.getTfEditor().getText();
+            String volume = inproceedingsPanel.getTfVolume().getText();
+            String number = inproceedingsPanel.getTfNumber().getText();
+            String series = inproceedingsPanel.getTfSeries().getText();
+            String pages = inproceedingsPanel.getTfPages().getText();
+            String address = inproceedingsPanel.getTfAddress().getText();
+            String month = inproceedingsPanel.getTfMonth().getText();
+            String organization = inproceedingsPanel.getTfOrganization().getText();
+            String publisher = inproceedingsPanel.getTfPublisher().getText();
+            String note = inproceedingsPanel.getTfNote().getText();
+            
+            // table row: type, author/editor, title, year, journal/booktitle, key
+            model.addRow(new Object[] {
+                "Inproceedings",
+                author,
+                title,
+                year,
+                booktitle,
+                bibtexkey
+            });
+
+            msg = manageri.lisaaInproceedings(bibtexkey, author, title,
+                    booktitle, year, editor, volume, number, series, pages,
+                    address, month, organization, publisher, note);
+            lMessage.setText(msg);
+        } else {
+            lMessage.setText("Ei tunnettu tyyppi");
+        }
+        currentReferenceType = -1; // estää uuden luomisen
+    }
+    
+    private void updateReference() {
+        int selectedRow = refTable.getSelectedRow();
+        if (selectedRow == -1) {
+            lMessage.setText("Update error: no selection");
+        } else {
+            Viite viite = manageri.getViitteet().get(selectedRow);
+            
+            if (viite.getClass().equals(Artikkeli.class)) {
+                Artikkeli artikkeli = (Artikkeli) viite;
+
+                String bibtexkey = articlePanel.getTfBibtexkey().getText();
+                
+                String author = articlePanel.getTfAuthor().getText();
+                String title = articlePanel.getTfTitle().getText();
+                String journal = articlePanel.getTfJournal().getText();
+                String year = articlePanel.getTfYear().getText();
+
+                // vapaavalintaiset
+                String volume = articlePanel.getTfVolume().getText();
+                String number = articlePanel.getTfNumber().getText();
+                String pages = articlePanel.getTfPages().getText();
+                String month = articlePanel.getTfMonth().getText();
+                String note = articlePanel.getTfNote().getText();
+                
+                artikkeli.setBibtexKey(bibtexkey);
+                
+                artikkeli.setAuthor(author);
+                artikkeli.setTitle(title);
+                artikkeli.setJournal(journal);
+                artikkeli.setYear(year);
+                
+                // vapaavalintaiset
+                artikkeli.setVolume(volume);
+                artikkeli.setNumber(number);
+                artikkeli.setPages(pages);
+                artikkeli.setMonth(month);
+                artikkeli.setNote(note);
+                
+                // table row: type, author/editor, title, year, journal/booktitle, key
+                //model.setValueAt(viite, selectedRow, 0);
+                model.setValueAt(author, selectedRow, 1);
+                model.setValueAt(title, selectedRow, 2);
+                model.setValueAt(year, selectedRow, 3);
+                model.setValueAt(journal, selectedRow, 4);
+                model.setValueAt(bibtexkey, selectedRow, 5);
+                
+                lMessage.setText("Article updated");
+            } else if (viite.getClass().equals(Kirja.class)) {
+                Kirja kirja = (Kirja) viite;
+
+                String bibtexkey = bookPanel.getTfBibtexkey().getText();
+                
+                // author or editor
+                String author = bookPanel.getTfAuthor().getText(); 
+                String editor = bookPanel.getTfEditor().getText();
+                String authorOrEditor = (!author.isEmpty() ? author : editor);
+                String title = bookPanel.getTfTitle().getText();
+                String publisher = bookPanel.getTfPublisher().getText();
+                String year = bookPanel.getTfYear().getText();
+                
+                // vapaavalintaiset + volume or number
+                String volume = bookPanel.getTfVolume().getText();
+                String number = bookPanel.getTfNumber().getText(); 
+                String series = bookPanel.getTfSeries().getText();
+                String address = bookPanel.getTfAddress().getText();
+                String edition = bookPanel.getTfEdition().getText();
+                String month = bookPanel.getTfMonth().getText();
+                String note = bookPanel.getTfNote().getText(); 
+                
+                kirja.setBibtexKey(bibtexkey);
+                
+                // author or editor
+                kirja.setAuthor(author);
+                kirja.setEditor(editor);
+                kirja.setTitle(title);
+                kirja.setPublisher(publisher);
+                kirja.setYear(year);
+                
+                // vapaavalintaiset + volume or number
+                kirja.setVolume(volume);
+                kirja.setNumber(number);
+                kirja.setSeries(series);
+                kirja.setAddress(address);
+                kirja.setEdition(edition);
+                kirja.setMonth(month);
+                kirja.setNote(note);
+                
+                // table row: type, author/editor, title, year, journal/booktitle, key
+                //model.setValueAt(viite, selectedRow, 0);
+                model.setValueAt(authorOrEditor, selectedRow, 1);
+                model.setValueAt(title, selectedRow, 2);
+                model.setValueAt(year, selectedRow, 3);
+                //model.setValueAt(journal, selectedRow, 4);
+                model.setValueAt(bibtexkey, selectedRow, 5);
+                
+                lMessage.setText("Book updated");
+            } else if (viite.getClass().equals(Inproceedings.class)) {
+                Inproceedings inproceedings = (Inproceedings) viite;
+
+                String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
+                
+                String author = inproceedingsPanel.getTfAuthor().getText(); 
+                String title = inproceedingsPanel.getTfTitle().getText();
+                String booktitle = inproceedingsPanel.getTfBooktitle().getText();
+                String year = inproceedingsPanel.getTfYear().getText();
+                
+                // vapaavalintaiset + volume or number
+                String editor = inproceedingsPanel.getTfEditor().getText();
+                String volume = inproceedingsPanel.getTfVolume().getText();
+                String number = inproceedingsPanel.getTfNumber().getText();
+                String series = inproceedingsPanel.getTfSeries().getText();
+                String pages = inproceedingsPanel.getTfPages().getText();
+                String address = inproceedingsPanel.getTfAddress().getText();
+                String month = inproceedingsPanel.getTfMonth().getText();
+                String organization = inproceedingsPanel.getTfOrganization().getText();
+                String publisher = inproceedingsPanel.getTfPublisher().getText();
+                String note = inproceedingsPanel.getTfNote().getText();
+                
+                inproceedings.setBibtexKey(bibtexkey);
+                
+                inproceedings.setAuthor(author);
+                inproceedings.setTitle(title);
+                inproceedings.setBooktitle(booktitle);
+                inproceedings.setYear(year);
+                
+                // vapaavalintaiset + volume or number
+                inproceedings.setEditor(editor);
+                inproceedings.setVolume(volume);
+                inproceedings.setNumber(number);
+                inproceedings.setSeries(series);
+                inproceedings.setPages(pages);
+                inproceedings.setAddress(address);
+                inproceedings.setMonth(month);
+                inproceedings.setOrganization(organization);
+                inproceedings.setPublisher(publisher);
+                inproceedings.setNote(note);
+                
+                // table row: type, author/editor, title, year, journal/booktitle, key
+                //model.setValueAt(viite, selectedRow, 0);
+                model.setValueAt(author, selectedRow, 1);
+                model.setValueAt(title, selectedRow, 2);
+                model.setValueAt(year, selectedRow, 3);
+                model.setValueAt(booktitle, selectedRow, 4);
+                model.setValueAt(bibtexkey, selectedRow, 5);
+                
+                lMessage.setText("Inproceedings updated");
+            }
+        }
+    }
+    
+    private void viewSelectedReference() {
+        int selectedRow = refTable.getSelectedRow();
+        if (selectedRow == -1) {
+            lMessage.setText("Error: viewSelectedReference(), no selection");
+        } else {
+            Viite viite = manageri.getViitteet().get(selectedRow);
+            
+            if (model.getValueAt(selectedRow, 0).equals("Article")) {
+                Artikkeli artikkeli = (Artikkeli) viite;
+                
+                articlePanel.clearTextFields();
+
+                String bibtexkey = artikkeli.getBibtexKey();
+                
+                String author = artikkeli.getAuthor();
+                String title = artikkeli.getTitle();
+                String journal = artikkeli.getJournal();
+                String year = artikkeli.getYear();
+                
+                // vapaavalintaiset
+                String volume = artikkeli.getVolume();
+                String number = artikkeli.getNumber();
+                String pages = artikkeli.getPages();
+                String month = artikkeli.getMonth();
+                String note = artikkeli.getNote();
+                
+                articlePanel.getTfBibtexkey().setText(bibtexkey);
+                
+                articlePanel.getTfAuthor().setText(author);
+                articlePanel.getTfTitle().setText(title);
+                articlePanel.getTfJournal().setText(journal);
+                articlePanel.getTfYear().setText(year);
+                
+                // vapaavalintaiset
+                articlePanel.getTfVolume().setText(volume);
+                articlePanel.getTfNumber().setText(number);
+                articlePanel.getTfPages().setText(pages);
+                articlePanel.getTfMonth().setText(month);
+                articlePanel.getTfNote().setText(note);
+
+                cl.show(contPanel, "article");
+                
+                currentReferenceType = 0;
+                
+                lMessage.setText("Article selected");
+            } else if (model.getValueAt(selectedRow, 0).equals("Book")) {
+                Kirja kirja = (Kirja) viite;
+                
+                bookPanel.clearTextFields();
+
+                String bibtexkey = kirja.getBibtexKey();
+                
+                // author or editor
+                String author = kirja.getAuthor();
+                String editor = kirja.getEditor();
+                String title = kirja.getTitle();
+                String publisher = kirja.getPublisher();
+                String year = kirja.getYear();
+                
+                // vapaavalintaiset + volume or number
+                String volume = kirja.getVolume();
+                String number = kirja.getNumber(); 
+                String series = kirja.getSeries();
+                String address = kirja.getAddress();
+                String edition = kirja.getEdition();
+                String month = kirja.getMonth();
+                String note = kirja.getNote();
+
+                bookPanel.getTfBibtexkey().setText(bibtexkey);
+                
+                // author or editor
+                bookPanel.getTfAuthor().setText(author);
+                bookPanel.getTfEditor().setText(editor);
+                bookPanel.getTfTitle().setText(title);
+                bookPanel.getTfPublisher().setText(publisher); 
+                bookPanel.getTfYear().setText(year);
+                
+                // vapaavalintaiset + volume or number
+                bookPanel.getTfVolume().setText(volume);
+                bookPanel.getTfNumber().setText(number); 
+                bookPanel.getTfSeries().setText(series);
+                bookPanel.getTfAddress().setText(address);
+                bookPanel.getTfEdition().setText(edition);
+                bookPanel.getTfMonth().setText(month);
+                bookPanel.getTfNote().setText(note); 
+
+                cl.show(contPanel, "book");
+                
+                currentReferenceType = 1;
+                
+                lMessage.setText("Book selected");
+            } else if (model.getValueAt(selectedRow, 0).equals("Inproceedings")) {
+                Inproceedings inproceedings = (Inproceedings) viite;
+                
+                inproceedingsPanel.clearTextFields();
+
+                String bibtexkey = inproceedings.getBibtexKey();
+                 
+                String author = inproceedings.getAuthor();
+                String title = inproceedings.getTitle();
+                String booktitle = inproceedings.getBooktitle();
+                String year = inproceedings.getYear();
+                
+                // vapaavalintaiset + volume or number
+                String editor = inproceedings.getEditor();
+                String volume = inproceedings.getVolume();
+                String number = inproceedings.getNumber();
+                String series = inproceedings.getSeries();
+                String pages = inproceedings.getPages();
+                String address = inproceedings.getAddress();
+                String month = inproceedings.getMonth();
+                String organization = inproceedings.getOrganization();
+                String publisher = inproceedings.getPublisher();
+                String note = inproceedings.getNote();
+                
+                inproceedingsPanel.getTfBibtexkey().setText(bibtexkey);
+                
+                inproceedingsPanel.getTfAuthor().setText(author);
+                inproceedingsPanel.getTfTitle().setText(title);
+                inproceedingsPanel.getTfBooktitle().setText(booktitle);
+                inproceedingsPanel.getTfYear().setText(year);
+     
+                // vapaavalintaiset + volume or number
+                inproceedingsPanel.getTfEditor().setText(editor);
+                inproceedingsPanel.getTfVolume().setText(volume);
+                inproceedingsPanel.getTfNumber().setText(number);
+                inproceedingsPanel.getTfSeries().setText(series);
+                inproceedingsPanel.getTfPages().setText(pages);
+                inproceedingsPanel.getTfAddress().setText(address);
+                inproceedingsPanel.getTfMonth().setText(month);
+                inproceedingsPanel.getTfOrganization().setText(organization);
+                inproceedingsPanel.getTfPublisher().setText(publisher);
+                inproceedingsPanel.getTfNote().setText(note);
+                
+                cl.show(contPanel, "inproceedings");
+                
+                currentReferenceType = 2;
+                
+                lMessage.setText("Inproceedings selected");
+            }
+        } 
+    }
+    
+    private void deleteReference() {
+        int selectedRow = refTable.getSelectedRow();
+        if (selectedRow == -1) {
+            lMessage.setText("Delete error: no selection");
+        } else {
+            manageri.getViitteet().remove(selectedRow);
+            model.removeRow(selectedRow);
+            lMessage.setText("Reference deleted");
+        }
+    }
 
     /**
      * Creates new form Main
@@ -32,7 +461,7 @@ public class App extends javax.swing.JFrame {
         cl.show(contPanel, "article");
         
         manageri = new ViiteManageri();
-        lMessage.setText(manageri.lataaViitteet(filename)); // nimikenttä tietokannalle
+        lMessage.setText(manageri.lataaViitteet(filename)); 
         model = (DefaultTableModel) refTable.getModel();
         
         for(Viite viite : manageri.getViitteet()) {
@@ -41,7 +470,7 @@ public class App extends javax.swing.JFrame {
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
                     "Article",
-                    artikkeli.getAuthor(),
+                    artikkeli.getAuthor(), // todo: or editor
                     artikkeli.getTitle(),
                     artikkeli.getYear(),
                     artikkeli.getJournal(),
@@ -55,7 +484,7 @@ public class App extends javax.swing.JFrame {
                     kirja.getAuthor(),
                     kirja.getTitle(),
                     kirja.getYear(),
-                    "",
+                    null,
                     kirja.getBibtexKey()
                 });
             } else if (viite.getClass().equals(Inproceedings.class)) {
@@ -69,10 +498,7 @@ public class App extends javax.swing.JFrame {
                     inproc.getBooktitle(),
                     inproc.getBibtexKey()
                 });
-            } else {
-                // ei tunnistettu luokka
-            } 
-            selectedType = 0;
+            }
         }
     }
 
@@ -94,6 +520,7 @@ public class App extends javax.swing.JFrame {
         bExport = new javax.swing.JButton();
         bSave = new javax.swing.JButton();
         lMessage = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         contPanel = new javax.swing.JPanel();
         refTableScrollPane = new javax.swing.JScrollPane();
         refTable = new javax.swing.JTable();
@@ -123,12 +550,34 @@ public class App extends javax.swing.JFrame {
         });
 
         bDelete.setText("Delete");
+        bDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDeleteActionPerformed(evt);
+            }
+        });
 
         bExport.setText("Export");
+        bExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExportActionPerformed(evt);
+            }
+        });
 
         bSave.setText("Save File");
+        bSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSaveActionPerformed(evt);
+            }
+        });
 
         lMessage.setText("Message:");
+
+        jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlsPanelLayout = new javax.swing.GroupLayout(controlsPanel);
         controlsPanel.setLayout(controlsPanelLayout);
@@ -141,12 +590,14 @@ public class App extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bExport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bSave)
-                .addGap(0, 297, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bExport)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(controlsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,7 +612,8 @@ public class App extends javax.swing.JFrame {
                     .addComponent(bAdd)
                     .addComponent(bDelete)
                     .addComponent(bExport)
-                    .addComponent(bSave))
+                    .addComponent(bSave)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lMessage)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -193,6 +645,12 @@ public class App extends javax.swing.JFrame {
                 "Entrytype", "Author/Editor", "Title", "Year", "Journal/Booktitle", "Bibtexkey"
             }
         ));
+        refTable.setCellEditor(null);
+        refTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refTableMouseClicked(evt);
+            }
+        });
         refTableScrollPane.setViewportView(refTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,7 +661,7 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refTableScrollPane))
+                    .addComponent(refTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -220,66 +678,41 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed
-        //System.out.println(cbType.getSelectedIndex());
-        if (cbType.getSelectedItem().equals("Article")) selectedType = 0;
-        if (cbType.getSelectedItem().equals("Book")) selectedType = 1;
-        if (cbType.getSelectedItem().equals("InProceedings")) selectedType = 2;
+
     }//GEN-LAST:event_cbTypeActionPerformed
 
     private void bNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewActionPerformed
-        // tarkista cbType
-        if (cbType.getSelectedItem().equals("Article")) {
-            articlePanel.clearTextFields();
-            cl.show(contPanel, "article");
-            selectedType = 0;
-        } else if (cbType.getSelectedItem().equals("Book")) {
-            bookPanel.clearTextFields();
-            cl.show(contPanel, "book");
-            selectedType = 1;
-        } else if (cbType.getSelectedItem().equals("InProceedings")) {
-            inproceedingsPanel.clearTextFields();
-            cl.show(contPanel, "inproceedings");
-            selectedType = 2;
-        }
+        newReference();
     }//GEN-LAST:event_bNewActionPerformed
 
     private void bAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActionPerformed
-        if (selectedType == 0) {
-
-                model.addRow(new Object[] {
-                    "Article",
-                    articlePanel.getTfAuthor().getText(),
-                    articlePanel.getTfTitle().getText(),
-                    articlePanel.getTfYear().getText(),
-                    "",
-                    articlePanel.getTfBibtexkey().getText(),
-                });
-            } else if (selectedType == 1) {
-
-                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
-                model.addRow(new Object[] {
-                    "Book",
-                    bookPanel.getTfAuthor().getText(),
-                    bookPanel.getTfTitle().getText(),
-                    bookPanel.getTfYear().getText(),
-                    "",
-                    bookPanel.getTfBibtexkey().getText(),
-                });
-            } else if (selectedType == 2) {
-
-                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
-                model.addRow(new Object[] {
-                    "Inproceedings",
-                    inproceedingsPanel.getTfAuthor().getText(),
-                    inproceedingsPanel.getTfTitle().getText(),
-                    inproceedingsPanel.getTfYear().getText(),
-                    "",
-                    inproceedingsPanel.getTfBibtexkey().getText(),
-                });
-            } else {
-                // ei tunnistettu luokka
-            } 
+        addReference();
     }//GEN-LAST:event_bAddActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        updateReference();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
+        deleteReference();
+    }//GEN-LAST:event_bDeleteActionPerformed
+
+    private void refTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refTableMouseClicked
+        viewSelectedReference();
+    }//GEN-LAST:event_refTableMouseClicked
+
+    private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
+        lMessage.setText(manageri.tallennaViitteet(filename)); 
+    }//GEN-LAST:event_bSaveActionPerformed
+
+    private void bExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportActionPerformed
+        String inputValue = JOptionPane.showInputDialog("Please input a filename");
+        if(inputValue != null && !inputValue.trim().equals("")) {
+            lMessage.setText(manageri.exportViitteet(inputValue + ".bib"));
+        } else {
+            lMessage.setText("Export error: invalid filename");
+        }
+    }//GEN-LAST:event_bExportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,6 +761,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbType;
     private javax.swing.JPanel contPanel;
     private javax.swing.JPanel controlsPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lMessage;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTable refTable;

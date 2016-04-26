@@ -10,7 +10,6 @@ package com.myssyt.bibtex;
  * @author jphkylli
  */
 public class BookPanel extends javax.swing.JPanel {
-    // todo
     /*
         A book with an explicit publisher. 
             Required fields: 
@@ -30,19 +29,21 @@ public class BookPanel extends javax.swing.JPanel {
         
         optionalFieldsScrollPane.getVerticalScrollBar().setValue(optionalFieldsScrollPane.getVerticalScrollBar().getMinimum());
         
-        getTfAddress().setText("");
-        getTfAuthor().setText("");
         getTfBibtexkey().setText("");
-        getTfEdition().setText("");
+        
+        getTfAuthor().setText("");
         getTfEditor().setText("");
-        getTfMonth().setText("");
-        getTfNote().setText("");
-        getTfNumber().setText("");
-        getTfPublisher().setText("");
-        getTfSeries().setText("");
         getTfTitle().setText("");
-        getTfVolume().setText("");
+        getTfPublisher().setText("");
         getTfYear().setText("");
+        
+        getTfVolume().setText("");
+        getTfNumber().setText("");    
+        getTfSeries().setText("");
+        getTfAddress().setText("");
+        getTfEdition().setText("");
+        getTfMonth().setText("");
+        getTfNote().setText("");  
     }
 
     /**
@@ -70,13 +71,13 @@ public class BookPanel extends javax.swing.JPanel {
         tfAddress = new javax.swing.JTextField();
         tfNumber = new javax.swing.JTextField();
         tfSeries = new javax.swing.JTextField();
+        tfEdition = new javax.swing.JTextField();
+        tfMonth = new javax.swing.JTextField();
+        tfNote = new javax.swing.JTextField();
         lVolume = new javax.swing.JLabel();
         lNumber = new javax.swing.JLabel();
         lSeries = new javax.swing.JLabel();
         lAddress = new javax.swing.JLabel();
-        tfEdition = new javax.swing.JTextField();
-        tfMonth = new javax.swing.JTextField();
-        tfNote = new javax.swing.JTextField();
         lEdition = new javax.swing.JLabel();
         lMonth = new javax.swing.JLabel();
         lNote = new javax.swing.JLabel();
@@ -99,7 +100,9 @@ public class BookPanel extends javax.swing.JPanel {
         optionalFieldsScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Optional Fields"));
         optionalFieldsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        lVolume.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lVolume.setText("Volume");
+        lVolume.setPreferredSize(new java.awt.Dimension(90, 16));
 
         lNumber.setText("Number");
 
@@ -117,37 +120,33 @@ public class BookPanel extends javax.swing.JPanel {
         optionalFieldsPanel.setLayout(optionalFieldsPanelLayout);
         optionalFieldsPanelLayout.setHorizontalGroup(
             optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionalFieldsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionalFieldsPanelLayout.createSequentialGroup()
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lVolume)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionalFieldsPanelLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(lNumber)))
-                        .addComponent(lEdition, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lSeries, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lAddress, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lMonth, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lNumber)
+                    .addComponent(lSeries)
+                    .addComponent(lAddress)
+                    .addComponent(lEdition)
+                    .addComponent(lMonth)
                     .addComponent(lNote))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNote)
-                    .addComponent(tfMonth, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
-                    .addComponent(tfVolume)
-                    .addComponent(tfNumber)
-                    .addComponent(tfSeries)
+                .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfVolume, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                     .addComponent(tfAddress)
-                    .addComponent(tfEdition, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(tfSeries, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfEdition, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfMonth, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNote)
+                    .addComponent(tfNumber))
                 .addContainerGap())
         );
         optionalFieldsPanelLayout.setVerticalGroup(
             optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionalFieldsPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lVolume))
+                    .addComponent(lVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +208,7 @@ public class BookPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lAuthor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfAuthor)))))
+                                .addComponent(tfAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -237,7 +236,7 @@ public class BookPanel extends javax.swing.JPanel {
                     .addComponent(tfBibtexkey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lBibtexkey))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
