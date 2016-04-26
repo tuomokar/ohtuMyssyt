@@ -162,6 +162,33 @@ public class ViiteManageri {
         kirja.setNote(note);
     }
     
+    public void muokkaaInProceedings(int index, String bibtexkey,String author,
+            String title,String booktitle,String year,String editor,String
+            volume,String number,String series,String pages,String address,
+            String month,String organization,String publisher,String note) {
+        Viite viite = getViitteet().get(index);
+        Inproceedings inproceedings = (Inproceedings) viite;
+        
+        inproceedings.setBibtexKey(bibtexkey);
+                
+        inproceedings.setAuthor(author);
+        inproceedings.setTitle(title);
+        inproceedings.setBooktitle(booktitle);
+        inproceedings.setYear(year);
+
+        // vapaavalintaiset + volume or number
+        inproceedings.setEditor(editor);
+        inproceedings.setVolume(volume);
+        inproceedings.setNumber(number);
+        inproceedings.setSeries(series);
+        inproceedings.setPages(pages);
+        inproceedings.setAddress(address);
+        inproceedings.setMonth(month);
+        inproceedings.setOrganization(organization);
+        inproceedings.setPublisher(publisher);
+        inproceedings.setNote(note);
+    }
+    
     public String exportViitteet(String nimi) {
         try {
             BibtexExporter.exportBibtex(viitteet, nimi);

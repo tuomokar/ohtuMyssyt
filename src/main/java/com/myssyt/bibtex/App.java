@@ -212,7 +212,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Book updated");
             } else if (viite.getClass().equals(Inproceedings.class)) {
-                Inproceedings inproceedings = (Inproceedings) viite;
+                //Inproceedings inproceedings = (Inproceedings) viite;
 
                 String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
                 
@@ -233,24 +233,9 @@ public class App extends javax.swing.JFrame {
                 String publisher = inproceedingsPanel.getTfPublisher().getText();
                 String note = inproceedingsPanel.getTfNote().getText();
                 
-                inproceedings.setBibtexKey(bibtexkey);
-                
-                inproceedings.setAuthor(author);
-                inproceedings.setTitle(title);
-                inproceedings.setBooktitle(booktitle);
-                inproceedings.setYear(year);
-                
-                // vapaavalintaiset + volume or number
-                inproceedings.setEditor(editor);
-                inproceedings.setVolume(volume);
-                inproceedings.setNumber(number);
-                inproceedings.setSeries(series);
-                inproceedings.setPages(pages);
-                inproceedings.setAddress(address);
-                inproceedings.setMonth(month);
-                inproceedings.setOrganization(organization);
-                inproceedings.setPublisher(publisher);
-                inproceedings.setNote(note);
+                manageri.muokkaaInProceedings(selectedRow, bibtexkey, author, title, 
+                        booktitle, year, editor, volume, number, series, pages,
+                        address, month, organization, publisher, note);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
