@@ -520,7 +520,7 @@ public class App extends javax.swing.JFrame {
         bExport = new javax.swing.JButton();
         bSave = new javax.swing.JButton();
         lMessage = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bUpdate = new javax.swing.JButton();
         contPanel = new javax.swing.JPanel();
         refTableScrollPane = new javax.swing.JScrollPane();
         refTable = new javax.swing.JTable();
@@ -572,10 +572,10 @@ public class App extends javax.swing.JFrame {
 
         lMessage.setText("Message:");
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bUpdate.setText("Update");
+        bUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bUpdateActionPerformed(evt);
             }
         });
 
@@ -590,7 +590,7 @@ public class App extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(bUpdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -613,7 +613,7 @@ public class App extends javax.swing.JFrame {
                     .addComponent(bDelete)
                     .addComponent(bExport)
                     .addComponent(bSave)
-                    .addComponent(jButton1))
+                    .addComponent(bUpdate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lMessage)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -689,9 +689,9 @@ public class App extends javax.swing.JFrame {
         addReference();
     }//GEN-LAST:event_bAddActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdateActionPerformed
         updateReference();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bUpdateActionPerformed
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
         deleteReference();
@@ -758,10 +758,10 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JButton bExport;
     private javax.swing.JButton bNew;
     private javax.swing.JButton bSave;
+    private javax.swing.JButton bUpdate;
     private javax.swing.JComboBox<String> cbType;
     private javax.swing.JPanel contPanel;
     private javax.swing.JPanel controlsPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lMessage;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTable refTable;
