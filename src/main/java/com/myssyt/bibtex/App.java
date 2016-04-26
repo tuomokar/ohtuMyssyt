@@ -148,7 +148,7 @@ public class App extends javax.swing.JFrame {
             Viite viite = manageri.getViitteet().get(selectedRow);
             
             if (viite.getClass().equals(Artikkeli.class)) {
-                Artikkeli artikkeli = (Artikkeli) viite;
+                //Artikkeli artikkeli = (Artikkeli) viite;
 
                 String bibtexkey = articlePanel.getTfBibtexkey().getText();
                 
@@ -164,19 +164,8 @@ public class App extends javax.swing.JFrame {
                 String month = articlePanel.getTfMonth().getText();
                 String note = articlePanel.getTfNote().getText();
                 
-                artikkeli.setBibtexKey(bibtexkey);
-                
-                artikkeli.setAuthor(author);
-                artikkeli.setTitle(title);
-                artikkeli.setJournal(journal);
-                artikkeli.setYear(year);
-                
-                // vapaavalintaiset
-                artikkeli.setVolume(volume);
-                artikkeli.setNumber(number);
-                artikkeli.setPages(pages);
-                artikkeli.setMonth(month);
-                artikkeli.setNote(note);
+                manageri.muokkaaArtikkeli(selectedRow, bibtexkey, author, title,
+                        journal, year, volume, number, pages, month, note);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
@@ -188,7 +177,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Article updated");
             } else if (viite.getClass().equals(Kirja.class)) {
-                Kirja kirja = (Kirja) viite;
+                //Kirja kirja = (Kirja) viite;
 
                 String bibtexkey = bookPanel.getTfBibtexkey().getText();
                 
@@ -209,23 +198,9 @@ public class App extends javax.swing.JFrame {
                 String month = bookPanel.getTfMonth().getText();
                 String note = bookPanel.getTfNote().getText(); 
                 
-                kirja.setBibtexKey(bibtexkey);
-                
-                // author or editor
-                kirja.setAuthor(author);
-                kirja.setEditor(editor);
-                kirja.setTitle(title);
-                kirja.setPublisher(publisher);
-                kirja.setYear(year);
-                
-                // vapaavalintaiset + volume or number
-                kirja.setVolume(volume);
-                kirja.setNumber(number);
-                kirja.setSeries(series);
-                kirja.setAddress(address);
-                kirja.setEdition(edition);
-                kirja.setMonth(month);
-                kirja.setNote(note);
+                manageri.muokkaaBook(selectedRow, bibtexkey, author, title, editor, 
+                        year, volume, number, publisher, month, note, series, 
+                        address, edition);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
@@ -237,7 +212,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Book updated");
             } else if (viite.getClass().equals(Inproceedings.class)) {
-                Inproceedings inproceedings = (Inproceedings) viite;
+                //Inproceedings inproceedings = (Inproceedings) viite;
 
                 String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
                 
@@ -258,24 +233,9 @@ public class App extends javax.swing.JFrame {
                 String publisher = inproceedingsPanel.getTfPublisher().getText();
                 String note = inproceedingsPanel.getTfNote().getText();
                 
-                inproceedings.setBibtexKey(bibtexkey);
-                
-                inproceedings.setAuthor(author);
-                inproceedings.setTitle(title);
-                inproceedings.setBooktitle(booktitle);
-                inproceedings.setYear(year);
-                
-                // vapaavalintaiset + volume or number
-                inproceedings.setEditor(editor);
-                inproceedings.setVolume(volume);
-                inproceedings.setNumber(number);
-                inproceedings.setSeries(series);
-                inproceedings.setPages(pages);
-                inproceedings.setAddress(address);
-                inproceedings.setMonth(month);
-                inproceedings.setOrganization(organization);
-                inproceedings.setPublisher(publisher);
-                inproceedings.setNote(note);
+                manageri.muokkaaInProceedings(selectedRow, bibtexkey, author, title, 
+                        booktitle, year, editor, volume, number, series, pages,
+                        address, month, organization, publisher, note);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
