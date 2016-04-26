@@ -96,6 +96,10 @@ public class ViiteManageri {
         }
     }
     
+    public void poistaViite(int index) {
+        viitteet.remove(index);
+    }
+    
     public String exportViitteet(String nimi) {
         try {
             BibtexExporter.exportBibtex(viitteet, nimi);
