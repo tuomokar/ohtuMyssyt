@@ -83,6 +83,8 @@
                         <!-- <exclude>com/myssyt/**/BookPanelTest.class</exclude> -->
                         <exclude>com/myssyt/bibtex/**/InproceedingsPanel.class</exclude>
                         <!-- <exclude>com/myssyt/**/InproceedingsPanelTest.class</exclude> -->
+                        <exclude>com/myssyt/bibtex/**/BookletPanel.class</exclude>
+                        <!-- <exclude>com/myssyt/**/BookletPanelTest.class</exclude> -->
                     </excludes>
                 </instrumentation>
      
