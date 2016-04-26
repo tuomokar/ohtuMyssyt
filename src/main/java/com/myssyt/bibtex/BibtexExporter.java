@@ -17,6 +17,10 @@ public class BibtexExporter {
                 exportKirja((Kirja)viite, builder);
             else if (viite.getClass().equals(Inproceedings.class))
                 exportInproceedings((Inproceedings)viite, builder);
+            else if (viite.getClass().equals(Booklet.class))
+                exportBooklet((Booklet)viite, builder);
+            else if (viite.getClass().equals(Incollection.class))
+                exportIncollection((Incollection)viite, builder);
             
             builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
             builder.append("\n\n");
@@ -99,6 +103,52 @@ public class BibtexExporter {
         if(isSet(inproceedings.getOrganization())) builder.append("organization = {" + inproceedings.getOrganization() + "},\n");
         if(isSet(inproceedings.getPublisher())) builder.append("publisher = {" + inproceedings.getPublisher() + "},\n");
         if(isSet(inproceedings.getNote())) builder.append("note = {" + inproceedings.getNote() + "},\n");
+        builder.append("}");
+    }
+    
+    /*
+        A work that is printed and bound, but without a named publisher or sponsering institution.
+        Required fields: 
+            title.
+        Optional fields: 
+            author, howpublished, address, month, year, note.
+    */
+    private static void exportBooklet(Booklet booklet, StringBuilder builder) {
+        builder.append("@booklet{" + booklet.getBibtexKey() + ",\n");
+        if(isSet(booklet.getTitle())) builder.append("title = {" + booklet.getTitle() + "},\n");
+        if(isSet(booklet.getHowpublished())) builder.append("howpublished = {" + booklet.getHowpublished() + "},\n");
+        if(isSet(booklet.getAddress())) builder.append("address = {" + booklet.getAddress() + "},\n");
+        if(isSet(booklet.getMonth())) builder.append("month = {" + booklet.getMonth() + "},\n");
+        if(isSet(booklet.getYear())) builder.append("year = {" + booklet.getYear() + "},\n");
+        if(isSet(booklet.getNote())) builder.append("note = {" + booklet.getNote() + "},\n");
+        builder.append("}");
+    }
+    
+    /*
+        A part of a book having its own title.
+        Required fields:
+            author, title, booktitle, publisher, year.
+        Optional fields:
+            editor, volume or number, series, type, chapter, pages, address, edition, month, note
+    */
+    private static void exportIncollection(Incollection incollection, StringBuilder builder) {
+        builder.append("@booklet{" + incollection.getBibtexKey() + ",\n");
+        if(isSet(incollection.getAuthor())) builder.append("author = {" + incollection.getAuthor() + "},\n");
+        if(isSet(incollection.getTitle())) builder.append("title = {" + incollection.getTitle() + "},\n");
+        if(isSet(incollection.getBooktitle())) builder.append("booktitle = {" + incollection.getBooktitle() + "},\n");
+        if(isSet(incollection.getPublisher())) builder.append("publisher = {" + incollection.getPublisher() + "},\n");
+        if(isSet(incollection.getYear())) builder.append("year = {" + incollection.getYear() + "},\n");
+        if(isSet(incollection.getEditor())) builder.append("editor = {" + incollection.getEditor() + "},\n");
+        if(isSet(incollection.getVolume())) builder.append("volume = {" + incollection.getVolume() + "},\n");
+        if(isSet(incollection.getNumber())) builder.append("number = {" + incollection.getNumber() + "},\n");
+        if(isSet(incollection.getSeries())) builder.append("series = {" + incollection.getSeries() + "},\n");
+        if(isSet(incollection.getType())) builder.append("type = {" + incollection.getType() + "},\n");
+        if(isSet(incollection.getChapter())) builder.append("chapter = {" + incollection.getChapter() + "},\n");
+        if(isSet(incollection.getPages())) builder.append("pages = {" + incollection.getPages() + "},\n");
+        if(isSet(incollection.getAddress())) builder.append("address = {" + incollection.getAddress() + "},\n");
+        if(isSet(incollection.getEdition())) builder.append("edition = {" + incollection.getEdition() + "},\n");
+        if(isSet(incollection.getMonth())) builder.append("month = {" + incollection.getMonth() + "},\n");
+        if(isSet(incollection.getNote())) builder.append("note = {" + incollection.getNote() + "},\n");
         builder.append("}");
     }
 }
