@@ -243,17 +243,12 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Book updated");
-<<<<<<< HEAD
             } else if (viite.getClass().equals(Booklet.class)) {
                 Booklet booklet = (Booklet) viite;
                 
                 String bibtexkey = bookletPanel.getTfBibtexkey().getText();
             
                 String title = bookletPanel.getTfTitle().getText();
-=======
-            } else if (viite.getClass().equals(Inproceedings.class)) {
-                //Inproceedings inproceedings = (Inproceedings) viite;
->>>>>>> a6dad8b10e4c3671b7e70a480036336d1b6d9824
 
                 // vapaavalintaiset
                 String author = bookletPanel.getTfAuthor().getText();
@@ -264,8 +259,7 @@ public class App extends javax.swing.JFrame {
                 String note = bookletPanel.getTfNote().getText();
                 
                 booklet.setBibtexKey(bibtexkey);
-                
-<<<<<<< HEAD
+
                 booklet.setTitle(title);
                 
                 // vapaavalintaiset
@@ -275,23 +269,6 @@ public class App extends javax.swing.JFrame {
                 booklet.setMonth(month);
                 booklet.setYear(year);
                 booklet.setNote(note);
-=======
-                // vapaavalintaiset + volume or number
-                String editor = inproceedingsPanel.getTfEditor().getText();
-                String volume = inproceedingsPanel.getTfVolume().getText();
-                String number = inproceedingsPanel.getTfNumber().getText();
-                String series = inproceedingsPanel.getTfSeries().getText();
-                String pages = inproceedingsPanel.getTfPages().getText();
-                String address = inproceedingsPanel.getTfAddress().getText();
-                String month = inproceedingsPanel.getTfMonth().getText();
-                String organization = inproceedingsPanel.getTfOrganization().getText();
-                String publisher = inproceedingsPanel.getTfPublisher().getText();
-                String note = inproceedingsPanel.getTfNote().getText();
-                
-                manageri.muokkaaInProceedings(selectedRow, bibtexkey, author, title, 
-                        booktitle, year, editor, volume, number, series, pages,
-                        address, month, organization, publisher, note);
->>>>>>> a6dad8b10e4c3671b7e70a480036336d1b6d9824
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
                 //model.setValueAt(viite, selectedRow, 0);
@@ -518,7 +495,7 @@ public class App extends javax.swing.JFrame {
                     booklet.getAuthor(),
                     booklet.getTitle(),
                     booklet.getYear(),
-                    booklet.getBooktitle(),
+                    null,
                     booklet.getBibtexKey()
                 });
             }
