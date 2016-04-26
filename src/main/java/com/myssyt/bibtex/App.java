@@ -13,7 +13,7 @@ public class App extends javax.swing.JFrame {
     BookPanel bookPanel;
     InproceedingsPanel inproceedingsPanel;
     
-    int currentReferenceType;
+    int currentReferenceType = -1;
     
     private void newReference() {
         refTable.clearSelection();
@@ -135,7 +135,7 @@ public class App extends javax.swing.JFrame {
                     address, month, organization, publisher, note);
             lMessage.setText(msg);
         } else {
-            lMessage.setText("Ei tunnettu tyyppi");
+            lMessage.setText("Create new reference first");
         }
         currentReferenceType = -1; // estää uuden luomisen
     }
@@ -332,8 +332,6 @@ public class App extends javax.swing.JFrame {
 
                 cl.show(contPanel, "article");
                 
-                currentReferenceType = 0;
-                
                 lMessage.setText("Article selected");
             } else if (model.getValueAt(selectedRow, 0).equals("Book")) {
                 Kirja kirja = (Kirja) viite;
@@ -377,8 +375,6 @@ public class App extends javax.swing.JFrame {
                 bookPanel.getTfNote().setText(note); 
 
                 cl.show(contPanel, "book");
-                
-                currentReferenceType = 1;
                 
                 lMessage.setText("Book selected");
             } else if (model.getValueAt(selectedRow, 0).equals("Inproceedings")) {
@@ -425,8 +421,6 @@ public class App extends javax.swing.JFrame {
                 inproceedingsPanel.getTfNote().setText(note);
                 
                 cl.show(contPanel, "inproceedings");
-                
-                currentReferenceType = 2;
                 
                 lMessage.setText("Inproceedings selected");
             }
