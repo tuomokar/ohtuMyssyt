@@ -407,9 +407,9 @@ public class App extends javax.swing.JFrame {
         if (selectedRow == -1) {
             lMessage.setText("Delete error: no selection");
         } else {
-            manageri.poistaViite(selectedRow);
+            String message = manageri.poistaViite(selectedRow);
             model.removeRow(selectedRow);
-            lMessage.setText("Reference deleted");
+            lMessage.setText(message);
         }
     }
 
