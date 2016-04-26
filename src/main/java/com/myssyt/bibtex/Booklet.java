@@ -18,7 +18,7 @@ public class Booklet extends Viite {
     private String note;
     private String bibtexKey;
     
-    public Booklet(String title, String author, String howpublished, String address, String month, String year, String note, String bibtexKey) {
+    public Booklet(String bibtexKey, String title, String author, String howpublished, String address, String month, String year, String note) {
         
         super(bibtexKey);
         
@@ -29,7 +29,6 @@ public class Booklet extends Viite {
         this.month = month;
         this.year = year; 
         this.note = note;
-        this.bibtexKey = bibtexKey;
     }
 
     public String getTitle() {
