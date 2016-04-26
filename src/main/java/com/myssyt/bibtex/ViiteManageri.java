@@ -75,6 +75,19 @@ public class ViiteManageri {
         return "Bookletin lisääminen onnistui";
     }
     
+    public String lisaaIncollection(String bibtexkey, String author, String title, String booktitle,
+            String publisher, String year, String editor, String volume, String number,
+            String series, String type, String chapter, String pages, String address,
+            String edition, String month, String note) {
+        
+        Incollection incollection = new Incollection(bibtexkey, author, title, booktitle, publisher, 
+                year, editor, volume, number, series, type, chapter, pages, address, edition, month, note);
+                        
+        viitteet.add(incollection);
+        
+        return "Incollection lisääminen onnistui";
+    }
+    
     public String tallennaViitteet(String nimi) {
         try {
             FileHandler.writeFile(viitteet, nimi);
