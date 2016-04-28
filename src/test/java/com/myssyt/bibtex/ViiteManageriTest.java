@@ -88,6 +88,16 @@ public class ViiteManageriTest {
     }
     
     @Test
+    public void bookletinLisaysOnnistuuHyvillaArvoilla() {
+        String viesti = manageri.lisaaBooklet("bibtexKey", "title", "author",
+                "howpublished", "address", "month", "year", "note");
+        
+        assertEquals("Bookletin lisääminen onnistui", viesti);
+        assertEquals("note", 
+                ((Booklet) manageri.getViitteet().get(0)).getNote());
+    }
+    
+    @Test
     public void tiedostonTallennusJaLatausOnnistuu() {
         manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
