@@ -1,11 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.ViiteManageri;
-import com.myssyt.bibtex.domain.Artikkeli;
-import com.myssyt.bibtex.domain.Incollection;
-import com.myssyt.bibtex.domain.Booklet;
-import com.myssyt.bibtex.domain.Inproceedings;
-import com.myssyt.bibtex.domain.Kirja;
+import com.myssyt.bibtex.ReferenceManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,11 +12,11 @@ import java.io.*;
  *
  * @author oplindst
  */
-public class ViiteManageriTest {
+public class ReferenceManagerTest {
     
-    private ViiteManageri manageri;
+    private ReferenceManager manager;
     
-    public ViiteManageriTest() {
+    public ReferenceManagerTest() {
     }
     
     @BeforeClass
@@ -34,14 +29,14 @@ public class ViiteManageriTest {
     
     @Before
     public void setUp() {
-        manageri = new ViiteManageri();
+        manager = new ReferenceManager();
     }
     
     @After
     public void tearDown() {
-        File file = new File("viitteet");
+        File file = new File("references");
         file.delete();
-        file = new File("testi.bib");
+        file = new File("testing.bib");
         file.delete();
     }
 
@@ -50,86 +45,86 @@ public class ViiteManageriTest {
      */
     @Test
     public void artikkelinLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+        String viesti = manager.addArticle("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
         
-        assertEquals("Artikkelin lisääminen onnistui", viesti);
+        assertEquals("Adding article succeeded", viesti);
         assertEquals("title", 
-                ((Artikkeli) manageri.getViitteet().get(0)).getTitle());
+                ((Article) manager.getReferences().get(0)).getTitle());
     }
     
     @Test
     public void kirjanLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaKirja("bibtexkey", "author", "editor", "title", 
+        String viesti = manager.addBook("bibtexkey", "author", "editor", "title", 
                 "publisher", "year", "volume", "number", "series", "address", 
                 "edition", "month", "note");
         
-        assertEquals("Kirjan lisääminen onnistui", viesti);
+        assertEquals("Adding book succeeded", viesti);
         assertEquals("title", 
-                ((Kirja) manageri.getViitteet().get(0)).getTitle());
+                ((Book) manager.getReferences().get(0)).getTitle());
     }
     
     @Test
     public void inproceedingsinLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaInproceedings("bibtexkey", "author", 
+        String message = manager.addInproceedings("bibtexkey", "author", 
                 "title", "booktitle", "year", "editor", "volume", "number", 
                 "series", "pages", "address", "month", "organization",
                 "publisher", "note");
         
-        assertEquals("Inproceedingsin lisääminen onnistui", viesti);
+        assertEquals("Adding inproceedings succeeded", message);
         assertEquals("title", 
-                ((Inproceedings) manageri.getViitteet().get(0)).getTitle());
+                ((Inproceedings) manager.getReferences().get(0)).getTitle());
     }
     
     @Test
     public void incollectioninLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaIncollection("bibtexkey", "author", 
+        String message = manager.addIncollection("bibtexkey", "author", 
                 "title", "booktitle", "publisher", "year", "editor", "volume", "number", 
                 "series", "type", "chapter", "pages", "address",
                 "edition", "month", "note");
         
-        assertEquals("Incollectionin lisääminen onnistui", viesti);
+        assertEquals("Adding incollectionin succeeded", message);
         assertEquals("chapter", 
-                ((Incollection) manageri.getViitteet().get(0)).getChapter());
+                ((Incollection) manager.getReferences().get(0)).getChapter());
     }
     
     @Test
     public void bookletinLisaysOnnistuuHyvillaArvoilla() {
-        String viesti = manageri.lisaaBooklet("bibtexKey", "title", "author",
+        String message = manager.addBooklet("bibtexKey", "title", "author",
                 "howpublished", "address", "month", "year", "note");
         
-        assertEquals("Bookletin lisääminen onnistui", viesti);
+        assertEquals("Adding booklet succeeded", message);
         assertEquals("note", 
-                ((Booklet) manageri.getViitteet().get(0)).getNote());
+                ((Booklet) manager.getReferences().get(0)).getNote());
     }
     
     @Test
     public void tiedostonTallennusJaLatausOnnistuu() {
-        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+        manager.addArticle("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
         
-        String viesti = manageri.tallennaViitteet("viitteet");
-        assertEquals("Tiedoston tallennus onnistui", viesti);
+        String message = manager.saveReferences("references");
+        assertEquals("Saving file succeeded", message);
         
-        assertEquals(new File("viitteet").isFile(), true);
+        assertEquals(new File("references").isFile(), true);
         
-        viesti = manageri.lataaViitteet("viitteet");
-        assertEquals("Tiedoston lataus onnistui", viesti);
+        message = manager.loadReferences("references");
+        assertEquals("Loading file succeeded", message);
         
         assertEquals("title",
-                ((Artikkeli) manageri.getViitteet().get(0)).getTitle());
+                ((Article) manager.getReferences().get(0)).getTitle());
     }
     
     @Test
     public void tiedostonExporttausOnnistuu() throws FileNotFoundException,
             IOException {
-        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+        manager.addArticle("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
         
-        String viesti = manageri.exportViitteet("testi.bib");
-        assertEquals("Tiedoston exporttaus onnistui", viesti);
+        String viesti = manager.exportReferences("testing.bib");
+        assertEquals("Exporting file succeeded", viesti);
         
-        File file = new File("testi.bib");
+        File file = new File("testing.bib");
         assertEquals(file.isFile(), true);
         
         BufferedReader brTest = new BufferedReader(new FileReader(file));
@@ -138,42 +133,42 @@ public class ViiteManageriTest {
     
     @Test
     public void ViitteenPoistoOnnistuu() {
-        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+        manager.addArticle("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
-        manageri.poistaViite(0);
-        assertEquals(0,manageri.getViitteet().size());
+        manager.removeReference(0);
+        assertEquals(0,manager.getReferences().size());
     }
     
     @Test
     public void ArtikkelinMuokkausOnnistuu() {
-        manageri.lisaaArtikkeli("bibtexkey", "author", "title", 
+        manager.addArticle("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
-        manageri.muokkaaArtikkeli(0,"muokattu", "author", "title", 
+        manager.editArticle(0,"muokattu", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
-        assertEquals("muokattu",manageri.getViitteet().get(0).getBibtexKey());
+        assertEquals("muokattu",manager.getReferences().get(0).getBibtexKey());
     }
     
     @Test
     public void KirjanMuokkausOnnistuu() {
-        manageri.lisaaKirja("bibtexkey", "author", "editor", "title", 
+        manager.addBook("bibtexkey", "author", "editor", "title", 
                 "publisher", "year", "volume", "number", "series", "address", 
                 "edition", "month", "note");
-        manageri.muokkaaBook(0, "muokattu", "author", "editor", "title", 
+        manager.editBook(0, "muokattu", "author", "editor", "title", 
                 "publisher", "year", "volume", "number", "series", "address", 
                 "edition", "month", "note");
-        assertEquals("muokattu",manageri.getViitteet().get(0).getBibtexKey());
+        assertEquals("muokattu",manager.getReferences().get(0).getBibtexKey());
     }
     
     @Test
     public void InProceedingsMuokkausOnnistuu() {
-        manageri.lisaaInproceedings("bibtexkey", "author", 
+        manager.addInproceedings("bibtexkey", "author", 
                 "title", "booktitle", "year", "editor", "volume", "number", 
                 "series", "pages", "address", "month", "organization",
                 "publisher", "note");
-        manageri.muokkaaInProceedings(0,"muokattu", "author", 
+        manager.editInproceedings(0,"muokattu", "author", 
                 "title", "booktitle", "year", "editor", "volume", "number", 
                 "series", "pages", "address", "month", "organization",
                 "publisher", "note");
-        assertEquals("muokattu",manageri.getViitteet().get(0).getBibtexKey());
+        assertEquals("muokattu",manager.getReferences().get(0).getBibtexKey());
     }
 }

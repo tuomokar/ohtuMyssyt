@@ -1,8 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Viite;
-
-public class Artikkeli extends Viite {
+public class Article extends Reference {
     /*
         An article from a journal or magazine. 
             Required fields: 
@@ -22,7 +20,7 @@ public class Artikkeli extends Viite {
     private String month;
     private String note;
 
-    public Artikkeli(String bibtexkey, String author, String title, 
+    public Article(String bibtexkey, String author, String title, 
             String journal, String year, String volume, String number, 
             String pages, String month, String note) {
         

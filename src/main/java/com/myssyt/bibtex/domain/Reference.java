@@ -2,12 +2,12 @@ package com.myssyt.bibtex.domain;
 
 import java.io.Serializable;
 
-public class Viite implements Serializable {
+public class Reference implements Serializable {
 
     private String bibtexKey;
     
 
-    public Viite(String bibtexKey) {
+    public Reference(String bibtexKey) {
         this.bibtexKey = bibtexKey;
     }
 

@@ -1,32 +1,32 @@
 package com.myssyt.bibtex;
 
-import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Article;
 import com.myssyt.bibtex.domain.Incollection;
 import com.myssyt.bibtex.domain.Inproceedings;
 import com.myssyt.bibtex.domain.Booklet;
-import com.myssyt.bibtex.domain.Kirja;
-import com.myssyt.bibtex.domain.Viite;
+import com.myssyt.bibtex.domain.Book;
+import com.myssyt.bibtex.domain.Reference;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.io.PrintWriter;
 
 public class BibtexExporter {
     
-    public static void exportBibtex(ArrayList<Viite> lista, String filename) throws FileNotFoundException {
+    public static void exportBibtex(ArrayList<Reference> list, String filename) throws FileNotFoundException {
         
         StringBuilder builder = new StringBuilder();
         
-        for(Viite viite : lista) {
-            if (viite.getClass().equals(Artikkeli.class))
-                exportArtikkeli((Artikkeli)viite, builder);
-            else if (viite.getClass().equals(Kirja.class))
-                exportKirja((Kirja)viite, builder);
-            else if (viite.getClass().equals(Inproceedings.class))
-                exportInproceedings((Inproceedings)viite, builder);
-            else if (viite.getClass().equals(Booklet.class))
-                exportBooklet((Booklet)viite, builder);
-            else if (viite.getClass().equals(Incollection.class))
-                exportIncollection((Incollection)viite, builder);
+        for(Reference reference : list) {
+            if (reference.getClass().equals(Article.class))
+                exportArticle((Article)reference, builder);
+            else if (reference.getClass().equals(Book.class))
+                exportBook((Book)reference, builder);
+            else if (reference.getClass().equals(Inproceedings.class))
+                exportInproceedings((Inproceedings)reference, builder);
+            else if (reference.getClass().equals(Booklet.class))
+                exportBooklet((Booklet)reference, builder);
+            else if (reference.getClass().equals(Incollection.class))
+                exportIncollection((Incollection)reference, builder);
             
             builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
             builder.append("\n\n");
@@ -48,7 +48,7 @@ public class BibtexExporter {
             Optional fields: 
                 volume, number, pages, month, note.
     */
-    private static void exportArtikkeli(Artikkeli article, StringBuilder builder) {
+    private static void exportArticle(Article article, StringBuilder builder) {
         builder.append("@article{" + article.getBibtexKey() + ",\n");
         if (isSet(article.getAuthor())) builder.append("author = {" + article.getAuthor() + "},\n");
         if (isSet(article.getTitle())) builder.append("title = {" + article.getTitle() + "},\n");
@@ -69,7 +69,7 @@ public class BibtexExporter {
             Optional fields: 
                 volume or number, series, address, edition, month, note.
     */
-    private static void exportKirja(Kirja book, StringBuilder builder) {
+    private static void exportBook(Book book, StringBuilder builder) {
         builder.append("@book{" + book.getBibtexKey() + ",\n");
         if (isSet(book.getAuthor())) builder.append("author = {" + book.getAuthor() + "},\n");
         if (isSet(book.getEditor())) builder.append("editor = {" + book.getEditor() + "},\n");

@@ -11,8 +11,8 @@ scenario "Artikkelin muokkaaminen onnistuu, kun pakolliset kentät on annettu", 
         title = "title"
         author = "author"
         year = "2006"
-        manageri = new ViiteManageri()
-        manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null)
+        manageri = new ReferenceManager()
+        manageri.addArticle(bibtexkey, author, title, journal, year, null, null, null, null, null)
         newjournal = "newjournal"
         newtitle = "newtitle"
         newauthor = "newauthor"
@@ -20,11 +20,11 @@ scenario "Artikkelin muokkaaminen onnistuu, kun pakolliset kentät on annettu", 
     }
 
     when 'Artikkelia muokataan', {
-        manageri.muokkaaArtikkeli(0, bibtexkey, newauthor, newtitle, newjournal, newyear, null, null, null, null, null)
+        manageri.editArticle(0, bibtexkey, newauthor, newtitle, newjournal, newyear, null, null, null, null, null)
     }
 
     then 'Artikkelin kentät ovat oikein muutoksen jälkeen', {
-        artikkeli = manageri.getViitteet().get(0)
+        artikkeli = manageri.getReferences().get(0)
         artikkeli.getBibtexKey().shouldEqual "artikkeli"
         artikkeli.getJournal().shouldEqual "newjournal"
         artikkeli.getTitle().shouldEqual "newtitle"
@@ -40,8 +40,8 @@ scenario "Kirjan muokkaaminen onnistuu, kun pakolliset kentät on annettu", {
         title = "title"
         author = "author"
         year = "2006"
-        manageri = new ViiteManageri()
-        manageri.lisaaKirja(bibtexkey, author, title, editor, year, null, null, null, null, null)
+        manageri = new ReferenceManager()
+        manageri.addBook(bibtexkey, author, title, editor, year, null, null, null, null, null)
         neweditor = "neweditor"
         newtitle = "newtitle"
         newauthor = "newauthor"
@@ -53,7 +53,7 @@ scenario "Kirjan muokkaaminen onnistuu, kun pakolliset kentät on annettu", {
     }
 
     then 'Kirjan kentät ovat oikein muutoksen jälkeen', {
-        /*kirja = manageri.getViitteet().get(0)
+        /*kirja = manageri.getReferences().get(0)
         kirja.getBibtexKey().shouldEqual "kirja"
         kirja.getEditor().shouldEqual "neweditor"
         kirja.getTitle().shouldEqual "newtitle"

@@ -1,6 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Article;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,11 +8,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ArtikkeliTest {
+public class ArticleTest {
     
-    Artikkeli instance;
+    Article instance;
     
-    public ArtikkeliTest() {
+    public ArticleTest() {
     }
     
     @BeforeClass
@@ -25,7 +25,7 @@ public class ArtikkeliTest {
     
     @Before
     public void setUp() {
-        instance = new Artikkeli("bibtexkey", "author", "title", 
+        instance = new Article("bibtexkey", "author", "title", 
               "journal", "year", "volume", "number", "pages", "month", "note");
     }
     

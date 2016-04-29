@@ -1,8 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Viite;
-
-public class Incollection extends Viite {
+public class Incollection extends Reference {
     /*
     A part of a book having its own title. 
         Required fields: 

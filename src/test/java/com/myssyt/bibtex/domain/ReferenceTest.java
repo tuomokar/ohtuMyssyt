@@ -1,6 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Viite;
+import com.myssyt.bibtex.domain.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,9 +8,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ViiteTest {
+public class ReferenceTest {
     
-    public ViiteTest() {
+    public ReferenceTest() {
     }
     
     @BeforeClass
@@ -34,7 +34,7 @@ public class ViiteTest {
      */
     @Test
     public void testGetBibtexKey() {
-        Viite instance = new Viite("abc");
+        Reference instance = new Reference("abc");
         String expResult = "abc";
         String result = instance.getBibtexKey();
         assertEquals(expResult, result);
@@ -45,7 +45,7 @@ public class ViiteTest {
      */
     @Test
     public void testSetBibtexKey() {
-        Viite instance = new Viite("abc");
+        Reference instance = new Reference("abc");
         String bibtexKey = "123";
         instance.setBibtexKey(bibtexKey);
         assertEquals(bibtexKey, instance.getBibtexKey());

@@ -1,8 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Viite;
-
-public class Kirja extends Viite {
+public class Book extends Reference {
     /*
         A book with an explicit publisher. 
             Required fields: 
@@ -25,7 +23,7 @@ public class Kirja extends Viite {
     private String month;
     private String note;
     
-    public Kirja(String bibtexkey, String author, String editor, String title, 
+    public Book(String bibtexkey, String author, String editor, String title, 
             String publisher, String year, String volume, String number, 
             String series, String address, String edition, String month,
             String note) {

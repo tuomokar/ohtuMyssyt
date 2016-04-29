@@ -16,18 +16,18 @@ scenario "Artikkelin poistaminen onnistuu", {
         author2 = "Spohrer, James C. and Soloway, Elliot222"
         year = "2006"
         year2 = "2007"
-        manageri = new ViiteManageri()
-        manageri.lisaaArtikkeli(bibtexkey, author, title, journal, year, null, null, null, null, null)
-        manageri.lisaaArtikkeli(bibtexkey2, author2, title2, journal2, year2, null, null, null, null, null)
+        manageri = new ReferenceManager()
+        manageri.addArticle(bibtexkey, author, title, journal, year, null, null, null, null, null)
+        manageri.addArticle(bibtexkey2, author2, title2, journal2, year2, null, null, null, null, null)
     }
 
     when 'Poistetaan artikkeli', {
-        manageri.poistaViite(0)
+        manageri.removeReference(0)
     }
 
     then 'Artikkeleita on järjestelmässä yksi vähemmän ja juuri oikea artikkeli poistettiin', {
-        manageri.getViitteet().size().shouldEqual 1
-        artikkeli = manageri.getViitteet().get(0)
+        manageri.getReferences().size().shouldEqual 1
+        artikkeli = manageri.getReferences().get(0)
         artikkeli.getBibtexKey().shouldEqual "artikkeli2"
     }
 }

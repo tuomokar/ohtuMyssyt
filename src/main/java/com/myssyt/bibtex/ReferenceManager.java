@@ -1,61 +1,55 @@
 package com.myssyt.bibtex;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author oplindst
  */
-import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Article;
 import com.myssyt.bibtex.domain.Incollection;
 import com.myssyt.bibtex.domain.Inproceedings;
 import com.myssyt.bibtex.domain.Booklet;
-import com.myssyt.bibtex.domain.Kirja;
-import com.myssyt.bibtex.domain.Viite;
+import com.myssyt.bibtex.domain.Book;
+import com.myssyt.bibtex.domain.Reference;
 import java.util.ArrayList;
 
-public class ViiteManageri {
+public class ReferenceManager {
     
-    private ArrayList<Viite> viitteet;
+    private ArrayList<Reference> references;
     
-    public ViiteManageri() {
-        viitteet = new ArrayList<>();
+    public ReferenceManager() {
+        references = new ArrayList<>();
     }
     
-    public ArrayList<Viite> getViitteet() {
-        return viitteet;
+    public ArrayList<Reference> getReferences() {
+        return references;
     }
     
-    public String lisaaArtikkeli(String bibtexkey, String author, String title, 
+    public String addArticle(String bibtexkey, String author, String title, 
             String journal, String year, String volume, String number, 
             String pages, String month, String note) {
         
-            Artikkeli artikkeli = new Artikkeli(bibtexkey, author, title, 
+            Article article = new Article(bibtexkey, author, title, 
                     journal, year, volume, number, pages, month, note);
         
-        viitteet.add(artikkeli);
+        references.add(article);
         
-        return "Artikkelin lisääminen onnistui";
+        return "Adding article succeeded";
     }
     
-    public String lisaaKirja(String bibtexkey, String author, String editor, 
+    public String addBook(String bibtexkey, String author, String editor, 
             String title, String publisher, String year, String volume, 
             String number, String series, String address, String edition, 
             String month, String note) {
         
-        Kirja kirja = new Kirja(bibtexkey, author, editor, title, publisher, 
+        Book book = new Book(bibtexkey, author, editor, title, publisher, 
                 year, volume, number, series, address, edition, month, note);
             
-        viitteet.add(kirja);
+        references.add(book);
         
-        return "Kirjan lisääminen onnistui";
+        return "Adding book succeeded";
     }
     
-    public String lisaaInproceedings(String bibtexkey, String author, String title, 
+    public String addInproceedings(String bibtexkey, String author, String title, 
             String booktitle, String year, String editor, String volume, 
             String number, String series, String pages, String address, 
             String month, String organization, String publisher,
@@ -65,23 +59,23 @@ public class ViiteManageri {
             title, booktitle, year, editor, volume, number, series, pages,
             address, month, organization, publisher, note);
         
-        viitteet.add(inproceedings);
+        references.add(inproceedings);
         
-        return "Inproceedingsin lisääminen onnistui";
+        return "Adding inproceedings succeeded";
     }
     
-    public String lisaaBooklet(String bibtexKey, String title, String author, String howpublished, String address, String month, 
+    public String addBooklet(String bibtexKey, String title, String author, String howpublished, String address, String month, 
             String year, String note) {
         
         Booklet booklet = new Booklet(bibtexKey, title, author, howpublished, address, month, 
             year, note);
         
-        viitteet.add(booklet);
+        references.add(booklet);
         
-        return "Bookletin lisääminen onnistui";
+        return "Adding booklet succeeded";
     }
     
-    public String lisaaIncollection(String bibtexkey, String author, String title, String booktitle,
+    public String addIncollection(String bibtexkey, String author, String title, String booktitle,
             String publisher, String year, String editor, String volume, String number,
             String series, String type, String chapter, String pages, String address,
             String edition, String month, String note) {
@@ -89,65 +83,64 @@ public class ViiteManageri {
         Incollection incollection = new Incollection(bibtexkey, author, title, booktitle, publisher, 
                 year, editor, volume, number, series, type, chapter, pages, address, edition, month, note);
                         
-        viitteet.add(incollection);
+        references.add(incollection);
         
-        return "Incollectionin lisääminen onnistui";
+        return "Adding incollectionin succeeded";
     }
     
-    public String tallennaViitteet(String nimi) {
+    public String saveReferences(String name) {
         try {
-            FileHandler.writeFile(viitteet, nimi);
-            return "Tiedoston tallennus onnistui";
+            FileHandler.writeFile(references, name);
+            return "Saving file succeeded";
         }
         catch (Exception e) {
-            return "Tiedoston tallennus epäonnistui";
+            return "Saving file failed";
         }
     }
     
-    public String lataaViitteet(String nimi) {
+    public String loadReferences(String name) {
         try {
-            viitteet = FileHandler.readFile(nimi);
-            return "Tiedoston lataus onnistui";
+            references = FileHandler.readFile(name);
+            return "Loading file succeeded";
         }
         catch (Exception e) {
-            viitteet = new ArrayList<>();
-            return "Tiedoston lataus epäonnistui";
+            references = new ArrayList<>();
+            return "Loading file failed";
         }
     }
     
-    public String poistaViite(int index) {
-        viitteet.remove(index);
-        return "Viitteen poistaminen onnistui";
+    public String removeReference(int index) {
+        references.remove(index);
+        return "Removing reference succeeded";
     }
     
-    public void muokkaaArtikkeli(int index, String bibtexkey,String author,
+    public void editArticle(int index, String bibtexkey,String author,
             String title,String journal,String year,String volume,String number,
             String pages,String month,String note) {
         
-        Viite viite = getViitteet().get(index);
-        Artikkeli artikkeli = (Artikkeli) viite;
-        artikkeli.setBibtexKey(bibtexkey);
+        Article article = (Article) getReferences().get(index);
+        article.setBibtexKey(bibtexkey);
                 
-        artikkeli.setAuthor(author);
-        artikkeli.setTitle(title);
-        artikkeli.setJournal(journal);
-        artikkeli.setYear(year);
+        article.setAuthor(author);
+        article.setTitle(title);
+        article.setJournal(journal);
+        article.setYear(year);
 
         // vapaavalintaiset
-        artikkeli.setVolume(volume);
-        artikkeli.setNumber(number);
-        artikkeli.setPages(pages);
-        artikkeli.setMonth(month);
-        artikkeli.setNote(note);
+        article.setVolume(volume);
+        article.setNumber(number);
+        article.setPages(pages);
+        article.setMonth(month);
+        article.setNote(note);
     }
     
-    public void muokkaaBook(int index, String bibtexkey,String author,
+    public void editBook(int index, String bibtexkey,String author,
             String title,String editor,String year,String volume,String number,
             String publisher,String month,String note,String series,
             String address, String edition) {
         
-        Viite viite = getViitteet().get(index);
-        Kirja kirja = (Kirja) viite;
+        Reference reference = getReferences().get(index);
+        Book kirja = (Book) reference;
         
         kirja.setBibtexKey(bibtexkey);
                 
@@ -168,12 +161,12 @@ public class ViiteManageri {
         kirja.setNote(note);
     }
     
-    public void muokkaaInProceedings(int index, String bibtexkey,String author,
+    public void editInproceedings(int index, String bibtexkey,String author,
             String title,String booktitle,String year,String editor,String
             volume,String number,String series,String pages,String address,
             String month,String organization,String publisher,String note) {
-        Viite viite = getViitteet().get(index);
-        Inproceedings inproceedings = (Inproceedings) viite;
+        Reference reference = getReferences().get(index);
+        Inproceedings inproceedings = (Inproceedings) reference;
         
         inproceedings.setBibtexKey(bibtexkey);
                 
@@ -195,13 +188,13 @@ public class ViiteManageri {
         inproceedings.setNote(note);
     }
     
-    public String exportViitteet(String nimi) {
+    public String exportReferences(String name) {
         try {
-            BibtexExporter.exportBibtex(viitteet, nimi);
-            return "Tiedoston exporttaus onnistui";
+            BibtexExporter.exportBibtex(references, name);
+            return "Exporting file succeeded";
         }
         catch (Exception e) {
-            return "Tiedoston exporttaus epäonnistui";
+            return "Exporting file failed";
         }
     }
 }

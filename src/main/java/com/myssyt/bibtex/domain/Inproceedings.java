@@ -1,8 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Viite;
-
-public class Inproceedings extends Viite {
+public class Inproceedings extends Reference {
     /*
         An article in a conference proceedings. 
         Required fields: 

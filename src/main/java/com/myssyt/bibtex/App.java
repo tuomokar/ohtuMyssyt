@@ -5,12 +5,12 @@ import com.myssyt.bibtex.panels.BookPanel;
 import com.myssyt.bibtex.panels.InproceedingsPanel;
 import com.myssyt.bibtex.panels.ArticlePanel;
 import com.myssyt.bibtex.panels.IncollectionPanel;
-import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Article;
 import com.myssyt.bibtex.domain.Incollection;
 import com.myssyt.bibtex.domain.Inproceedings;
 import com.myssyt.bibtex.domain.Booklet;
-import com.myssyt.bibtex.domain.Kirja;
-import com.myssyt.bibtex.domain.Viite;
+import com.myssyt.bibtex.domain.Book;
+import com.myssyt.bibtex.domain.Reference;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class App extends javax.swing.JFrame {
     private final String filename = "default";
     private CardLayout cl;
-    private ViiteManageri manageri;
+    private ReferenceManager manager;
     private DefaultTableModel model;
     ArticlePanel articlePanel;
     BookPanel bookPanel;
@@ -87,7 +87,7 @@ public class App extends javax.swing.JFrame {
                 bibtexkey
             });
 
-            msg = manageri.lisaaArtikkeli(bibtexkey, author, title, journal,
+            msg = manager.addArticle(bibtexkey, author, title, journal,
                     year, volume, number, pages, month, note);
             lMessage.setText(msg);
         } else if (currentReferenceType == 1) {
@@ -120,7 +120,7 @@ public class App extends javax.swing.JFrame {
                 bibtexkey
             });
 
-            msg = manageri.lisaaKirja(bibtexkey, author, editor, title, publisher,
+            msg = manager.addBook(bibtexkey, author, editor, title, publisher,
                     year, volume, number, series, address, edition, month, note);
             lMessage.setText(msg);
         } else if (currentReferenceType == 2) {
@@ -153,7 +153,7 @@ public class App extends javax.swing.JFrame {
                 bibtexkey
             });
 
-            msg = manageri.lisaaInproceedings(bibtexkey, author, title,
+            msg = manager.addInproceedings(bibtexkey, author, title,
                     booktitle, year, editor, volume, number, series, pages,
                     address, month, organization, publisher, note);
             lMessage.setText(msg);
@@ -180,7 +180,7 @@ public class App extends javax.swing.JFrame {
                 bibtexkey
             });
 
-            msg = manageri.lisaaBooklet(bibtexkey, title, author,
+            msg = manager.addBooklet(bibtexkey, title, author,
                     howpublished, address, month, year, note);
             lMessage.setText(msg);
         } else if (currentReferenceType == 4) {
@@ -215,7 +215,7 @@ public class App extends javax.swing.JFrame {
                 bibtexkey
             });
 
-            msg = manageri.lisaaIncollection(bibtexkey, author, title, booktitle,
+            msg = manager.addIncollection(bibtexkey, author, title, booktitle,
                 publisher, year, editor, volume, number, series, type, chapter,
                 pages, address, edition, month, note);
             lMessage.setText(msg);
@@ -230,9 +230,9 @@ public class App extends javax.swing.JFrame {
         if (selectedRow == -1) {
             lMessage.setText("Update error: no selection");
         } else {
-            Viite viite = manageri.getViitteet().get(selectedRow);
+            Reference reference = manager.getReferences().get(selectedRow);
             
-            if (viite.getClass().equals(Artikkeli.class)) {
+            if (reference.getClass().equals(Article.class)) {
                 //Artikkeli artikkeli = (Artikkeli) viite;
 
                 String bibtexkey = articlePanel.getTfBibtexkey().getText();
@@ -249,7 +249,7 @@ public class App extends javax.swing.JFrame {
                 String month = articlePanel.getTfMonth().getText();
                 String note = articlePanel.getTfNote().getText();
                 
-                manageri.muokkaaArtikkeli(selectedRow, bibtexkey, author, title,
+                manager.editArticle(selectedRow, bibtexkey, author, title,
                         journal, year, volume, number, pages, month, note);
                 
                 // table row: type, author/editor, title, year, journal/booktitle, key
@@ -261,7 +261,7 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Article updated");
-            } else if (viite.getClass().equals(Kirja.class)) {
+            } else if (reference.getClass().equals(Book.class)) {
                 //Kirja kirja = (Kirja) viite;
 
                 String bibtexkey = bookPanel.getTfBibtexkey().getText();
@@ -283,7 +283,7 @@ public class App extends javax.swing.JFrame {
                 String month = bookPanel.getTfMonth().getText();
                 String note = bookPanel.getTfNote().getText(); 
                 
-                manageri.muokkaaBook(selectedRow, bibtexkey, author, title, editor, 
+                manager.editBook(selectedRow, bibtexkey, author, title, editor, 
                         year, volume, number, publisher, month, note, series, 
                         address, edition);
                 
@@ -296,8 +296,8 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Book updated");
-            } else if (viite.getClass().equals(Booklet.class)) {
-                Booklet booklet = (Booklet) viite;
+            } else if (reference.getClass().equals(Booklet.class)) {
+                Booklet booklet = (Booklet) reference;
                 
                 String bibtexkey = bookletPanel.getTfBibtexkey().getText();
             
@@ -332,8 +332,8 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Booklet updated");
-            } else if (viite.getClass().equals(Inproceedings.class)) {
-                Inproceedings inproceedings = (Inproceedings) viite;
+            } else if (reference.getClass().equals(Inproceedings.class)) {
+                Inproceedings inproceedings = (Inproceedings) reference;
                 
                 String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
                 
@@ -383,8 +383,8 @@ public class App extends javax.swing.JFrame {
                 
                lMessage.setText("Book updated");
                 
-            } else if (viite.getClass().equals(Incollection.class)) {
-                Incollection incollection = (Incollection) viite;
+            } else if (reference.getClass().equals(Incollection.class)) {
+                Incollection incollection = (Incollection) reference;
 
                 String bibtexkey = incollectionPanel.getTfBibtexkey().getText();
                 
@@ -451,26 +451,26 @@ public class App extends javax.swing.JFrame {
         if (selectedRow == -1) {
             lMessage.setText("Error: viewSelectedReference(), no selection");
         } else {
-            Viite viite = manageri.getViitteet().get(selectedRow);
+            Reference reference = manager.getReferences().get(selectedRow);
             
             if (model.getValueAt(selectedRow, 0).equals("Article")) {
-                Artikkeli artikkeli = (Artikkeli) viite;
+                Article article = (Article) reference;
                 
                 articlePanel.clearTextFields();
 
-                String bibtexkey = artikkeli.getBibtexKey();
+                String bibtexkey = article.getBibtexKey();
                 
-                String author = artikkeli.getAuthor();
-                String title = artikkeli.getTitle();
-                String journal = artikkeli.getJournal();
-                String year = artikkeli.getYear();
+                String author = article.getAuthor();
+                String title = article.getTitle();
+                String journal = article.getJournal();
+                String year = article.getYear();
                 
-                // vapaavalintaiset
-                String volume = artikkeli.getVolume();
-                String number = artikkeli.getNumber();
-                String pages = artikkeli.getPages();
-                String month = artikkeli.getMonth();
-                String note = artikkeli.getNote();
+                // optional
+                String volume = article.getVolume();
+                String number = article.getNumber();
+                String pages = article.getPages();
+                String month = article.getMonth();
+                String note = article.getNote();
                 
                 articlePanel.getTfBibtexkey().setText(bibtexkey);
                 
@@ -479,7 +479,7 @@ public class App extends javax.swing.JFrame {
                 articlePanel.getTfJournal().setText(journal);
                 articlePanel.getTfYear().setText(year);
                 
-                // vapaavalintaiset
+                // optional
                 articlePanel.getTfVolume().setText(volume);
                 articlePanel.getTfNumber().setText(number);
                 articlePanel.getTfPages().setText(pages);
@@ -490,27 +490,27 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Article selected");
             } else if (model.getValueAt(selectedRow, 0).equals("Book")) {
-                Kirja kirja = (Kirja) viite;
+                Book book = (Book) reference;
                 
                 bookPanel.clearTextFields();
 
-                String bibtexkey = kirja.getBibtexKey();
+                String bibtexkey = book.getBibtexKey();
                 
                 // author or editor
-                String author = kirja.getAuthor();
-                String editor = kirja.getEditor();
-                String title = kirja.getTitle();
-                String publisher = kirja.getPublisher();
-                String year = kirja.getYear();
+                String author = book.getAuthor();
+                String editor = book.getEditor();
+                String title = book.getTitle();
+                String publisher = book.getPublisher();
+                String year = book.getYear();
                 
-                // vapaavalintaiset + volume or number
-                String volume = kirja.getVolume();
-                String number = kirja.getNumber(); 
-                String series = kirja.getSeries();
-                String address = kirja.getAddress();
-                String edition = kirja.getEdition();
-                String month = kirja.getMonth();
-                String note = kirja.getNote();
+                // optional ones + volume or number
+                String volume = book.getVolume();
+                String number = book.getNumber(); 
+                String series = book.getSeries();
+                String address = book.getAddress();
+                String edition = book.getEdition();
+                String month = book.getMonth();
+                String note = book.getNote();
 
                 bookPanel.getTfBibtexkey().setText(bibtexkey);
                 
@@ -521,7 +521,7 @@ public class App extends javax.swing.JFrame {
                 bookPanel.getTfPublisher().setText(publisher); 
                 bookPanel.getTfYear().setText(year);
                 
-                // vapaavalintaiset + volume or number
+                // optional ones + volume or number
                 bookPanel.getTfVolume().setText(volume);
                 bookPanel.getTfNumber().setText(number); 
                 bookPanel.getTfSeries().setText(series);
@@ -534,7 +534,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Book selected");
             } else if (model.getValueAt(selectedRow, 0).equals("Inproceedings")) {
-                Inproceedings inproceedings = (Inproceedings) viite;
+                Inproceedings inproceedings = (Inproceedings) reference;
                 
                 inproceedingsPanel.clearTextFields();
 
@@ -580,7 +580,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Inproceedings selected");
             } else if (model.getValueAt(selectedRow, 0).equals("Booklet")) {
-                Booklet booklet = (Booklet) viite;
+                Booklet booklet = (Booklet) reference;
                 
                 bookletPanel.clearTextFields();
 
@@ -588,7 +588,7 @@ public class App extends javax.swing.JFrame {
                 
                 String title = booklet.getTitle();
 
-                // vapaavalintaiset
+                // optional ones
                 String author = booklet.getAuthor();
                 String howpublished = booklet.getHowpublished();
                 String address = booklet.getAddress();
@@ -600,7 +600,7 @@ public class App extends javax.swing.JFrame {
                 
                 bookletPanel.getTfTitle().setText(title);
 
-                // vapaavalintaiset
+                // optional ones
                 bookletPanel.getTfAuthor().setText(author);
                 bookletPanel.getTfHowpublished().setText(howpublished);
                 bookletPanel.getTfAddress().setText(address);
@@ -612,7 +612,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Booklet selected");
             } else if (model.getValueAt(selectedRow, 0).equals("Incollection")) {
-                Incollection incollection = (Incollection) viite;
+                Incollection incollection = (Incollection) reference;
                 
                 incollectionPanel.clearTextFields();
                 
@@ -670,7 +670,7 @@ public class App extends javax.swing.JFrame {
         if (selectedRow == -1) {
             lMessage.setText("Delete error: no selection");
         } else {
-            String message = manageri.poistaViite(selectedRow);
+            String message = manager.removeReference(selectedRow);
             model.removeRow(selectedRow);
             lMessage.setText(message);
         }
@@ -696,35 +696,35 @@ public class App extends javax.swing.JFrame {
         cl = (CardLayout)contPanel.getLayout();
         cl.show(contPanel, "article"); 
         
-        manageri = new ViiteManageri();
-        lMessage.setText(manageri.lataaViitteet(filename)); 
+        manager = new ReferenceManager();
+        lMessage.setText(manager.loadReferences(filename)); 
         model = (DefaultTableModel) refTable.getModel();
         
-        for(Viite viite : manageri.getViitteet()) {
-            if (viite.getClass().equals(Artikkeli.class)) {
-                Artikkeli artikkeli = (Artikkeli) viite;
+        for(Reference reference : manager.getReferences()) {
+            if (reference.getClass().equals(Article.class)) {
+                Article article = (Article) reference;
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
                     "Article",
-                    artikkeli.getAuthor(), // todo: or editor
-                    artikkeli.getTitle(),
-                    artikkeli.getYear(),
-                    artikkeli.getJournal(),
-                    artikkeli.getBibtexKey()
+                    article.getAuthor(), // todo: or editor
+                    article.getTitle(),
+                    article.getYear(),
+                    article.getJournal(),
+                    article.getBibtexKey()
                 });
-            } else if (viite.getClass().equals(Kirja.class)) {
-                Kirja kirja = (Kirja) viite;
+            } else if (reference.getClass().equals(Book.class)) {
+                Book book = (Book) reference;
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
                     "Book",
-                    kirja.getAuthor(),
-                    kirja.getTitle(),
-                    kirja.getYear(),
+                    book.getAuthor(),
+                    book.getTitle(),
+                    book.getYear(),
                     null,
-                    kirja.getBibtexKey()
+                    book.getBibtexKey()
                 });
-            } else if (viite.getClass().equals(Inproceedings.class)) {
-                Inproceedings inproc = (Inproceedings) viite;
+            } else if (reference.getClass().equals(Inproceedings.class)) {
+                Inproceedings inproc = (Inproceedings) reference;
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
                     "Inproceedings",
@@ -734,8 +734,8 @@ public class App extends javax.swing.JFrame {
                     inproc.getBooktitle(),
                     inproc.getBibtexKey()
                 });
-            } else if (viite.getClass().equals(Booklet.class)) {
-                Booklet booklet = (Booklet) viite;
+            } else if (reference.getClass().equals(Booklet.class)) {
+                Booklet booklet = (Booklet) reference;
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
                     "Booklet",
@@ -745,8 +745,8 @@ public class App extends javax.swing.JFrame {
                     null,
                     booklet.getBibtexKey()
                 });
-            } else if (viite.getClass().equals(Incollection.class)) {
-                Incollection incollection = (Incollection) viite;
+            } else if (reference.getClass().equals(Incollection.class)) {
+                Incollection incollection = (Incollection) reference;
                 // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
                 model.addRow(new Object[] {
                     "Incollection",
@@ -960,13 +960,13 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_refTableMouseClicked
 
     private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
-        lMessage.setText(manageri.tallennaViitteet(filename)); 
+        lMessage.setText(manager.saveReferences(filename)); 
     }//GEN-LAST:event_bSaveActionPerformed
 
     private void bExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportActionPerformed
         String inputValue = JOptionPane.showInputDialog("Please input a filename");
         if(inputValue != null && !inputValue.trim().equals("")) {
-            lMessage.setText(manageri.exportViitteet(inputValue + ".bib"));
+            lMessage.setText(manager.exportReferences(inputValue + ".bib"));
         } else {
             lMessage.setText("Export error: invalid filename");
         }

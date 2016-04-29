@@ -12,12 +12,12 @@ scenario "Bibtex-tiedoston luonti onnistuu kun artikkeli on annettu", {
     }
 
     when 'Lisätään artikkeli managerille', {
-        artikkeli = new Artikkeli("1", author, title, journal, year, "a", "b", "c", "d", "e")
-        manageri = new ViiteManageri()
-        manageri.getViitteet().add(artikkeli)
+        artikkeli = new Article("1", author, title, journal, year, "a", "b", "c", "d", "e")
+        manageri = new ReferenceManager()
+        manageri.getReferences().add(artikkeli)
     }
 
     then 'Bibtex-tiedoston luonti onnistuu managerista', {
-        manageri.exportViitteet("testi.bib").shouldEqual "Tiedoston exporttaus onnistui"
+        manageri.exportReferences("testi.bib").shouldEqual "Exporting file succeeded"
     }
 }

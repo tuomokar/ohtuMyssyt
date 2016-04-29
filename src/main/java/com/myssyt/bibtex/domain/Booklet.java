@@ -1,8 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Viite;
-
-public class Booklet extends Viite {
+public class Booklet extends Reference {
     /*
         A work that is printed and bound, but without a named publisher or sponsoring institution.
 

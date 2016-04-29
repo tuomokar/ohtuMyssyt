@@ -1,6 +1,6 @@
 package com.myssyt.bibtex.domain;
 
-import com.myssyt.bibtex.domain.Kirja;
+import com.myssyt.bibtex.domain.Book;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,11 +8,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class KirjaTest {
+public class BookTest {
     
-    private Kirja instance;
+    private Book instance;
     
-    public KirjaTest() {
+    public BookTest() {
     }
     
     @BeforeClass
@@ -25,7 +25,7 @@ public class KirjaTest {
     
     @Before
     public void setUp() {
-        instance = new Kirja("bibtexkey", "author", "editor", "title", 
+        instance = new Book("bibtexkey", "author", "editor", "title", 
                 "publisher", "year", "volume", "number", "series", "address", 
                 "edition", "month", "note");
     }
