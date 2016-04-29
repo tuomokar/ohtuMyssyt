@@ -1,5 +1,11 @@
 package com.myssyt.bibtex;
 
+import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Incollection;
+import com.myssyt.bibtex.domain.Inproceedings;
+import com.myssyt.bibtex.domain.Booklet;
+import com.myssyt.bibtex.domain.Kirja;
+import com.myssyt.bibtex.domain.Viite;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.io.PrintWriter;

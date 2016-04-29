@@ -1,5 +1,6 @@
 package com.myssyt.bibtex;
 
+import com.myssyt.bibtex.domain.Viite;
 import java.util.ArrayList;
 import java.io.*;
 

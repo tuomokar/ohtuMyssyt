@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.myssyt.bibtex;
+package com.myssyt.bibtex.panels;
 
 /**
  *
  * @author jphkylli
  */
-public class ArticlePanel extends javax.swing.JPanel {
-    /*
-        An article from a journal or magazine. 
-            Required fields: 
-                author, title, journal, year. 
-            Optional fields: 
-                volume, number, pages, month, note.
+public class BookletPanel extends javax.swing.JPanel {
+   /*
+        A work that is printed and bound, but without a named publisher or sponsoring institution.
+
+        Required fields: title
+
+        Optional fields: author, howpublished, address, month, year, note, key
     */
 
     /**
-     * Creates new form BookPanel
+     * Creates new form BookletPanel
      */
-    public ArticlePanel() {
+    public BookletPanel() {
         initComponents();
     }
     
@@ -31,15 +31,13 @@ public class ArticlePanel extends javax.swing.JPanel {
         
         getTfBibtexkey().setText("");
         
-        getTfAuthor().setText("");
         getTfTitle().setText("");
-        getTfJournal().setText("");
-        getTfYear().setText("");
-
-        getTfVolume().setText("");
-        getTfNumber().setText("");
-        getTfPages().setText("");
+       
+        getTfAuthor().setText("");
+        getTfHowpublished().setText("");
+        getTfAddress().setText("");
         getTfMonth().setText("");
+        getTfYear().setText("");
         getTfNote().setText("");
     }
 
@@ -52,39 +50,29 @@ public class ArticlePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lAuthor = new javax.swing.JLabel();
-        tfAuthor = new javax.swing.JTextField();
-        tfTitle = new javax.swing.JTextField();
         lTitle = new javax.swing.JLabel();
-        tfJournal = new javax.swing.JTextField();
-        lBooktitle = new javax.swing.JLabel();
-        tfYear = new javax.swing.JTextField();
-        lYear = new javax.swing.JLabel();
+        tfTitle = new javax.swing.JTextField();
         tfBibtexkey = new javax.swing.JTextField();
         lBibtexkey = new javax.swing.JLabel();
         optionalFieldsScrollPane = new javax.swing.JScrollPane();
         optionalFieldsPanel = new javax.swing.JPanel();
-        tfVolume = new javax.swing.JTextField();
+        tfAuthor = new javax.swing.JTextField();
         tfMonth = new javax.swing.JTextField();
-        tfNumber = new javax.swing.JTextField();
-        tfPages = new javax.swing.JTextField();
-        tfNote = new javax.swing.JTextField();
-        lVolume = new javax.swing.JLabel();
-        lNumber = new javax.swing.JLabel();
-        lPages = new javax.swing.JLabel();
+        tfHowpublished = new javax.swing.JTextField();
+        tfAddress = new javax.swing.JTextField();
+        tfYear = new javax.swing.JTextField();
+        lAuthor = new javax.swing.JLabel();
+        lHowpublished = new javax.swing.JLabel();
+        lAddress = new javax.swing.JLabel();
         lMonth = new javax.swing.JLabel();
+        lYear = new javax.swing.JLabel();
+        tfNote = new javax.swing.JTextField();
         lNote = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Article"));
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Booklet"));
         setPreferredSize(new java.awt.Dimension(100, 100));
 
-        lAuthor.setText("Author");
-
         lTitle.setText("Title");
-
-        lBooktitle.setText("Journal");
-
-        lYear.setText("Year");
 
         lBibtexkey.setText("Bibtexkey");
 
@@ -92,15 +80,17 @@ public class ArticlePanel extends javax.swing.JPanel {
         optionalFieldsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         optionalFieldsScrollPane.setPreferredSize(new java.awt.Dimension(699, 190));
 
-        lVolume.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lVolume.setText("Volume");
-        lVolume.setPreferredSize(new java.awt.Dimension(90, 16));
+        lAuthor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lAuthor.setText("Author");
+        lAuthor.setPreferredSize(new java.awt.Dimension(90, 16));
 
-        lNumber.setText("Number");
+        lHowpublished.setText("Howpublished");
 
-        lPages.setText("Pages");
+        lAddress.setText("Address");
 
         lMonth.setText("Month");
+
+        lYear.setText("Year");
 
         lNote.setText("Note");
 
@@ -110,18 +100,20 @@ public class ArticlePanel extends javax.swing.JPanel {
             optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionalFieldsPanelLayout.createSequentialGroup()
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lNumber)
-                    .addComponent(lPages)
+                    .addComponent(lAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lHowpublished)
+                    .addComponent(lAddress)
                     .addComponent(lMonth)
+                    .addComponent(lYear)
                     .addComponent(lNote))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
-                    .addComponent(tfVolume)
-                    .addComponent(tfNote, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfHowpublished, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                    .addComponent(tfAuthor)
+                    .addComponent(tfYear, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tfMonth, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfPages))
+                    .addComponent(tfAddress)
+                    .addComponent(tfNote))
                 .addContainerGap())
         );
         optionalFieldsPanelLayout.setVerticalGroup(
@@ -129,20 +121,24 @@ public class ArticlePanel extends javax.swing.JPanel {
             .addGroup(optionalFieldsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lNumber))
+                    .addComponent(tfHowpublished, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lHowpublished))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lPages))
+                    .addComponent(tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lAddress))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lMonth))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lYear))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(optionalFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,79 +154,70 @@ public class ArticlePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE))
+                .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lAuthor)
                     .addComponent(lTitle)
-                    .addComponent(lBooktitle)
-                    .addComponent(lYear)
                     .addComponent(lBibtexkey))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfAuthor)
                     .addComponent(tfTitle)
-                    .addComponent(tfJournal)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfBibtexkey, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(tfYear))
+                        .addComponent(tfBibtexkey, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lAuthor)
-                    .addComponent(tfAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfJournal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lBooktitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lYear))
+                    .addComponent(lTitle)
+                    .addComponent(tfTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfBibtexkey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lBibtexkey))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(optionalFieldsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lAddress;
     private javax.swing.JLabel lAuthor;
     private javax.swing.JLabel lBibtexkey;
-    private javax.swing.JLabel lBooktitle;
+    private javax.swing.JLabel lHowpublished;
     private javax.swing.JLabel lMonth;
     private javax.swing.JLabel lNote;
-    private javax.swing.JLabel lNumber;
-    private javax.swing.JLabel lPages;
     private javax.swing.JLabel lTitle;
-    private javax.swing.JLabel lVolume;
     private javax.swing.JLabel lYear;
     private javax.swing.JPanel optionalFieldsPanel;
     private javax.swing.JScrollPane optionalFieldsScrollPane;
+    private javax.swing.JTextField tfAddress;
     private javax.swing.JTextField tfAuthor;
     private javax.swing.JTextField tfBibtexkey;
-    private javax.swing.JTextField tfJournal;
+    private javax.swing.JTextField tfHowpublished;
     private javax.swing.JTextField tfMonth;
     private javax.swing.JTextField tfNote;
-    private javax.swing.JTextField tfNumber;
-    private javax.swing.JTextField tfPages;
     private javax.swing.JTextField tfTitle;
-    private javax.swing.JTextField tfVolume;
     private javax.swing.JTextField tfYear;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the tfAddress
+     */
+    public javax.swing.JTextField getTfAddress() {
+        return tfAddress;
+    }
+
+    /**
+     * @param tfAddress the tfAddress to set
+     */
+    public void setTfAddress(javax.swing.JTextField tfAddress) {
+        this.tfAddress = tfAddress;
+    }
 
     /**
      * @return the tfAuthor
@@ -261,17 +248,17 @@ public class ArticlePanel extends javax.swing.JPanel {
     }
 
     /**
-     * @return the tfBooktitle
+     * @return the tfHowpublished
      */
-    public javax.swing.JTextField getTfJournal() {
-        return tfJournal;
+    public javax.swing.JTextField getTfHowpublished() {
+        return tfHowpublished;
     }
 
     /**
-     * @param tfBooktitle the tfBooktitle to set
+     * @param tfHowpublished the tfHowpublished to set
      */
-    public void setTfJournal(javax.swing.JTextField tfBooktitle) {
-        this.tfJournal = tfBooktitle;
+    public void setTfHowpublished(javax.swing.JTextField tfHowpublished) {
+        this.tfHowpublished = tfHowpublished;
     }
 
     /**
@@ -303,34 +290,6 @@ public class ArticlePanel extends javax.swing.JPanel {
     }
 
     /**
-     * @return the tfNumber
-     */
-    public javax.swing.JTextField getTfNumber() {
-        return tfNumber;
-    }
-
-    /**
-     * @param tfNumber the tfNumber to set
-     */
-    public void setTfNumber(javax.swing.JTextField tfNumber) {
-        this.tfNumber = tfNumber;
-    }
-
-    /**
-     * @return the tfPages
-     */
-    public javax.swing.JTextField getTfPages() {
-        return tfPages;
-    }
-
-    /**
-     * @param tfPages the tfPages to set
-     */
-    public void setTfPages(javax.swing.JTextField tfPages) {
-        this.tfPages = tfPages;
-    }
-
-    /**
      * @return the tfTitle
      */
     public javax.swing.JTextField getTfTitle() {
@@ -345,30 +304,17 @@ public class ArticlePanel extends javax.swing.JPanel {
     }
 
     /**
-     * @return the tfVolume
-     */
-    public javax.swing.JTextField getTfVolume() {
-        return tfVolume;
-    }
-
-    /**
-     * @param tfVolume the tfVolume to set
-     */
-    public void setTfVolume(javax.swing.JTextField tfVolume) {
-        this.tfVolume = tfVolume;
-    }
-
-    /**
-     * @return the tfYear
+     * @return the tfyear
      */
     public javax.swing.JTextField getTfYear() {
         return tfYear;
     }
 
     /**
-     * @param tfYear the tfYear to set
+     * @param tfyear the tfyear to set
      */
-    public void setTfYear(javax.swing.JTextField tfYear) {
-        this.tfYear = tfYear;
+    public void setTfYear(javax.swing.JTextField tfyear) {
+        this.tfYear = tfyear;
     }
+
 }

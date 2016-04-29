@@ -1,4 +1,6 @@
-package com.myssyt.bibtex;
+package com.myssyt.bibtex.domain;
+
+import com.myssyt.bibtex.domain.Viite;
 
 public class Artikkeli extends Viite {
     /*

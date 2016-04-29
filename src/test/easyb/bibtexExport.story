@@ -1,4 +1,5 @@
 import com.myssyt.bibtex.*
+import com.myssyt.bibtex.domain.*
 
 description "As a user I want to create Bibtex files so that I can use them in Latex"
 

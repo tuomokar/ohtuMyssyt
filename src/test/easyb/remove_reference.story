@@ -1,4 +1,5 @@
 import com.myssyt.bibtex.*
+import com.myssyt.bibtex.domain.*
 
 
 description "As a user I can delete a reference from the system"

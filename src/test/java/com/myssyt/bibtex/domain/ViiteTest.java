@@ -1,5 +1,6 @@
-package com.myssyt.bibtex;
+package com.myssyt.bibtex.domain;
 
+import com.myssyt.bibtex.domain.Viite;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

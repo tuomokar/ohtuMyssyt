@@ -1,4 +1,5 @@
 import com.myssyt.bibtex.*
+import com.myssyt.bibtex.domain.*
 
 
 description "Käyttäjä voi lisätä järjestelmään article, book ja inproceedings -tyyppisiä viitteitä"

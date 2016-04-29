@@ -1,4 +1,5 @@
 import com.myssyt.bibtex.*
+import com.myssyt.bibtex.domain.*
 
 
 description "Käyttäjänä haluan muokata järjestelmässä olevia viitteitä"

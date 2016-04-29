@@ -1,5 +1,16 @@
 package com.myssyt.bibtex;
 
+import com.myssyt.bibtex.panels.BookletPanel;
+import com.myssyt.bibtex.panels.BookPanel;
+import com.myssyt.bibtex.panels.InproceedingsPanel;
+import com.myssyt.bibtex.panels.ArticlePanel;
+import com.myssyt.bibtex.panels.IncollectionPanel;
+import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Incollection;
+import com.myssyt.bibtex.domain.Inproceedings;
+import com.myssyt.bibtex.domain.Booklet;
+import com.myssyt.bibtex.domain.Kirja;
+import com.myssyt.bibtex.domain.Viite;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

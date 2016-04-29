@@ -1,4 +1,4 @@
-package com.myssyt.bibtex;
+package com.myssyt.bibtex.domain;
 
 import java.io.Serializable;
 

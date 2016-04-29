@@ -1,5 +1,11 @@
-package com.myssyt.bibtex;
+package com.myssyt.bibtex.domain;
 
+import com.myssyt.bibtex.ViiteManageri;
+import com.myssyt.bibtex.domain.Artikkeli;
+import com.myssyt.bibtex.domain.Incollection;
+import com.myssyt.bibtex.domain.Booklet;
+import com.myssyt.bibtex.domain.Inproceedings;
+import com.myssyt.bibtex.domain.Kirja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
