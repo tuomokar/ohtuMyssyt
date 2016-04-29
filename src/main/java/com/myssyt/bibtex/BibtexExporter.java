@@ -11,19 +11,21 @@ public class BibtexExporter {
         StringBuilder builder = new StringBuilder();
         
         for(Viite viite : lista) {
-            if (viite.getClass().equals(Artikkeli.class))
-                exportArtikkeli((Artikkeli)viite, builder);
-            else if (viite.getClass().equals(Kirja.class))
-                exportKirja((Kirja)viite, builder);
-            else if (viite.getClass().equals(Inproceedings.class))
-                exportInproceedings((Inproceedings)viite, builder);
-            else if (viite.getClass().equals(Booklet.class))
-                exportBooklet((Booklet)viite, builder);
-            else if (viite.getClass().equals(Incollection.class))
-                exportIncollection((Incollection)viite, builder);
-            
-            builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
-            builder.append("\n\n");
+            if (viite.getExportable()) {
+                if (viite.getClass().equals(Artikkeli.class))
+                    exportArtikkeli((Artikkeli)viite, builder);
+                else if (viite.getClass().equals(Kirja.class))
+                    exportKirja((Kirja)viite, builder);
+                else if (viite.getClass().equals(Inproceedings.class))
+                    exportInproceedings((Inproceedings)viite, builder);
+                else if (viite.getClass().equals(Booklet.class))
+                    exportBooklet((Booklet)viite, builder);
+                else if (viite.getClass().equals(Incollection.class))
+                    exportIncollection((Incollection)viite, builder);
+                
+                builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
+                builder.append("\n\n");
+            }
         }
         
         try( PrintWriter out = new PrintWriter(filename)) {
