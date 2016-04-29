@@ -131,19 +131,10 @@ public class ReferenceManager {
             String pages,String month,String note) {
         
         Article article = (Article) getReferences().get(index);
-        article.setBibtexKey(bibtexkey);
-                
-        article.setAuthor(author);
-        article.setTitle(title);
-        article.setJournal(journal);
-        article.setYear(year);
-
-        // vapaavalintaiset
-        article.setVolume(volume);
-        article.setNumber(number);
-        article.setPages(pages);
-        article.setMonth(month);
-        article.setNote(note);
+        
+        ValueSetter.setValuesForArticle(article, bibtexkey, author, title, 
+                journal, year, volume, number, pages, month, note);
+        
     }
     
     public void editBook(int index, String bibtexkey,String author,
@@ -151,53 +142,25 @@ public class ReferenceManager {
             String publisher,String month,String note,String series,
             String address, String edition) {
         
-        Reference reference = getReferences().get(index);
-        Book kirja = (Book) reference;
+        Book book = (Book) getReferences().get(index);
         
-        kirja.setBibtexKey(bibtexkey);
-                
-        // author or editor
-        kirja.setAuthor(author);
-        kirja.setEditor(editor);
-        kirja.setTitle(title);
-        kirja.setPublisher(publisher);
-        kirja.setYear(year);
-
-        // vapaavalintaiset + volume or number
-        kirja.setVolume(volume);
-        kirja.setNumber(number);
-        kirja.setSeries(series);
-        kirja.setAddress(address);
-        kirja.setEdition(edition);
-        kirja.setMonth(month);
-        kirja.setNote(note);
+        ValueSetter.setValuesForBook(book, bibtexkey, author, title, editor, 
+                year, volume, number, publisher, month, note, series, 
+                address, edition);       
     }
     
     public void editInproceedings(int index, String bibtexkey,String author,
             String title,String booktitle,String year,String editor,String
             volume,String number,String series,String pages,String address,
             String month,String organization,String publisher,String note) {
-        Reference reference = getReferences().get(index);
-        Inproceedings inproceedings = (Inproceedings) reference;
         
-        inproceedings.setBibtexKey(bibtexkey);
-                
-        inproceedings.setAuthor(author);
-        inproceedings.setTitle(title);
-        inproceedings.setBooktitle(booktitle);
-        inproceedings.setYear(year);
-
-        // vapaavalintaiset + volume or number
-        inproceedings.setEditor(editor);
-        inproceedings.setVolume(volume);
-        inproceedings.setNumber(number);
-        inproceedings.setSeries(series);
-        inproceedings.setPages(pages);
-        inproceedings.setAddress(address);
-        inproceedings.setMonth(month);
-        inproceedings.setOrganization(organization);
-        inproceedings.setPublisher(publisher);
-        inproceedings.setNote(note);
+        Inproceedings inproceedings = (Inproceedings)getReferences().get(index);
+        
+        ValueSetter.setValuesForInproceedings(inproceedings, bibtexkey, author, title, booktitle,
+            year, editor, volume, number, series,
+            pages, address, month, organization,
+            publisher, note);
+        
     }
     
     public String exportReferences(String name) {
