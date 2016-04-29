@@ -88,6 +88,18 @@ public class ViiteManageri {
         return "Incollectionin lisääminen onnistui";
     }
     
+    public String lisaaManual(String bibtexKey, String title, String author, 
+            String organization, String address, String edition, String month, 
+            String year, String note) {
+        
+        Manual manual = new Manual(bibtexKey,title,author,organization,address,
+            edition,month,year,note);
+                        
+        viitteet.add(manual);
+        
+        return "Manualin lisääminen onnistui";
+    }
+    
     public String tallennaViitteet(String nimi) {
         try {
             FileHandler.writeFile(viitteet, nimi);
