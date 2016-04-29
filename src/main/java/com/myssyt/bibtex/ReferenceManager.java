@@ -85,9 +85,9 @@ public class ReferenceManager {
                         
         references.add(incollection);
         
-        return "Adding incollectionin succeeded";
+        return "Adding incollection succeeded";
     }
-    
+ 
     public String saveReferences(String name) {
         try {
             FileHandler.writeFile(references, name);
@@ -96,6 +96,18 @@ public class ReferenceManager {
         catch (Exception e) {
             return "Saving file failed";
         }
+    }
+    
+    public String addManual(String bibtexKey, String title, String author, 
+            String organization, String address, String edition, String month, 
+            String year, String note) {
+        
+        Manual manual = new Manual(bibtexKey,title,author,organization,address,
+            edition,month,year,note);
+                        
+        references.add(manual);
+        
+        return "Adding manual succeeded";
     }
     
     public String loadReferences(String name) {

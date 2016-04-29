@@ -1,5 +1,6 @@
 package com.myssyt.bibtex.domain;
 
+import com.myssyt.bibtex.Manual;
 import com.myssyt.bibtex.ReferenceManager;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -83,7 +84,7 @@ public class ReferenceManagerTest {
                 "series", "type", "chapter", "pages", "address",
                 "edition", "month", "note");
         
-        assertEquals("Adding incollectionin succeeded", message);
+        assertEquals("Adding incollection succeeded", message);
         assertEquals("chapter", 
                 ((Incollection) manager.getReferences().get(0)).getChapter());
     }
@@ -96,6 +97,17 @@ public class ReferenceManagerTest {
         assertEquals("Adding booklet succeeded", message);
         assertEquals("note", 
                 ((Booklet) manager.getReferences().get(0)).getNote());
+    }
+    
+    @Test
+    public void manualinLisaysOnnistuuHyvillaArvoilla() {
+        String viesti = manager.addManual("bibtexKey","title","author", 
+            "organization","address","edition","month", 
+            "year","note");
+        
+        assertEquals("Adding manual succeeded", viesti);
+        assertEquals("organization", 
+                ((Manual) manager.getReferences().get(0)).getOrganization());
     }
     
     @Test

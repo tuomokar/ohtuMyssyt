@@ -15,21 +15,26 @@ public class BibtexExporter {
     public static void exportBibtex(ArrayList<Reference> list, String filename) throws FileNotFoundException {
         
         StringBuilder builder = new StringBuilder();
-        
-        for(Reference reference : list) {
-            if (reference.getClass().equals(Article.class))
-                exportArticle((Article)reference, builder);
-            else if (reference.getClass().equals(Book.class))
-                exportBook((Book)reference, builder);
-            else if (reference.getClass().equals(Inproceedings.class))
-                exportInproceedings((Inproceedings)reference, builder);
-            else if (reference.getClass().equals(Booklet.class))
-                exportBooklet((Booklet)reference, builder);
-            else if (reference.getClass().equals(Incollection.class))
-                exportIncollection((Incollection)reference, builder);
+
+        for (Reference reference : list) {
             
-            builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
-            builder.append("\n\n");
+            if (reference.getExportable()) {
+
+                if (reference.getClass().equals(Article.class)) {
+                    exportArticle((Article) reference, builder);
+                } else if (reference.getClass().equals(Book.class)) {
+                    exportBook((Book) reference, builder);
+                } else if (reference.getClass().equals(Inproceedings.class)) {
+                    exportInproceedings((Inproceedings) reference, builder);
+                } else if (reference.getClass().equals(Booklet.class)) {
+                    exportBooklet((Booklet) reference, builder);
+                } else if (reference.getClass().equals(Incollection.class)) {
+                    exportIncollection((Incollection) reference, builder);
+                }
+
+                builder.deleteCharAt(builder.length() - 3); // Uglily move the last comma
+                builder.append("\n\n");
+            }
         }
         
         try( PrintWriter out = new PrintWriter(filename)) {
