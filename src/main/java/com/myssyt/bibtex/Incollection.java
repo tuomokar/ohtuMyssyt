@@ -1,6 +1,13 @@
 package com.myssyt.bibtex;
 
 public class Incollection extends Viite {
+    /*
+    A part of a book having its own title. 
+        Required fields: 
+            author, title, booktitle, publisher, year. 
+        Optional fields: 
+            editor, volume or number, series, type, chapter, pages, address, edition, month, note.
+    */
 
     private String author;
     private String title;

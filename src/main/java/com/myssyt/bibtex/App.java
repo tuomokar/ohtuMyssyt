@@ -13,6 +13,7 @@ public class App extends javax.swing.JFrame {
     BookPanel bookPanel;
     InproceedingsPanel inproceedingsPanel;
     BookletPanel bookletPanel;
+    IncollectionPanel incollectionPanel;
     
     int currentReferenceType = -1;
     
@@ -39,6 +40,11 @@ public class App extends javax.swing.JFrame {
             cl.show(contPanel, "booklet");
             currentReferenceType = 3;
             lMessage.setText("New Booklet");    
+        } else if (cbType.getSelectedItem().equals("Incollection")) {
+            incollectionPanel.clearTextFields();
+            cl.show(contPanel, "incollection");
+            currentReferenceType = 4;
+            lMessage.setText("New Incollection");    
         }
     }
     
@@ -166,6 +172,42 @@ public class App extends javax.swing.JFrame {
             msg = manageri.lisaaBooklet(bibtexkey, title, author,
                     howpublished, address, month, year, note);
             lMessage.setText(msg);
+        } else if (currentReferenceType == 4) {
+            String bibtexkey = incollectionPanel.getTfBibtexkey().getText();
+            
+            String author = incollectionPanel.getTfAuthor().getText();
+            String title = incollectionPanel.getTfTitle().getText();
+            String booktitle = incollectionPanel.getTfBooktitle().getText();
+            String publisher = incollectionPanel.getTfPublisher().getText();
+            String year = incollectionPanel.getTfYear().getText();
+            
+            // vapaavalintaiset + volume or number
+            String editor = incollectionPanel.getTfEditor().getText();
+            String volume = incollectionPanel.getTfVolume().getText();
+            String number = incollectionPanel.getTfNumber().getText();
+            String series = incollectionPanel.getTfSeries().getText();
+            String type = incollectionPanel.getTfType().getText();
+            String chapter = incollectionPanel.getTfChapter().getText();
+            String pages = incollectionPanel.getTfPages().getText();
+            String address = incollectionPanel.getTfAddress().getText();
+            String edition = incollectionPanel.getTfEdition().getText();
+            String month = incollectionPanel.getTfMonth().getText();
+            String note = incollectionPanel.getTfNote().getText();
+            
+            // table row: type, author/editor, title, year, journal/booktitle, key
+            model.addRow(new Object[] {
+                "Incollection",
+                author,
+                title,
+                year,
+                booktitle,
+                bibtexkey
+            });
+
+            msg = manageri.lisaaIncollection(bibtexkey, author, title, booktitle,
+                publisher, year, editor, volume, number, series, type, chapter,
+                pages, address, edition, month, note);
+            lMessage.setText(msg);
         } else {
             lMessage.setText("Create new reference first");
         }
@@ -279,7 +321,117 @@ public class App extends javax.swing.JFrame {
                 model.setValueAt(bibtexkey, selectedRow, 5);
                 
                 lMessage.setText("Booklet updated");
-            }
+            } else if (viite.getClass().equals(Inproceedings.class)) {
+                Inproceedings inproceedings = (Inproceedings) viite;
+                
+                String bibtexkey = inproceedingsPanel.getTfBibtexkey().getText();
+                
+                String author = inproceedingsPanel.getTfAuthor().getText(); 
+                String title = inproceedingsPanel.getTfTitle().getText();
+                String booktitle = inproceedingsPanel.getTfBooktitle().getText();
+                String year = inproceedingsPanel.getTfYear().getText();
+                
+                // vapaavalintaiset + volume or number
+                String editor = inproceedingsPanel.getTfEditor().getText();
+                String volume = inproceedingsPanel.getTfVolume().getText();
+                String number = inproceedingsPanel.getTfNumber().getText();
+                String series = inproceedingsPanel.getTfSeries().getText();
+                String pages = inproceedingsPanel.getTfPages().getText();
+                String address = inproceedingsPanel.getTfAddress().getText();
+                String month = inproceedingsPanel.getTfMonth().getText();
+                String organization = inproceedingsPanel.getTfOrganization().getText();
+                String publisher = inproceedingsPanel.getTfPublisher().getText();
+                String note = inproceedingsPanel.getTfNote().getText();
+
+                inproceedings.setBibtexKey(bibtexkey);
+
+                inproceedings.setAuthor(author);
+                inproceedings.setTitle(title);
+                inproceedings.setBooktitle(booktitle);
+                inproceedings.setYear(year);
+                
+                // vapaavalintaiset + volume or number
+                inproceedings.setEditor(editor);
+                inproceedings.setVolume(volume);
+                inproceedings.setNumber(number);
+                inproceedings.setSeries(series);
+                inproceedings.setPages(pages);
+                inproceedings.setAddress(address);
+                inproceedings.setMonth(month);
+                inproceedings.setOrganization(organization);
+                inproceedings.setPublisher(publisher);
+                inproceedings.setNote(note);
+                
+                // table row: type, author/editor, title, year, journal/booktitle, key
+                //model.setValueAt(viite, selectedRow, 0);
+                model.setValueAt(author, selectedRow, 1);
+                model.setValueAt(title, selectedRow, 2);
+                model.setValueAt(year, selectedRow, 3);
+                model.setValueAt(booktitle, selectedRow, 4);
+                model.setValueAt(bibtexkey, selectedRow, 5);
+                
+               lMessage.setText("Book updated");
+                
+            } else if (viite.getClass().equals(Incollection.class)) {
+                Incollection incollection = (Incollection) viite;
+
+                String bibtexkey = incollectionPanel.getTfBibtexkey().getText();
+                
+                String author = incollectionPanel.getTfAuthor().getText(); 
+                String title = incollectionPanel.getTfTitle().getText();
+                String booktitle = incollectionPanel.getTfBooktitle().getText(); 
+                String publisher = incollectionPanel.getTfPublisher().getText();
+                String year = incollectionPanel.getTfYear().getText();
+                
+                // vapaavalintaiset + volume or number
+                String editor = incollectionPanel.getTfEditor().getText();
+                String volume = incollectionPanel.getTfVolume().getText();
+                String number = incollectionPanel.getTfNumber().getText(); 
+                String series = incollectionPanel.getTfSeries().getText();
+                String type = incollectionPanel.getTfType().getText();
+                String chapter = incollectionPanel.getTfChapter().getText();
+                String pages = incollectionPanel.getTfPages().getText();
+                String address = incollectionPanel.getTfAddress().getText();
+                String edition = incollectionPanel.getTfEdition().getText();
+                String month = incollectionPanel.getTfMonth().getText();
+                String note = incollectionPanel.getTfNote().getText(); 
+                
+                /*manageri.muokkaaIncollection(selectedRow, bibtexkey, author, title, editor, 
+                        year, volume, number, publisher, month, note, series, 
+                        address, edition);*/
+
+        
+                incollection.setBibtexKey(bibtexkey);
+                
+                incollection.setAuthor(author);
+                incollection.setTitle(title);
+                incollection.setBooktitle(booktitle);
+                incollection.setPublisher(publisher);
+                incollection.setYear(year);
+
+                // vapaavalintaiset + volume or number
+                incollection.setEditor(editor);
+                incollection.setVolume(volume);
+                incollection.setNumber(number);
+                incollection.setSeries(series);              
+                incollection.setType(type);
+                incollection.setChapter(chapter);
+                incollection.setPages(pages);
+                incollection.setAddress(address);
+                incollection.setEdition(edition);
+                incollection.setMonth(month);                
+                incollection.setNote(note);
+                
+                // table row: type, author/editor, title, year, journal/booktitle, key
+                //model.setValueAt(viite, selectedRow, 0);
+                model.setValueAt(author, selectedRow, 1);
+                model.setValueAt(title, selectedRow, 2);
+                model.setValueAt(year, selectedRow, 3);
+                model.setValueAt(booktitle, selectedRow, 4);
+                model.setValueAt(bibtexkey, selectedRow, 5);
+                
+                lMessage.setText("Book updated");
+            } 
         }
     }
     
@@ -448,6 +600,56 @@ public class App extends javax.swing.JFrame {
                 cl.show(contPanel, "booklet");
                 
                 lMessage.setText("Booklet selected");
+            } else if (model.getValueAt(selectedRow, 0).equals("Incollection")) {
+                Incollection incollection = (Incollection) viite;
+                
+                incollectionPanel.clearTextFields();
+                
+                String bibtexkey = incollection.getBibtexKey();
+                
+                String author = incollection.getAuthor();
+                String title = incollection.getTitle();
+                String booktitle = incollection.getBooktitle();
+                String publisher = incollection.getPublisher();
+                String year = incollection.getYear();
+
+                // vapaavalintaiset + volume or number
+                String editor = incollection.getEditor();
+                String volume = incollection.getVolume();
+                String number = incollection.getNumber();
+                String series = incollection.getSeries();              
+                String type = incollection.getType();
+                String chapter = incollection.getChapter();
+                String pages = incollection.getPages();
+                String address = incollection.getAddress();
+                String edition = incollection.getEdition();
+                String month = incollection.getMonth();                
+                String note = incollection.getNote();
+                
+                incollectionPanel.getTfBibtexkey().setText(bibtexkey);
+                
+                incollectionPanel.getTfAuthor().setText(author);
+                incollectionPanel.getTfTitle().setText(title);
+                incollectionPanel.getTfBooktitle().setText(booktitle);
+                incollectionPanel.getTfPublisher().setText(publisher);
+                incollectionPanel.getTfYear().setText(year);
+     
+                // vapaavalintaiset + volume or number
+                incollectionPanel.getTfEditor().setText(editor);
+                incollectionPanel.getTfVolume().setText(volume);
+                incollectionPanel.getTfNumber().setText(number);
+                incollectionPanel.getTfSeries().setText(series);
+                incollectionPanel.getTfType().setText(type);
+                incollectionPanel.getTfChapter().setText(chapter);
+                incollectionPanel.getTfPages().setText(pages);
+                incollectionPanel.getTfAddress().setText(address);
+                incollectionPanel.getTfEdition().setText(edition);
+                incollectionPanel.getTfMonth().setText(month);
+                incollectionPanel.getTfNote().setText(note);
+                
+                cl.show(contPanel, "incollection");
+                
+                lMessage.setText("Incollection selected");
             }
         } 
     }
@@ -473,11 +675,13 @@ public class App extends javax.swing.JFrame {
         bookPanel = new BookPanel();
         inproceedingsPanel = new InproceedingsPanel();
         bookletPanel = new BookletPanel();
+        incollectionPanel = new IncollectionPanel();
         
         contPanel.add(articlePanel, "article");
         contPanel.add(bookPanel, "book");
         contPanel.add(inproceedingsPanel, "inproceedings");
         contPanel.add(bookletPanel, "booklet");
+        contPanel.add(incollectionPanel, "incollection");
         cl = (CardLayout)contPanel.getLayout();
         cl.show(contPanel, "article"); 
         
@@ -530,6 +734,17 @@ public class App extends javax.swing.JFrame {
                     null,
                     booklet.getBibtexKey()
                 });
+            } else if (viite.getClass().equals(Incollection.class)) {
+                Incollection incollection = (Incollection) viite;
+                // entrytype, author/editor, title, year, journal/booktitle, bibtexkey
+                model.addRow(new Object[] {
+                    "Incollection",
+                    incollection.getAuthor(),
+                    incollection.getTitle(),
+                    incollection.getYear(),
+                    incollection.getBooktitle(),
+                    incollection.getBibtexKey()
+                });
             }
         }
     }
@@ -567,7 +782,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Book", "InProceedings", "Booklet" }));
+        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Book", "Booklet", "Incollection", "InProceedings", " " }));
         cbType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTypeActionPerformed(evt);
