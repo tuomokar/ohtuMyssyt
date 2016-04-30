@@ -1,6 +1,7 @@
 
-package com.myssyt.bibtex;
+package com.myssyt.bibtex.domain;
 
+import com.myssyt.bibtex.domain.Reference;
 import com.myssyt.bibtex.domain.Reference;
 
 /**

@@ -7,12 +7,12 @@ import com.myssyt.bibtex.domain.Booklet;
 import com.myssyt.bibtex.domain.Book;
 import com.myssyt.bibtex.domain.Reference;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class BibtexExporter {
     
-    public static void exportBibtex(ArrayList<Reference> list, String filename) throws FileNotFoundException {
+    public static void exportBibtex(List<Reference> list, String filename) throws FileNotFoundException {
         
         StringBuilder builder = new StringBuilder();
 
@@ -55,6 +55,7 @@ public class BibtexExporter {
     */
     private static void exportArticle(Article article, StringBuilder builder) {
         builder.append("@article{" + article.getBibtexKey() + ",\n");
+        
         if (isSet(article.getAuthor())) builder.append("author = {" + article.getAuthor() + "},\n");
         if (isSet(article.getTitle())) builder.append("title = {" + article.getTitle() + "},\n");
         if (isSet(article.getJournal())) builder.append("journal = {" + article.getJournal() + "},\n");
@@ -64,6 +65,7 @@ public class BibtexExporter {
         if (isSet(article.getPages())) builder.append("pages = {" + article.getPages() + "},\n");
         if (isSet(article.getMonth())) builder.append("month = {" + article.getMonth() + "},\n");
         if (isSet(article.getNote())) builder.append("note = {" + article.getNote() + "},\n");
+        
         builder.append("}");
     }
     
@@ -76,6 +78,7 @@ public class BibtexExporter {
     */
     private static void exportBook(Book book, StringBuilder builder) {
         builder.append("@book{" + book.getBibtexKey() + ",\n");
+        
         if (isSet(book.getAuthor())) builder.append("author = {" + book.getAuthor() + "},\n");
         if (isSet(book.getEditor())) builder.append("editor = {" + book.getEditor() + "},\n");
         if (isSet(book.getTitle())) builder.append("title = {" + book.getTitle() + "},\n");
@@ -88,6 +91,7 @@ public class BibtexExporter {
         if (isSet(book.getEdition())) builder.append("edition = {" + book.getEdition() + "},\n");
         if (isSet(book.getMonth())) builder.append("month = {" + book.getMonth() + "},\n");
         if (isSet(book.getNote())) builder.append("note = {" + book.getNote() + "},\n");
+        
         builder.append("}");
     }
     
@@ -100,6 +104,7 @@ public class BibtexExporter {
     */
     private static void exportInproceedings(Inproceedings inproceedings, StringBuilder builder) {
         builder.append("@inproceedings{" + inproceedings.getBibtexKey() + ",\n");
+        
         if(isSet(inproceedings.getAuthor())) builder.append("author = {" + inproceedings.getAuthor() + "},\n");
         if(isSet(inproceedings.getTitle())) builder.append("title = {" + inproceedings.getTitle() + "},\n");
         if(isSet(inproceedings.getBooktitle())) builder.append("booktitle = {" + inproceedings.getBooktitle() + "},\n");
@@ -114,6 +119,7 @@ public class BibtexExporter {
         if(isSet(inproceedings.getOrganization())) builder.append("organization = {" + inproceedings.getOrganization() + "},\n");
         if(isSet(inproceedings.getPublisher())) builder.append("publisher = {" + inproceedings.getPublisher() + "},\n");
         if(isSet(inproceedings.getNote())) builder.append("note = {" + inproceedings.getNote() + "},\n");
+        
         builder.append("}");
     }
     
@@ -126,12 +132,14 @@ public class BibtexExporter {
     */
     private static void exportBooklet(Booklet booklet, StringBuilder builder) {
         builder.append("@booklet{" + booklet.getBibtexKey() + ",\n");
+        
         if(isSet(booklet.getTitle())) builder.append("title = {" + booklet.getTitle() + "},\n");
         if(isSet(booklet.getHowpublished())) builder.append("howpublished = {" + booklet.getHowpublished() + "},\n");
         if(isSet(booklet.getAddress())) builder.append("address = {" + booklet.getAddress() + "},\n");
         if(isSet(booklet.getMonth())) builder.append("month = {" + booklet.getMonth() + "},\n");
         if(isSet(booklet.getYear())) builder.append("year = {" + booklet.getYear() + "},\n");
         if(isSet(booklet.getNote())) builder.append("note = {" + booklet.getNote() + "},\n");
+        
         builder.append("}");
     }
     
@@ -144,6 +152,7 @@ public class BibtexExporter {
     */
     private static void exportIncollection(Incollection incollection, StringBuilder builder) {
         builder.append("@booklet{" + incollection.getBibtexKey() + ",\n");
+        
         if(isSet(incollection.getAuthor())) builder.append("author = {" + incollection.getAuthor() + "},\n");
         if(isSet(incollection.getTitle())) builder.append("title = {" + incollection.getTitle() + "},\n");
         if(isSet(incollection.getBooktitle())) builder.append("booktitle = {" + incollection.getBooktitle() + "},\n");
@@ -160,6 +169,7 @@ public class BibtexExporter {
         if(isSet(incollection.getEdition())) builder.append("edition = {" + incollection.getEdition() + "},\n");
         if(isSet(incollection.getMonth())) builder.append("month = {" + incollection.getMonth() + "},\n");
         if(isSet(incollection.getNote())) builder.append("note = {" + incollection.getNote() + "},\n");
+        
         builder.append("}");
     }
 }

@@ -3,10 +3,11 @@ package com.myssyt.bibtex;
 import com.myssyt.bibtex.domain.Reference;
 import java.util.ArrayList;
 import java.io.*;
+import java.util.List;
 
 public class FileHandler {
 
-    public static void writeFile(ArrayList<Reference> lista, String filename) throws FileNotFoundException, IOException {
+    public static void writeFile(List<Reference> lista, String filename) throws FileNotFoundException, IOException {
         FileOutputStream fos = new FileOutputStream(filename);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(lista);
@@ -18,6 +19,7 @@ public class FileHandler {
         ObjectInputStream ois = new ObjectInputStream(fis);
         ArrayList<Reference> lista = (ArrayList<Reference>) ois.readObject();
         ois.close();
+        
         return lista;
     }
 }

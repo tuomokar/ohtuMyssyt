@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class App extends javax.swing.JFrame {
+    
     private final String filename = "default";
     private CardLayout cl;
     private ReferenceManager manager;
@@ -233,7 +234,7 @@ public class App extends javax.swing.JFrame {
             Reference reference = manager.getReferences().get(selectedRow);
             
             if (reference.getClass().equals(Article.class)) {
-                //Artikkeli artikkeli = (Artikkeli) viite;
+                //Article article = (Article) reference;
 
                 String bibtexkey = articlePanel.getTfBibtexkey().getText();
                 
@@ -242,7 +243,7 @@ public class App extends javax.swing.JFrame {
                 String journal = articlePanel.getTfJournal().getText();
                 String year = articlePanel.getTfYear().getText();
 
-                // vapaavalintaiset
+                // optional ones
                 String volume = articlePanel.getTfVolume().getText();
                 String number = articlePanel.getTfNumber().getText();
                 String pages = articlePanel.getTfPages().getText();
@@ -262,7 +263,7 @@ public class App extends javax.swing.JFrame {
                 
                 lMessage.setText("Article updated");
             } else if (reference.getClass().equals(Book.class)) {
-                //Kirja kirja = (Kirja) viite;
+                //Book book = (Book) reference;
 
                 String bibtexkey = bookPanel.getTfBibtexkey().getText();
                 
@@ -394,7 +395,7 @@ public class App extends javax.swing.JFrame {
                 String publisher = incollectionPanel.getTfPublisher().getText();
                 String year = incollectionPanel.getTfYear().getText();
                 
-                // vapaavalintaiset + volume or number
+                // optional ones + volume or number
                 String editor = incollectionPanel.getTfEditor().getText();
                 String volume = incollectionPanel.getTfVolume().getText();
                 String number = incollectionPanel.getTfNumber().getText(); 
@@ -407,7 +408,7 @@ public class App extends javax.swing.JFrame {
                 String month = incollectionPanel.getTfMonth().getText();
                 String note = incollectionPanel.getTfNote().getText(); 
                 
-                /*manageri.muokkaaIncollection(selectedRow, bibtexkey, author, title, editor, 
+                /*manager.editncollection(selectedRow, bibtexkey, author, title, editor, 
                         year, volume, number, publisher, month, note, series, 
                         address, edition);*/
 

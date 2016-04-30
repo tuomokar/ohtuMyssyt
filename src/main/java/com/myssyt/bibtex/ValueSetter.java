@@ -4,6 +4,9 @@ import com.myssyt.bibtex.domain.Article;
 import com.myssyt.bibtex.domain.Book;
 import com.myssyt.bibtex.domain.Inproceedings;
 
+/**
+ * Offers static methods to set values for a given type of reference
+ */
 public class ValueSetter {
 
     public static void setValuesForBook(Book book, String bibtexkey, String author,

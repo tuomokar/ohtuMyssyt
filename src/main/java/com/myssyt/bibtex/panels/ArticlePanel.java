@@ -1,11 +1,14 @@
 
 package com.myssyt.bibtex.panels;
 
+import javax.swing.JTextField ;
+import javax.swing.JPanel;
+
 /**
  *
  * @author jphkylli
  */
-public class ArticlePanel extends javax.swing.JPanel {
+public class ArticlePanel extends JPanel {
     /*
         An article from a journal or magazine. 
             Required fields: 
@@ -238,133 +241,133 @@ public class ArticlePanel extends javax.swing.JPanel {
     /**
      * @param tfAuthor the tfAuthor to set
      */
-    public void setTfAuthor(javax.swing.JTextField tfAuthor) {
+    public void setTfAuthor(JTextField tfAuthor) {
         this.tfAuthor = tfAuthor;
     }
 
     /**
      * @return the tfBibtexkey
      */
-    public javax.swing.JTextField getTfBibtexkey() {
+    public JTextField getTfBibtexkey() {
         return tfBibtexkey;
     }
 
     /**
      * @param tfBibtexkey the tfBibtexkey to set
      */
-    public void setTfBibtexkey(javax.swing.JTextField tfBibtexkey) {
+    public void setTfBibtexkey(JTextField tfBibtexkey) {
         this.tfBibtexkey = tfBibtexkey;
     }
 
     /**
      * @return the tfBooktitle
      */
-    public javax.swing.JTextField getTfJournal() {
+    public JTextField getTfJournal() {
         return tfJournal;
     }
 
     /**
      * @param tfBooktitle the tfBooktitle to set
      */
-    public void setTfJournal(javax.swing.JTextField tfBooktitle) {
+    public void setTfJournal(JTextField tfBooktitle) {
         this.tfJournal = tfBooktitle;
     }
 
     /**
      * @return the tfMonth
      */
-    public javax.swing.JTextField getTfMonth() {
+    public JTextField getTfMonth() {
         return tfMonth;
     }
 
     /**
      * @param tfMonth the tfMonth to set
      */
-    public void setTfMonth(javax.swing.JTextField tfMonth) {
+    public void setTfMonth(JTextField tfMonth) {
         this.tfMonth = tfMonth;
     }
 
     /**
      * @return the tfNote
      */
-    public javax.swing.JTextField getTfNote() {
+    public JTextField getTfNote() {
         return tfNote;
     }
 
     /**
      * @param tfNote the tfNote to set
      */
-    public void setTfNote(javax.swing.JTextField tfNote) {
+    public void setTfNote(JTextField tfNote) {
         this.tfNote = tfNote;
     }
 
     /**
      * @return the tfNumber
      */
-    public javax.swing.JTextField getTfNumber() {
+    public JTextField getTfNumber() {
         return tfNumber;
     }
 
     /**
      * @param tfNumber the tfNumber to set
      */
-    public void setTfNumber(javax.swing.JTextField tfNumber) {
+    public void setTfNumber(JTextField tfNumber) {
         this.tfNumber = tfNumber;
     }
 
     /**
      * @return the tfPages
      */
-    public javax.swing.JTextField getTfPages() {
+    public JTextField getTfPages() {
         return tfPages;
     }
 
     /**
      * @param tfPages the tfPages to set
      */
-    public void setTfPages(javax.swing.JTextField tfPages) {
+    public void setTfPages(JTextField tfPages) {
         this.tfPages = tfPages;
     }
 
     /**
      * @return the tfTitle
      */
-    public javax.swing.JTextField getTfTitle() {
+    public JTextField getTfTitle() {
         return tfTitle;
     }
 
     /**
      * @param tfTitle the tfTitle to set
      */
-    public void setTfTitle(javax.swing.JTextField tfTitle) {
+    public void setTfTitle(JTextField tfTitle) {
         this.tfTitle = tfTitle;
     }
 
     /**
      * @return the tfVolume
      */
-    public javax.swing.JTextField getTfVolume() {
+    public JTextField getTfVolume() {
         return tfVolume;
     }
 
     /**
      * @param tfVolume the tfVolume to set
      */
-    public void setTfVolume(javax.swing.JTextField tfVolume) {
+    public void setTfVolume(JTextField tfVolume) {
         this.tfVolume = tfVolume;
     }
 
     /**
      * @return the tfYear
      */
-    public javax.swing.JTextField getTfYear() {
+    public JTextField getTfYear() {
         return tfYear;
     }
 
     /**
      * @param tfYear the tfYear to set
      */
-    public void setTfYear(javax.swing.JTextField tfYear) {
+    public void setTfYear(JTextField tfYear) {
         this.tfYear = tfYear;
     }
 }

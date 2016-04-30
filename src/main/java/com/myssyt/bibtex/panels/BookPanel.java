@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.myssyt.bibtex.panels;
 
+import javax.swing.JTextField ;
+import javax.swing.JPanel;
 /**
  *
  * @author jphkylli
  */
-public class BookPanel extends javax.swing.JPanel {
+public class BookPanel extends JPanel {
     /*
         A book with an explicit publisher. 
             Required fields: 
@@ -276,182 +274,182 @@ public class BookPanel extends javax.swing.JPanel {
     /**
      * @return the tfAddress
      */
-    public javax.swing.JTextField getTfAddress() {
+    public JTextField getTfAddress() {
         return tfAddress;
     }
 
     /**
      * @param tfAddress the tfAddress to set
      */
-    public void setTfAddress(javax.swing.JTextField tfAddress) {
+    public void setTfAddress(JTextField tfAddress) {
         this.tfAddress = tfAddress;
     }
 
     /**
      * @return the tfAuthor
      */
-    public javax.swing.JTextField getTfAuthor() {
+    public JTextField getTfAuthor() {
         return tfAuthor;
     }
 
     /**
      * @param tfAuthor the tfAuthor to set
      */
-    public void setTfAuthor(javax.swing.JTextField tfAuthor) {
+    public void setTfAuthor(JTextField tfAuthor) {
         this.tfAuthor = tfAuthor;
     }
 
     /**
      * @return the tfBibtexkey
      */
-    public javax.swing.JTextField getTfBibtexkey() {
+    public JTextField getTfBibtexkey() {
         return tfBibtexkey;
     }
 
     /**
      * @param tfBibtexkey the tfBibtexkey to set
      */
-    public void setTfBibtexkey(javax.swing.JTextField tfBibtexkey) {
+    public void setTfBibtexkey(JTextField tfBibtexkey) {
         this.tfBibtexkey = tfBibtexkey;
     }
 
     /**
      * @return the tfEdition
      */
-    public javax.swing.JTextField getTfEdition() {
+    public JTextField getTfEdition() {
         return tfEdition;
     }
 
     /**
      * @param tfEdition the tfEdition to set
      */
-    public void setTfEdition(javax.swing.JTextField tfEdition) {
+    public void setTfEdition(JTextField tfEdition) {
         this.tfEdition = tfEdition;
     }
 
     /**
      * @return the tfEditor
      */
-    public javax.swing.JTextField getTfEditor() {
+    public JTextField getTfEditor() {
         return tfEditor;
     }
 
     /**
      * @param tfEditor the tfEditor to set
      */
-    public void setTfEditor(javax.swing.JTextField tfEditor) {
+    public void setTfEditor(JTextField tfEditor) {
         this.tfEditor = tfEditor;
     }
 
     /**
      * @return the tfMonth
      */
-    public javax.swing.JTextField getTfMonth() {
+    public JTextField getTfMonth() {
         return tfMonth;
     }
 
     /**
      * @param tfMonth the tfMonth to set
      */
-    public void setTfMonth(javax.swing.JTextField tfMonth) {
+    public void setTfMonth(JTextField tfMonth) {
         this.tfMonth = tfMonth;
     }
 
     /**
      * @return the tfNote
      */
-    public javax.swing.JTextField getTfNote() {
+    public JTextField getTfNote() {
         return tfNote;
     }
 
     /**
      * @param tfNote the tfNote to set
      */
-    public void setTfNote(javax.swing.JTextField tfNote) {
+    public void setTfNote(JTextField tfNote) {
         this.tfNote = tfNote;
     }
 
     /**
      * @return the tfNumber
      */
-    public javax.swing.JTextField getTfNumber() {
+    public JTextField getTfNumber() {
         return tfNumber;
     }
 
     /**
      * @param tfNumber the tfNumber to set
      */
-    public void setTfNumber(javax.swing.JTextField tfNumber) {
+    public void setTfNumber(JTextField tfNumber) {
         this.tfNumber = tfNumber;
     }
 
     /**
      * @return the tfPublisher
      */
-    public javax.swing.JTextField getTfPublisher() {
+    public JTextField getTfPublisher() {
         return tfPublisher;
     }
 
     /**
      * @param tfPublisher the tfPublisher to set
      */
-    public void setTfPublisher(javax.swing.JTextField tfPublisher) {
+    public void setTfPublisher(JTextField tfPublisher) {
         this.tfPublisher = tfPublisher;
     }
 
     /**
      * @return the tfSeries
      */
-    public javax.swing.JTextField getTfSeries() {
+    public JTextField getTfSeries() {
         return tfSeries;
     }
 
     /**
      * @param tfSeries the tfSeries to set
      */
-    public void setTfSeries(javax.swing.JTextField tfSeries) {
+    public void setTfSeries(JTextField tfSeries) {
         this.tfSeries = tfSeries;
     }
 
     /**
      * @return the tfTitle
      */
-    public javax.swing.JTextField getTfTitle() {
+    public JTextField getTfTitle() {
         return tfTitle;
     }
 
     /**
      * @param tfTitle the tfTitle to set
      */
-    public void setTfTitle(javax.swing.JTextField tfTitle) {
+    public void setTfTitle(JTextField tfTitle) {
         this.tfTitle = tfTitle;
     }
 
     /**
      * @return the tfVolume
      */
-    public javax.swing.JTextField getTfVolume() {
+    public JTextField getTfVolume() {
         return tfVolume;
     }
 
     /**
      * @param tfVolume the tfVolume to set
      */
-    public void setTfVolume(javax.swing.JTextField tfVolume) {
+    public void setTfVolume(JTextField tfVolume) {
         this.tfVolume = tfVolume;
     }
 
     /**
      * @return the tfYear
      */
-    public javax.swing.JTextField getTfYear() {
+    public JTextField getTfYear() {
         return tfYear;
     }
 
     /**
      * @param tfYear the tfYear to set
      */
-    public void setTfYear(javax.swing.JTextField tfYear) {
+    public void setTfYear(JTextField tfYear) {
         this.tfYear = tfYear;
     }
 }

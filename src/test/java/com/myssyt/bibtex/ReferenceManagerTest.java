@@ -1,7 +1,11 @@
-package com.myssyt.bibtex.domain;
+package com.myssyt.bibtex;
 
-import com.myssyt.bibtex.Manual;
-import com.myssyt.bibtex.ReferenceManager;
+import com.myssyt.bibtex.domain.Book;
+import com.myssyt.bibtex.domain.Booklet;
+import com.myssyt.bibtex.domain.Incollection;
+import com.myssyt.bibtex.domain.Article;
+import com.myssyt.bibtex.domain.Inproceedings;
+import com.myssyt.bibtex.domain.Manual;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
