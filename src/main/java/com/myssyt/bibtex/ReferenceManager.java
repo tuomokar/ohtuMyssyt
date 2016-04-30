@@ -11,6 +11,7 @@ import com.myssyt.bibtex.domain.Inproceedings;
 import com.myssyt.bibtex.domain.Booklet;
 import com.myssyt.bibtex.domain.Book;
 import com.myssyt.bibtex.domain.Reference;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +97,7 @@ public class ReferenceManager {
         try {
             FileHandler.writeFile(references, name);
             return "Saving file succeeded";
-        } catch (Exception e) {
+        } catch (IOException e) {
             return "Saving file failed";
         }
     }
@@ -117,7 +118,7 @@ public class ReferenceManager {
         try {
             references = FileHandler.readFile(name);
             return "Loading file succeeded";
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             references = new ArrayList<>();
             return "Loading file failed";
         }
@@ -167,7 +168,7 @@ public class ReferenceManager {
         try {
             BibtexExporter.exportBibtex(references, name);
             return "Exporting file succeeded";
-        } catch (Exception e) {
+        } catch (IOException e) {
             return "Exporting file failed";
         }
     }
